@@ -69,8 +69,8 @@ export class RoleFormComponent implements OnInit {
 			}
 		});
 		this.form = this.fb.group({
-			roleCode: [null, [Validators.required]],
-			roleName: [null, [Validators.required]],
+			jobRoleCode: [null, [Validators.required]],
+			jobRoleName: [null, [Validators.required]],
 			maxPettyCashAllowed: [null, [Validators.required]],
 		});
 	}

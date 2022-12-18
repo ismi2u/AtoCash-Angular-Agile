@@ -7,26 +7,26 @@
 	>
 		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
 			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="roleCode">{{
-					'form.role.roleCode' | translate
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="jobRoleCode">{{
+					'form.role.jobRoleCode' | translate
 				}}</nz-form-label>
 				<nz-form-control
 					[nzSpan]="15"
 					[nzErrorTip]="'validation.required' | translate"
 				>
 					<input
-						formControlName="roleCode"
+						formControlName="jobRoleCode"
 						type="text"
 						nz-input
-						[placeholder]="'form.role.roleCode' | translate"
+						[placeholder]="'form.role.jobRoleCode' | translate"
 						appCapitalize
-						id="roleCode"
+						id="jobRoleCode"
 					/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="roleName">{{
-					'form.role.roleName' | translate
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="jobRoleName">{{
+					'form.role.jobRoleName' | translate
 				}}</nz-form-label>
 
 				<nz-form-control
@@ -34,18 +34,18 @@
 					[nzErrorTip]="'validation.required' | translate"
 				>
 					<input
-						formControlName="roleName"
+						formControlName="jobRoleName"
 						nz-input
 						type="text"
-						[placeholder]="'form.role.roleName' | translate"
+						[placeholder]="'form.role.jobRoleName' | translate"
 						appCapitalize
-						id="roleName"
+						id="jobRoleName"
 					/>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="maxAmount">{{
-					'form.role.maxAmount' | translate
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="maxPettyCashAllowed">{{
+					'form.role.maxPettyCashAllowed' | translate
 				}}</nz-form-label>
 
 				<nz-form-control
@@ -57,7 +57,7 @@
 						nz-input
 						type="number"
 						[placeholder]="'form.role.maxAmount' | translate"
-						id="maxAmount"
+						id="maxPettyCashAllowed"
 					/>
 				</nz-form-control>
 			</nz-form-item>

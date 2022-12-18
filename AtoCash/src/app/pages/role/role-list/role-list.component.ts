@@ -10,9 +10,9 @@ import { RolesService } from 'src/app/services/roles.service';
 export class RolelistComponent implements OnInit {
 	roles: any;
 	rolesHeaders: any = [
-		'tableHeader.role.roleCode',
-		'tableHeader.role.roleName',
-		'tableHeader.role.maxAmount',
+		'tableHeader.role.jobRoleCode',
+		'tableHeader.role.jobRoleName',
+		'tableHeader.role.maxPettyCashAllowed',
 	];
 	constructor(
 		private _cdr: ChangeDetectorRef,

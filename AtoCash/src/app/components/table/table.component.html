@@ -205,12 +205,12 @@
 			</td>
 
 			<!-- User Roles -->
-			<td *ngIf="data.roleCode && formName == 'role'">{{ data.roleCode }}</td>
-			<td *ngIf="data.roleName && formName == 'role'">{{ data.roleName }}</td>
+			<td *ngIf="data.jobRoleCode && formName == 'role'">{{ data.jobRoleCode }}</td>
+			<td *ngIf="data.jobRoleName && formName == 'role'">{{ data.jobRoleName }}</td>
 			<td *ngIf="data.maxPettyCashAllowed && formName == 'role'">
 				{{ data.maxPettyCashAllowed }}
 			</td>
-			
+
 			<!-- Employment Types -->
 			<td *ngIf="data.empJobTypeCode && formName == 'employeeType'">
 				{{ data.empJobTypeCode }}

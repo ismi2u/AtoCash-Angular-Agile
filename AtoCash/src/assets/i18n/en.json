@@ -186,9 +186,9 @@
 			"status": "Status"
 		},
 		"role": {
-			"roleCode": "Role Code",
-			"roleName": "Role Name",
-			"maxAmount": "Max.Amount"
+			"jobRoleCode": "Job Role Code",
+			"jobRoleName": "Job Role Name",
+			"maxPettyCashAllowed": "Max.Amount"
 		},
 		"employmentType": {
 			"employmentTypeName": "Name",
@@ -399,9 +399,9 @@
 			"status": "Status"
 		},
 		"role": {
-			"roleCode": "Role Code",
-			"roleName": "Role Name",
-			"maxAmount": "Max.Amount"
+			"jobRoleCode": "Job Role Code",
+			"jobRoleName": "Job Role Name",
+			"maxPettyCashAllowed": "Max.Amount"
 		},
 		"employmentType": {
 			"employmentTypeName": "Name",
