@@ -1,0 +1,91 @@
+<div class="form-layout">
+	<nz-card
+		class="form-layout__card"
+		[nzBordered]="false"
+		[nzTitle]="'heading.bank' | translate"
+		[nzExtra]="action"
+	>
+		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+			 
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="bankName">{{
+					'form.bank.bankName' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="bankName"
+						nz-input
+						type="text"
+						[placeholder]="'form.bank.bankName' | translate"
+						appCapitalize
+						id="bankName"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="bankDesc">{{
+					'form.bank.bankDesc' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="bankDesc"
+						nz-input
+						type="text"
+						[placeholder]="'form.bank.bankDesc' | translate"
+						appCapitalize
+						id="bankDesc"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="Status">{{
+					'form.status.status' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<nz-select
+						nzShowSearch
+						nzAllowClear
+						id="statusTypeId"
+						formControlName="statusTypeId"
+						[nzPlaceHolder]="'form.status.status' | translate"
+					>
+						<nz-option
+							*ngFor="let option of status"
+							[nzValue]="option.id"
+							[nzLabel]="option.status"
+						></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control class="action-control">
+					<button nz-button nzType="primary" [disabled]="!form.valid">
+						{{ getButtonLabel() }}
+					</button>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+
+		<ng-template #action>
+			<button nz-button routerLink="/bank/list" nzType="primary">
+				<i nz-icon nzType="arrow-left"></i>
+				{{ 'button.back' | translate }}
+			</button>
+		</ng-template></nz-card>
+
+</div>

@@ -1,0 +1,20 @@
+<nz-card
+	[nzBordered]="false"
+	[nzTitle]="'heading.expenseCategory' | translate"
+	[nzExtra]="action"
+>
+<app-table
+[tableHeaders]="ExpenseCategoriesHeaders"
+[tableData]="ExpenseCategory"
+(onDelete)="deleteRecord($event)"
+(onEdit)="editRecord($event)"
+[formName]="'expenseCategory'"
+></app-table>
+
+</nz-card>
+
+<ng-template #action>
+	<button nz-button routerLink="/expense-category/action/add" nzType="primary">
+		{{ 'button.create' | translate }}
+	</button>
+</ng-template>

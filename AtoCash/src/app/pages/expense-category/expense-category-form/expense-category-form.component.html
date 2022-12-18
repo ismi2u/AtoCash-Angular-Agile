@@ -1,0 +1,107 @@
+<div class="form-layout">
+	<nz-card
+		class="form-layout__card"
+		[nzBordered]="false"
+		[nzTitle]="'heading.expenseCategory'| translate"
+		[nzExtra]="action"
+	>
+		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseCategoryName">{{
+					'form.expenseCategory.expenseCategoryName' | translate
+				}}</nz-form-label>
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="expenseCategoryName"
+						type="text"
+						nz-input
+						[placeholder]="'form.expenseCategory.expenseCategoryName' | translate"
+						appCapitalize
+						id="expenseCategoryName"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseCategoryDesc">{{
+					'form.expenseCategory.expenseCategoryDesc' | translate
+				}}</nz-form-label>
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="expenseCategoryDesc"
+						nz-input
+						type="text"
+						[placeholder]="'form.expenseCategory.expenseCategoryDesc' | translate"
+						appCapitalize
+						id="expenseCategoryDesc"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="isBusinessCategory">{{
+					'form.expenseCategory.isBusinessCategory' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+				
+				<nz-switch
+				nzSize="small"
+				[(ngModel)]="isBusinessCategory"
+				formControlName="isBusinessCategory" id="isBusinessCategory"></nz-switch>
+
+				 
+				</nz-form-control>
+			</nz-form-item>
+
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="status">{{
+					'form.expenseCategory.status' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<nz-select
+						nzShowSearch
+						nzAllowClear
+						id="statusTypeId"
+						formControlName="statusTypeId"
+						[nzPlaceHolder]="'form.expenseCategory.status' | translate"
+					>
+						<nz-option
+							*ngFor="let option of status"
+							[nzValue]="option.id"
+							[nzLabel]="option.status"
+						></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+			
+			
+			<nz-form-item>
+				<nz-form-control class="action-control">
+					<button nz-button nzType="primary" [disabled]="!form.valid">
+						{{ getButtonLabel() }}
+					</button>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+		<ng-template #action>
+			<button nz-button routerLink="/expense-category" nzType="primary">
+				<i nz-icon nzType="arrow-left"></i>
+				{{ 'button.back' | translate }}
+			</button>
+		</ng-template></nz-card
+	>
+</div>

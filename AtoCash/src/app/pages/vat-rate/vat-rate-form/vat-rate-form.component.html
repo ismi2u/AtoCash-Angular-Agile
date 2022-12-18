@@ -1,0 +1,57 @@
+<div class="form-layout">
+	<nz-card
+		class="form-layout__card"
+		[nzBordered]="false"
+		[nzTitle]="'heading.vatRate' | translate">
+		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="id">{{
+					'form.vatRate.id' | translate
+				}}</nz-form-label>
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="id"
+						type="text"
+						nz-input
+						[placeholder]="'form.vatRate.id' | translate"
+						appCapitalize
+						id="id"
+						[disabled]="true"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="vatPercentage">{{
+					'form.vatRate.vatPercentage' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="vatPercentage"
+						nz-input
+						type="number"
+						[placeholder]="'form.vatRate.vatPercentage' | translate"
+						appCapitalize
+						id="vatPercentage"
+						[max]="100"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control class="action-control">
+					<button nz-button nzType="primary" [disabled]="!form.valid">
+						{{ getButtonLabel() }}
+					</button>
+				</nz-form-control>
+			</nz-form-item>
+
+		</form>
+		</nz-card>
+</div>

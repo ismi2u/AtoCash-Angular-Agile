@@ -1,0 +1,19 @@
+<nz-card
+	[nzBordered]="false"
+	[nzTitle]="'heading.generalLedger' | translate"
+	[nzExtra]="action"
+>
+<app-table
+[tableHeaders]="generalLedgerHeaders"
+[tableData]="generalLedger"
+(onDelete)="deleteRecord($event)"
+(onEdit)="editRecord($event)"
+[formName]="'generalLedger'"
+></app-table>
+</nz-card>
+
+<ng-template #action>
+	<button nz-button routerLink="/general-ledger/action/add" nzType="primary">
+		{{ 'button.create' | translate }}
+	</button>
+</ng-template>

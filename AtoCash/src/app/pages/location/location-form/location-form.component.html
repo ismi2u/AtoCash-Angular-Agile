@@ -1,0 +1,151 @@
+<div class="form-layout">
+	<nz-card
+		class="form-layout__card"
+		[nzBordered]="false"
+		[nzTitle]="'heading.location' | translate"
+		[nzExtra]="action"
+	>
+		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+			 
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="locationName">{{
+					'form.location.locationName' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="locationName"
+						nz-input
+						type="text"
+						[placeholder]="'form.location.locationName' | translate"
+						appCapitalize
+						id="locationName"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="city">{{
+					'form.location.city' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="city"
+						nz-input
+						type="text"
+						[placeholder]="'form.location.city' | translate"
+						appCapitalize
+						id="city"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="lattitude">{{
+					'form.location.lattitude' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="lattitude"
+						nz-input
+						type="text"
+						[placeholder]="'form.location.lattitude' | translate"
+						appCapitalize
+						id="lattitude"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="longitude">{{
+					'form.location.longitude' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="longitude"
+						nz-input
+						type="text"
+						[placeholder]="'form.location.longitude' | translate"
+						appCapitalize
+						id="longitude"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="locationDesc">{{
+					'form.location.locationDesc' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="locationDesc"
+						nz-input
+						type="text"
+						[placeholder]="'form.location.locationDesc' | translate"
+						appCapitalize
+						id="locationDesc"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="Status">{{
+					'form.status.status' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<nz-select
+						nzShowSearch
+						nzAllowClear
+						id="statusTypeId"
+						formControlName="statusTypeId"
+						[nzPlaceHolder]="'form.status.status' | translate"
+					>
+						<nz-option
+							*ngFor="let option of status"
+							[nzValue]="option.id"
+							[nzLabel]="option.status"
+						></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control class="action-control">
+					<button nz-button nzType="primary" [disabled]="!form.valid">
+						{{ getButtonLabel() }}
+					</button>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+
+		<ng-template #action>
+			<button nz-button routerLink="/location/list" nzType="primary">
+				<i nz-icon nzType="arrow-left"></i>
+				{{ 'button.back' | translate }}
+			</button>
+		</ng-template></nz-card>
+
+</div>

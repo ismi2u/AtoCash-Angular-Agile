@@ -1,0 +1,159 @@
+<div class="form-layout">
+	<nz-card
+		class="form-layout__card"
+		[nzBordered]="false"
+		[nzTitle]="'heading.department' | translate"
+		[nzExtra]="action"
+	>
+		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="businessUnitType">{{
+					'form.business-unit.businessUnitType' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="businessUnitType"
+						type="text"
+						nz-input
+						[placeholder]="'form.business-unit.businessUnitType' | translate"
+						appCapitalize
+						id="businessUnitType"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="businessUnitName">{{
+					'form.business-unit.businessUnitName' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="businessUnitName"
+						nz-input
+						type="text"
+						[placeholder]="'form.business-unit.businessUnitName' | translate"
+						appCapitalize
+						id="businessUnitName"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="businessDesc">{{
+					'form.business-unit.businessDesc' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="businessDesc"
+						nz-input
+						type="text"
+						[placeholder]="'form.business-unit.businessDesc' | translate"
+						appCapitalize
+						id="businessDesc"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+			
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="costCenter">{{
+					'form.business-unit.costCenter' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<nz-select
+						nzShowSearch
+						nzAllowClear
+						id="costCenter"
+						formControlName="costCenterId"
+						[nzPlaceHolder]="'form.business-unit.costCenter' | translate"
+					>
+						<nz-option
+							*ngFor="let option of costCenterList"
+							[nzValue]="option.id"
+							[nzLabel]="option.costCenterCode"
+						></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="location">{{
+					'form.business-unit.location' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<nz-select
+						nzShowSearch
+						nzAllowClear
+						id="locationId"
+						formControlName="locationId"
+						[nzPlaceHolder]="'form.business-unit.location' | translate"
+					>
+						<nz-option
+							*ngFor="let option of LocationList"
+							[nzValue]="option.id"
+							[nzLabel]="option.locationName"
+						></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="costCenter">{{
+					'form.status.status' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<nz-select
+						nzShowSearch
+						nzAllowClear
+						id="costCenter"
+						formControlName="statusTypeId"
+						[nzPlaceHolder]="'form.status.status' | translate"
+					>
+						<nz-option
+							*ngFor="let option of status"
+							[nzValue]="option.id"
+							[nzLabel]="option.status"
+						></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-control class="action-control">
+					<button nz-button nzType="primary" [disabled]="!form.valid">
+						{{ getButtonLabel() }}
+					</button>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+		<ng-template #action>
+			<button nz-button routerLink="/department/list" nzType="primary">
+				<i nz-icon nzType="arrow-left"></i>
+				{{ 'button.back' | translate }}
+			</button>
+		</ng-template></nz-card
+	>
+</div>

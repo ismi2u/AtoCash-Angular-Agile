@@ -1,0 +1,115 @@
+<div class="form-layout">
+  <nz-card
+    class="form-layout__card"
+    [nzBordered]="false"
+    [nzTitle]="'heading.employee-extended-info' | translate"
+    [nzExtra]="action"
+  >
+    <form
+      nz-form
+      [formGroup]="form"
+      (ngSubmit)="submitForm()"
+    >
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired nzFor="employee">{{
+        'form.employee-extended-info.employee' | translate
+      }}</nz-form-label>
+      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+   
+          <nz-select
+          nzShowSearch nzAllowClear
+            id="employee"
+            formControlName="employeeId"
+            [nzPlaceHolder]="'form.employee-extended-info.employee' | translate"
+          >
+            <nz-option
+              *ngFor="let option of employees"
+              [nzValue]="option.id"
+              [nzLabel]="option.fullName"
+            ></nz-option>
+          </nz-select>
+    
+      </nz-form-control>
+    </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired nzFor="group">{{
+          'form.employee-extended-info.group' | translate
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+     
+            <nz-select
+            nzShowSearch nzAllowClear
+              id="group"
+              formControlName="approvalGroupId"
+              [nzPlaceHolder]="'form.employee-extended-info.group' | translate"
+            >
+              <nz-option
+                *ngFor="let option of groups"
+                [nzValue]="option.id"
+                [nzLabel]="option.approvalGroupCode"
+              ></nz-option>
+            </nz-select>
+      
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired nzFor="role">{{
+          'form.employee-extended-info.role' | translate
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+  
+            <nz-select
+            nzShowSearch nzAllowClear
+              id="role"
+              formControlName="roleId"
+              [nzPlaceHolder]="'form.employee-extended-info.role' | translate"
+            >
+              <nz-option
+                *ngFor="let option of roles"
+                [nzValue]="option.id"
+                [nzLabel]="option.roleCode"
+              ></nz-option>
+            </nz-select>
+     
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired nzFor="level">{{
+          'form.employee-extended-info.level' | translate
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+
+            <nz-select
+            nzShowSearch nzAllowClear
+              id="level"
+              formControlName="approvalLevelId"
+              [nzPlaceHolder]="'form.employee-extended-info.level' | translate"
+            >
+              <nz-option
+                *ngFor="let option of levels"
+                [nzValue]="option.id"
+                [nzLabel]="option.level"
+              ></nz-option>
+            </nz-select>
+ 
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control class="action-control">
+          <button nz-button nzType="primary" [disabled]="!form.valid">
+            {{ getButtonLabel() }}
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <ng-template #action>
+      <button nz-button routerLink="/approval-role-map/list" nzType="primary">
+        <i nz-icon nzType="arrow-left"></i>
+        {{ "button.back" | translate }}
+      </button>
+    </ng-template></nz-card
+  >
+</div>
