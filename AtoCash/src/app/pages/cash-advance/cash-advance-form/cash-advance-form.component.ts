@@ -6,12 +6,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApprovalLevelsService } from 'src/app/services/approval-levels.service';
-import { DepartmentService } from 'src/app/services/department.service';
 import { SubProjectsService } from 'src/app/services/sub-projects.service';
 import { TranslateService } from '@ngx-translate/core';
 import { StatusService } from 'src/app/services/status.service';
 import { CurrencyService } from 'src/app/services/currency.service';
 import { CostService } from 'src/app/services/cost.service';
+import { BusinessTypeService } from 'src/app/services/business-type.service';
+import { BusinessUnitService } from 'src/app/services/business-unit.service';
 
 @Component({
 	selector: 'app-approval-level-form',
@@ -22,19 +23,20 @@ export class CashAdvanceFormComponent implements OnInit {
 	form!: FormGroup;
 	recordId: any;
 	mode: any = 'add';
-
-	departments = [];
 	projects = [];
 	subProjects = [];
 	tasks = [];
 	enableProject = false;
 	empId = this.commonService.getUser().empId;
 	currencies = [];
+	businessTypes = [];
+	businessUnits=[];
+	enableBusinessType = false;
+
 	constructor(
 		private fb: FormBuilder,
 		private snapshot: ActivatedRoute,
 		private cashRequestService: CashRequestService,
-		private departmentService: DepartmentService,
 		private projectService: ProjectsService,
 		private subProjectService: SubProjectsService,
 		private taskService: TasksService,
@@ -42,6 +44,8 @@ export class CashAdvanceFormComponent implements OnInit {
 		private commonService: CommonService,
 		private translate: TranslateService,
 		private currencyService: CurrencyService,
+		private businessTypeService: BusinessTypeService,
+		private businessUnitService:BusinessUnitService,
 	) {}
 
 	getButtonLabel = () => {
@@ -89,12 +93,13 @@ export class CashAdvanceFormComponent implements OnInit {
 		this.currencyService.getCurrencyList().subscribe((response: any) => {
 			this.currencies = response.data;
 		});
-		this.departmentService.getDepartmentList().subscribe((response: any) => {
-			this.departments = response.data;
-		});
-
+		 
 		this.taskService.getTasksList().subscribe((response: any) => {
 			this.tasks = response.data;
+		});
+
+		this.businessTypeService.getBusinessTypesList().subscribe((response: any) => {
+			this.businessTypes = response.data;
 		});
 
 		this.form = this.fb.group({
@@ -108,6 +113,8 @@ export class CashAdvanceFormComponent implements OnInit {
 			projectId: [null, [Validators.nullValidator]],
 			subProjectId: [null, [Validators.nullValidator]],
 			workTaskId: [null, [Validators.nullValidator]],
+			businessTypeId:[null, [Validators.nullValidator]],
+			businessUnitId:[null, [Validators.nullValidator]],
 		});
 		this.form.controls['currencyTypeId'].disable();
 
@@ -126,6 +133,8 @@ export class CashAdvanceFormComponent implements OnInit {
 							subProjectId: response.data.subProjectId,
 							workTaskId: response.data.workTaskId,
 							currencyTypeId: response.data.currencyTypeId,
+							businessTypeId:response.data.businessTypeId,
+							businessUnitId:response.data.businessUnitId,
 						};
 
 						if (response.data.projectId) {
@@ -137,11 +146,33 @@ export class CashAdvanceFormComponent implements OnInit {
 									this.selectProject(response.data.projectId);
 								});
 						}
+
+						if (response.data.businessTypeId) {
+							this.enableBusinessType = true;
+							this.businessUnitService
+								.getBusinessUnitsList()
+								.subscribe((businessUnits: any) => {
+									this.businessUnits = businessUnits.data;
+									this.selectBusinessType(response.data.businessTypeId);
+								});
+						}
 						this.form.setValue(formData);
 					});
 			}
 		});
 	}
+
+	selectBusinessType = (event) => {
+		console.log("BusinessTypeSelect=="+event)
+		if (event) {
+			console.log("Came InSide=="+event)
+			this.businessUnitService
+				.getBusinessUnitsList()
+				.subscribe((response: any) => {
+					this.businessUnits = response.data;
+				});
+		}
+	};
 
 	selectProject = (event) => {
 		if (event) {
@@ -174,6 +205,9 @@ export class CashAdvanceFormComponent implements OnInit {
 			this.form.controls['projectId'].reset();
 			this.form.controls['subProjectId'].reset();
 			this.form.controls['workTaskId'].reset();
+		}else{
+			this.form.controls['businessTypeId'].reset();
+			this.form.controls['businessUnitId'].reset();
 		}
 	};
 }

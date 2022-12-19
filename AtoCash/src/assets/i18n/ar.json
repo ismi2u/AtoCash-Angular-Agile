@@ -130,7 +130,9 @@
             "project": "المشروع",
             "subProject": "المشروع الفرعي",
             "task": "المهمه",
-			"currency": "العمله"
+			"currency": "العمله",
+			"businessType":"Business Type",
+			"businessUnit":"Business Unit"
 		},
 		"travel": {
 			"startDate": "تاريخ البدء",

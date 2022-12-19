@@ -131,7 +131,9 @@
 			"project": "Project",
 			"subProject": "Sub Project",
 			"task": "Task",
-			"currency": "Currency"
+			"currency": "Currency",
+			"businessType":"Business Type",
+			"businessUnit":"Business Unit"
 		},
 		"travel": {
 			"startDate": "Start Date",

@@ -70,6 +70,51 @@
       </nz-form-control>
     </nz-form-item>
 
+
+     <!-- Non Project Request / Business Unit Request -->
+     <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0">
+      <nz-form-label [nzSpan]="7"  nzFor="businessTypeId">{{
+        'form.cashAdvance.businessType' | translate
+      }}</nz-form-label>
+      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate" >
+   
+          <nz-select
+          nzShowSearch nzAllowClear
+            id="businessTypeId"
+            formControlName="businessTypeId"
+            [nzPlaceHolder]="'form.cashAdvance.businessType' | translate"  (ngModelChange)="selectBusinessType($event)">
+            <nz-option
+              *ngFor="let option of businessTypes"
+              [nzValue]="option.id"
+              [nzLabel]="option.businessTypeName"
+            ></nz-option>
+          </nz-select>
+    
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0 && form.controls['businessTypeId'].value">
+      <nz-form-label [nzSpan]="7"  nzFor="businessUnitId">{{
+        'form.cashAdvance.businessUnit' | translate
+      }}</nz-form-label>
+      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+   
+          <nz-select
+          nzShowSearch nzAllowClear
+            id="businessUnitId"
+            formControlName="businessUnitId"
+            [nzPlaceHolder]="'form.cashAdvance.businessUnit' | translate">
+            <nz-option
+              *ngFor="let option of businessUnits"
+              [nzValue]="option.id"
+              [nzLabel]="option.businessUnitName"
+            ></nz-option>
+          </nz-select>
+    
+      </nz-form-control>
+    </nz-form-item>
+    
+     <!-- Project Request -->
     <nz-form-item *ngIf="enableProject">
       <nz-form-label [nzSpan]="7" nzRequired nzFor="project">{{
         'form.cashAdvance.project' | translate
@@ -93,6 +138,9 @@
       </nz-form-control>
     </nz-form-item>
 
+   
+
+   
     <nz-form-item *ngIf="enableProject && form.controls['projectId'].value && subProjects.length > 0">
       <nz-form-label [nzSpan]="7"  nzFor="subProject">{{
         'form.cashAdvance.subProject' | translate
@@ -140,7 +188,7 @@
 
     <nz-form-item>
       <nz-form-control class="action-control">
-        <button nz-button nzType="primary" [disabled]="!form.valid || (enableProject && !this.form.get('projectId').value)">
+        <button nz-button nzType="primary" [disabled]="!form.valid || (enableProject && !this.form.get('projectId').value)  || (!enableProject && !this.form.get('businessUnitId').value)">
           {{ getButtonLabel() }}
         </button>
       </nz-form-control>
