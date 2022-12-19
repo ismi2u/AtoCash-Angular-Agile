@@ -292,7 +292,7 @@
 		},
 		"business-unit":{
 			"id":"Id",
-			"businessUnitType":"Business Type",
+			"businessType":"Business Type",
 			"businessUnitName":"Business Name",
 			"businessDesc":"Business Description",
 			"costCenter":"Cost Center",			
@@ -501,7 +501,7 @@
 		},
 		"business-unit":{
 			"id":"Id",
-			"businessUnitType":"Business Type",
+			"businessType":"Business Type",
 			"businessUnitName":"Business Name",
 			"businessDesc":"Business Description",
 			"costCenter":"Cost Center",			

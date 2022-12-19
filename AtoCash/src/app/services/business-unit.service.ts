@@ -18,7 +18,7 @@ export class BusinessUnitService {
 
 	getBusinessUnits = () => {
 		this.http
-			.get(`${this.commonService.getApi()}/api/BusinessUnits/GetBusinessUnitss`)
+			.get(`${this.commonService.getApi()}/api/BusinessUnits/GetBusinessUnits`)
 			.subscribe((response: any) => {
 				this.businessUnits.next(response.data);
 				this.commonService.loading.next(false);

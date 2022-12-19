@@ -78,6 +78,7 @@
 		"expenseReimburseBusiness": "Business Reimburse",
 		"vatRate":"VAT Rate",
 		"location":"Location",
+		"business-type":"business Type",
 		"business-unit":"Business Unit",
 		"employee-extended-info":"Employee Extended Ino"
 	},
@@ -291,9 +292,15 @@
 			"locationDesc":"Description",
 			"status": "Status"
 		},
+		"business-type":{
+			"id":"Id",
+			"businessTypeName":"Business Type Name",
+			"businessTypeDesc":"Business Type Desc",
+			"status": "Status"
+		},
 		"business-unit":{
 			"id":"Id",
-			"businessUnitType":"Business Type",
+			"businessType":"Business Type",
 			"businessUnitName":"Business Name",
 			"businessDesc":"Business Description",
 			"costCenter":"Cost Center",			
@@ -304,7 +311,7 @@
 			"employee":"Employee",
 			"role":"Job Role",
 			"group":"Approval Group",
-			"level":"Level",
+			"businessUnit":"Business Unit",
 			"status": "Status"
 		}
 	},
@@ -504,9 +511,15 @@
 			"locationDesc":"Description",
 			"status": "Status"
 		},
+		"business-type":{
+			"id":"Id",
+			"businessTypeName":"Business Type Name",
+			"businessTypeDesc":"Business Type Desc",
+			"status": "Status"
+		},
 		"business-unit":{
 			"id":"Id",
-			"businessUnitType":"Business Type",
+			"businessType":"Business Type",
 			"businessUnitName":"Business Name",
 			"businessDesc":"Business Description",
 			"costCenter":"Cost Center",			

@@ -38,6 +38,11 @@
 				<span>{{ 'heading.costCenter' | translate }}</span>
 			</li>
 
+			<li *ngIf="canOrganize() || canOrganizeAndManage()" nz-menu-item nzMatchRouter routerLink="/business-type">
+				<i nz-icon nzType="apartment" nzTheme="outline"></i>
+				<span>{{ 'heading.business-type' | translate }}</span>
+			</li>
+
 			<li *ngIf="canOrganize() || canOrganizeAndManage()" nz-menu-item nzMatchRouter routerLink="/business-unit">
 				<i nz-icon nzType="apartment" nzTheme="outline"></i>
 				<span>{{ 'heading.business-unit' | translate }}</span>

@@ -75,6 +75,17 @@ const routes: Routes = [
           ,canActivate:[RoleGuard]
       },
       {
+        path: "business-type",
+        loadChildren: () =>
+          import("../business-type/business-type.module").then(
+            (m) => m.BusinessTypeModule
+          ),
+          data:{
+            allowedRoles:['Admin','AtominosAdmin']
+          }
+          ,canActivate:[RoleGuard]
+      },
+      {
         path: "business-unit",
         loadChildren: () =>
           import("../business-unit/business-unit.module").then(

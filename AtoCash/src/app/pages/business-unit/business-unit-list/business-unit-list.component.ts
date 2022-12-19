@@ -11,7 +11,7 @@ import { BusinessUnitService } from 'src/app/services/business-unit.service';
 export class BusinessUnitListComponent implements OnInit {
 	businessUnits: any;
 	businessUnitHeaders: any = [
-		'tableHeader.business-unit.businessUnitType',
+		'tableHeader.business-unit.businessType',
 		'tableHeader.business-unit.businessUnitName',
 		'tableHeader.business-unit.businessDesc',
 		'tableHeader.business-unit.costCenter',		

@@ -142,9 +142,20 @@
 				{{ data.statusType }}
 			</td>
 
+			<!-- Business Type -->
+			<td *ngIf="data.businessTypeName && formName == 'business-type'">
+				{{ data.businessTypeName }}
+			</td>
+			<td *ngIf="data.businessTypeDesc && formName == 'business-type'">
+				{{ data.businessTypeDesc }}
+			</td>
+			<td *ngIf="data.statusType && formName == 'business-type'">
+				{{ data.statusType }}
+			</td>
+
 			<!-- Business Unit -->
-			<td *ngIf="data.businessUnitType && formName == 'business-unit'">
-				{{ data.businessUnitType }}
+			<td *ngIf="data.businessType && formName == 'business-unit'">
+				{{ data.businessType }}
 			</td>
 			<td *ngIf="data.businessUnitName && formName == 'business-unit'">
 				{{ data.businessUnitName }}

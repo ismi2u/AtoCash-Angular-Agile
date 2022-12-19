@@ -3,23 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CostService } from 'src/app/services/cost.service';
 import { BusinessTypeService } from 'src/app/services/business-type.service';
-import { LocationService } from 'src/app/services/location.service';
-import { BusinessUnitService } from 'src/app/services/business-unit.service';
 import { StatusService } from 'src/app/services/status.service';
 
 @Component({
-	selector: 'app-business-unit-form',
-	templateUrl: './business-unit-form.component.html',
-	styleUrls: ['./business-unit-form.component.scss'],
+	selector: 'app-business-type-form',
+	templateUrl: './business-type-form.component.html',
+	styleUrls: ['./business-type-form.component.scss'],
 })
-export class BusinessUnitFormComponent implements OnInit {
+export class BusinessTypeFormComponent implements OnInit {
 	form!: FormGroup;
 	recordId: any;
 	mode: any = 'add';
-	costCenterList = [];
-	LocationList = [];
 	businessTypeList = [];
 	status = [];
 
@@ -32,16 +27,16 @@ export class BusinessUnitFormComponent implements OnInit {
 
 		if (this.mode === 'edit') {
 			this.service
-				.updateBusinessUnitById(this.recordId, {
+				.updateBusinessTypeById(this.recordId, {
 					...this.form.value,
 					id: this.recordId,
 				})
 				.subscribe(() => {
-					this.router.navigateByUrl(`/business-unit/list`);
+					this.router.navigateByUrl(`/business-type/list`);
 				});
 		} else {
-			this.service.addBusinessUnit(this.form.value).subscribe(() => {
-				this.router.navigateByUrl(`/business-unit/list`);
+			this.service.addBusinessType(this.form.value).subscribe(() => {
+				this.router.navigateByUrl(`/business-type/list`);
 			});
 		}
 	}
@@ -49,14 +44,11 @@ export class BusinessUnitFormComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private snapshot: ActivatedRoute,
-		private service: BusinessUnitService,
 		private router: Router,
-		private costCenterService: CostService,
-		private locationService:LocationService,
 		private translate: TranslateService,
 		private statusService: StatusService,
 		private commonService: CommonService,
-		private businessTypeService:BusinessTypeService,
+		private service:BusinessTypeService,
 	) {}
 
 	getButtonLabel = () => {
@@ -71,15 +63,11 @@ export class BusinessUnitFormComponent implements OnInit {
 		this.snapshot.params.subscribe((param) => {
 			if (param.type === 'edit') {
 				this.mode = param.type;
-				this.service.getBusinessUnitById(param.id).subscribe((response: any) => {
+				this.service.getBusinessTypeById(param.id).subscribe((response: any) => {
 					this.recordId = param.id;
 					delete response.data.id;
 					delete response.data.statusType;
-					delete response.data.costCenter;
-					delete response.data.businessType;
-					delete response.data.location;
 					this.form.setValue(response.data);
-					if (this.mode === 'edit') this.form.controls['deptCode'].disable();
 					this.commonService.loading.next(false);
 				});
 			} else {
@@ -87,24 +75,14 @@ export class BusinessUnitFormComponent implements OnInit {
 			}
 		});
 
-		this.costCenterService.getCostCenterList().subscribe((response: any) => {
-			this.costCenterList = response.data;
-		});
-		
-		this.locationService.geLocationList().subscribe((response: any) => {
-			this.LocationList = response.data;
-		});
-
-		this.businessTypeService.getBusinessTypesList().subscribe((response: any) => {
+		 
+		this.service.getBusinessTypesList().subscribe((response: any) => {
 			this.businessTypeList = response.data;
 		});
 
 		this.form = this.fb.group({
-			businessTypeId: [null, [Validators.required]],
-			businessUnitName: [null, [Validators.required]],
-			costCenterId: [null, [Validators.required]],
-			businessDesc: [null, [Validators.required]],
-			locationId: [null, [Validators.required]],
+			businessTypeName: [null, [Validators.required]],
+			businessTypeDesc: [null, [Validators.required]],
 			statusTypeId: [null, [Validators.required]],
 		});
 	}

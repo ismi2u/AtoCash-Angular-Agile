@@ -6,23 +6,29 @@
 		[nzExtra]="action"
 	>
 		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+			
 			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="businessUnitType">{{
-					'form.business-unit.businessUnitType' | translate
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="businessType">{{
+					'form.business-unit.businessType' | translate
 				}}</nz-form-label>
 
 				<nz-form-control
 					[nzSpan]="15"
 					[nzErrorTip]="'validation.required' | translate"
 				>
-					<input
-						formControlName="businessUnitType"
-						type="text"
-						nz-input
-						[placeholder]="'form.business-unit.businessUnitType' | translate"
-						appCapitalize
-						id="businessUnitType"
-					/>
+					<nz-select
+						nzShowSearch
+						nzAllowClear
+						id="businessTypeId"
+						formControlName="businessTypeId"
+						[nzPlaceHolder]="'form.business-unit.businessType' | translate"
+					>
+						<nz-option
+							*ngFor="let option of businessTypeList"
+							[nzValue]="option.id"
+							[nzLabel]="option.businessTypeName"
+						></nz-option>
+					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
 			

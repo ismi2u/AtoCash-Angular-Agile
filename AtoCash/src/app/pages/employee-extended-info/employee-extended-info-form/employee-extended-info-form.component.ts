@@ -5,10 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { ApprovalGroupsService } from 'src/app/services/approval-groups.service';
-import { ApprovalLevelsService } from 'src/app/services/approval-levels.service';
+import { BusinessUnitService } from 'src/app/services/business-unit.service';
 import { EmployeeExtendedInfoService } from 'src/app/services/employee-extended-info.service';
 import { CostService } from 'src/app/services/cost.service';
 import { RolesService } from 'src/app/services/roles.service';
+import { StatusService } from 'src/app/services/status.service';
 
 @Component({
 	selector: 'app-employee-extended-info-form',
@@ -23,18 +24,21 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 	levels = [];
 	groups = [];
 	employees = [];
-
+	businessUnits = [];
+	status = [];
+	
 	constructor(
 		private fb: FormBuilder,
 		private snapshot: ActivatedRoute,
 		private employeeExtendedInfoService: EmployeeExtendedInfoService,
-		private approvalLevelService: ApprovalLevelsService,
+		private businessUnitService: BusinessUnitService,
 		private approvalGroupService: ApprovalGroupsService,
 		private rolesService: RolesService,
 		private router: Router,
 		private translate: TranslateService,
 		private commonService: CommonService,
 		private employeeService:EmployeeService,
+		private statusService: StatusService,
 	) {}
 
 	
@@ -70,6 +74,9 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 			: this.translate.instant('button.update');
 	};
 	ngOnInit(): void {
+		this.statusService.getStatusList().subscribe((response: any) => {
+			this.status = response.data;
+		});
 		this.snapshot.params.subscribe((param) => {
 			if (param.type === 'edit') {
 				this.mode = param.type;
@@ -90,14 +97,14 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 			}
 		});
 
-		this.rolesService.getJobRoleList().subscribe((response: any) => {
-			this.roles = response.data;
-			this.approvalLevelService.getApprovalLevels();
+		this.businessUnitService.getBusinessUnitsList().subscribe((response: any) => {
+			this.businessUnits = response.data;
 		});
 
-		this.approvalLevelService.approvalLevels.subscribe((data) => {
-			this.levels = data;
+		this.rolesService.getJobRoleList().subscribe((response: any) => {
+			this.roles = response.data;
 		});
+		 
 
 		this.approvalGroupService
 			.getApprovalGroupsList()
@@ -112,9 +119,11 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 			});
 
 		this.form = this.fb.group({
+			employeeId: [null, [Validators.required]],
+			businessUnitId:[null, [Validators.required]],
 			approvalGroupId: [null, [Validators.required]],
-			roleId: [null, [Validators.required]],
-			approvalLevelId: [null, [Validators.required]],
+			jobRoleId: [null, [Validators.required]],
+			statusTypeId: [null, [Validators.required]],
 		});
 	}
 }
