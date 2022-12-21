@@ -74,7 +74,7 @@ export class ApprovalRoleMapFormComponent implements OnInit {
 						this.recordId = param.id;
 						const formData = {
 							approvalGroupId: response.data.approvalGroupId,
-							roleId: response.data.roleId,
+							JobRoleId: response.data.JobRoleId,
 							approvalLevelId: response.data.approvalLevelId,
 						};
 						this.form.setValue(formData);
@@ -102,7 +102,7 @@ export class ApprovalRoleMapFormComponent implements OnInit {
 
 		this.form = this.fb.group({
 			approvalGroupId: [null, [Validators.required]],
-			roleId: [null, [Validators.required]],
+			JobRoleId: [null, [Validators.required]],
 			approvalLevelId: [null, [Validators.required]],
 		});
 	}

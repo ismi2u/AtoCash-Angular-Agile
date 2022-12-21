@@ -78,7 +78,7 @@
 		"expenseReimburseBusiness": "Business Reimburse",
 		"vatRate":"VAT Rate",
 		"location":"Location",
-		"business-type":"business Type",
+		"business-type":"Business Type",
 		"business-unit":"Business Unit",
 		"employee-extended-info":"Employee Extended Ino"
 	},
@@ -289,7 +289,7 @@
 			"id":"Id",
 			"locationName":"Location Name",
 			"city":"City",
-			"lattitude":"Lataitude",
+			"latitude":"Latitude",
 			"longitude":"Longitude",
 			"locationDesc":"Description",
 			"status": "Status"
@@ -508,7 +508,7 @@
 			"id":"Id",
 			"locationName":"Location Name",
 			"city":"City",
-			"lattitude":"Lataitude",
+			"latitude":"Latitude",
 			"longitude":"Longitude",
 			"locationDesc":"Description",
 			"status": "Status"

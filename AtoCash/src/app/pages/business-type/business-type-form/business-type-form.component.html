@@ -2,7 +2,7 @@
 	<nz-card
 		class="form-layout__card"
 		[nzBordered]="false"
-		[nzTitle]="'heading.department' | translate"
+		[nzTitle]="'heading.business-type' | translate"
 		[nzExtra]="action"
 	>
 		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
@@ -84,7 +84,7 @@
 		</form>
 		
 		<ng-template #action>
-			<button nz-button routerLink="/department/list" nzType="primary">
+			<button nz-button routerLink="/business-type/list" nzType="primary">
 				<i nz-icon nzType="arrow-left"></i>
 				{{ 'button.back' | translate }}
 			</button>

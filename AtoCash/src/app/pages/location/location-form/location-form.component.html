@@ -48,8 +48,8 @@
 			</nz-form-item>
 			
 			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="lattitude">{{
-					'form.location.lattitude' | translate
+				<nz-form-label [nzSpan]="7" nzFor="latitude">{{
+					'form.location.latitude' | translate
 				}}</nz-form-label>
 
 				<nz-form-control
@@ -57,18 +57,18 @@
 					[nzErrorTip]="'validation.required' | translate"
 				>
 					<input
-						formControlName="lattitude"
+						formControlName="latitude"
 						nz-input
 						type="text"
-						[placeholder]="'form.location.lattitude' | translate"
+						[placeholder]="'form.location.latitude' | translate"
 						appCapitalize
-						id="lattitude"
+						id="latitude"
 					/>
 				</nz-form-control>
 			</nz-form-item>
 			
 			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="longitude">{{
+				<nz-form-label [nzSpan]="7" nzFor="longitude">{{
 					'form.location.longitude' | translate
 				}}</nz-form-label>
 

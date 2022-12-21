@@ -78,6 +78,7 @@
 		"expenseReimburseBusiness": "التعويض النقدي للمتجر",
 		"vatRate":"قيمة ضريبة القيمه المضافه",
 		"location":"Location",
+		"business-type":"Business Type",
 		"business-unit":"Business Unit",
 		"employee-extended-info":"Employee Extended Ino"
 	},
@@ -287,7 +288,7 @@
 			"id":"Id",
 			"locationName":"Location Name",
 			"city":"City",
-			"lattitude":"Lataitude",
+			"latitude":"Latitude",
 			"longitude":"Longitude",
 			"locationDesc":"Description",
 			"status": "Status"
@@ -496,7 +497,7 @@
 			"id":"Id",
 			"locationName":"Location Name",
 			"city":"City",
-			"lattitude":"Lataitude",
+			"latitude":"Latitude",
 			"longitude":"Longitude",
 			"locationDesc":"Description",
 			"status": "Status"

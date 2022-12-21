@@ -78,7 +78,7 @@ export class LocationFormComponent implements OnInit {
 		this.form = this.fb.group({
 			locationName: [null, [Validators.required]],
 			city: [null, [Validators.required]],
-			lattitude: [null],
+			latitude: [null],
 			longitude: [null],
 			locationDesc: [null, [Validators.required]],
 			statusTypeId: [null, [Validators.required]],
