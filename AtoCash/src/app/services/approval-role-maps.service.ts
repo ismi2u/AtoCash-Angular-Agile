@@ -22,11 +22,16 @@ export class ApprovalRoleMapsService {
     }
   
 
-  getApprovalRoleMapById = (id:any) => this.http.get(`${this.commonService.getApi()}/api/ApprovalRoleMaps/${id}`);
+  getApprovalRoleMapById = (id:any) => 
+    this.http.get(`${this.commonService.getApi()}/api/ApprovalRoleMaps/GetApprovalRoleMap/${id}`);
 
-  updateApprovalRoleMapById = (id:any,data:any) => this.http.put(`${this.commonService.getApi()}/api/ApprovalRoleMaps/${id}`,data);
+  updateApprovalRoleMapById = (id:any,data:any) => 
+    this.http.put(`${this.commonService.getApi()}/api/ApprovalRoleMaps/PutApprovalRoleMap/${id}`,data);
 
-  addApprovalRoleMap= (data:any) => this.http.post(`${this.commonService.getApi()}/api/ApprovalRoleMaps`,data);  
+  addApprovalRoleMap = (data:any) => 
+    this.http.post(`${this.commonService.getApi()}/api/ApprovalRoleMaps/PostApprovalRoleMap`,data);  
 
-  deleteApprovalRoleMapById = (id:any) => this.http.delete(`${this.commonService.getApi()}/api/ApprovalRoleMaps/${id}`,{});
+  deleteApprovalRoleMapById = (id:any) => 
+  this.http.delete(`${this.commonService.getApi()}/api/ApprovalRoleMaps/DeleteApprovalRoleMap/${id}`,{});
+  
 }
