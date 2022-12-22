@@ -313,6 +313,7 @@
 			"employee":"Employee",
 			"role":"Job Role",
 			"group":"Approval Group",
+			"businessType":"Business Type",
 			"businessUnit":"Business Unit",
 			"status": "Status"
 		}

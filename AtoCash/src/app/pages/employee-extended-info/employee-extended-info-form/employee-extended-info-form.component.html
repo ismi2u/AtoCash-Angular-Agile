@@ -34,6 +34,28 @@
     </nz-form-item>
 
     <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired nzFor="businessTypeId">{{
+        'form.employee-extended-info.businessType' | translate
+      }}</nz-form-label>
+      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+
+          <nz-select
+          nzShowSearch nzAllowClear
+            id="businessTypeId"
+            formControlName="businessTypeId"
+            [nzPlaceHolder]="'form.employee-extended-info.businessType' | translate"
+          >
+            <nz-option
+              *ngFor="let option of businessTypes"
+              [nzValue]="option.id"
+              [nzLabel]="option.businessTypeName"
+            ></nz-option>
+          </nz-select>
+
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
       <nz-form-label [nzSpan]="7" nzRequired nzFor="businessUnitId">{{
         'form.employee-extended-info.businessUnit' | translate
       }}</nz-form-label>

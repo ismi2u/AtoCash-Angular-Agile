@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { ApprovalGroupsService } from 'src/app/services/approval-groups.service';
+import { BusinessTypeService } from 'src/app/services/business-type.service';
 import { BusinessUnitService } from 'src/app/services/business-unit.service';
 import { EmployeeExtendedInfoService } from 'src/app/services/employee-extended-info.service';
 import { CostService } from 'src/app/services/cost.service';
@@ -24,6 +25,7 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 	levels = [];
 	groups = [];
 	employees = [];
+	businessTypes = [];
 	businessUnits = [];
 	status = [];
 	
@@ -31,6 +33,7 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 		private fb: FormBuilder,
 		private snapshot: ActivatedRoute,
 		private employeeExtendedInfoService: EmployeeExtendedInfoService,
+		private businessTypeService: BusinessTypeService,
 		private businessUnitService: BusinessUnitService,
 		private approvalGroupService: ApprovalGroupsService,
 		private rolesService: RolesService,
@@ -88,6 +91,9 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 							approvalGroupId: response.data.approvalGroupId,
 							roleId: response.data.roleId,
 							approvalLevelId: response.data.approvalLevelId,
+							businessTypeId:response.data.businessTypeId,
+							businessUnitId:response.data.businessUnitId,
+							statusTypeId:response.data.statusTypeId,
 						};
 						this.form.setValue(formData);
             this.commonService.loading.next(false);
@@ -95,6 +101,10 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 			} else {
 				this.commonService.loading.next(false);
 			}
+		});
+
+		this.businessTypeService.getBusinessTypesList().subscribe((response: any) => {
+			this.businessTypes = response.data;
 		});
 
 		this.businessUnitService.getBusinessUnitsList().subscribe((response: any) => {
@@ -120,6 +130,7 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 
 		this.form = this.fb.group({
 			employeeId: [null, [Validators.required]],
+			businessTypeId:[null, [Validators.required]],
 			businessUnitId:[null, [Validators.required]],
 			approvalGroupId: [null, [Validators.required]],
 			jobRoleId: [null, [Validators.required]],
