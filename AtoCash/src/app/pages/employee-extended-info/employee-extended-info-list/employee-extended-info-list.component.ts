@@ -11,10 +11,12 @@ import { EmployeeExtendedInfoService } from 'src/app/services/employee-extended-
 export class EmployeeExtendedInfoListComponent implements OnInit {
 	employeeExtendedInfo: any;
 	employeeExtendedInfoHeaders: any = [
-		'tableHeader.approvalRoleMap.group',
-		'tableHeader.approvalRoleMap.role',
-		'tableHeader.approvalRoleMap.level',
-		'tableHeader.approvalRoleMap.employeeName',
+		'tableHeader.employee-extended-info.employee',
+		'tableHeader.employee-extended-info.businessType',
+		'tableHeader.employee-extended-info.businessUnit',
+		'tableHeader.employee-extended-info.jobRole',
+		'tableHeader.employee-extended-info.approvalGroup',
+		'tableHeader.employee-extended-info.statusType',
 	];
 
 	constructor(

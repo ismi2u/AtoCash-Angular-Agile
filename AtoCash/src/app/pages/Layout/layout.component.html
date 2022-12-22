@@ -38,6 +38,16 @@
 				<span>{{ 'heading.costCenter' | translate }}</span>
 			</li>
 
+			<li
+				*ngIf="canOrganize() || canOrganizeAndManage()"
+				nz-menu-item
+				nzMatchRouter
+				routerLink="/location"
+			>
+				<i nz-icon nzType="environment" nzTheme="outline"></i>
+				<span>{{ 'heading.location' | translate }}</span>
+			</li>
+
 			<li *ngIf="canOrganize() || canOrganizeAndManage()" nz-menu-item nzMatchRouter routerLink="/business-type">
 				<i nz-icon nzType="apartment" nzTheme="outline"></i>
 				<span>{{ 'heading.business-type' | translate }}</span>
@@ -48,7 +58,7 @@
 				<span>{{ 'heading.business-unit' | translate }}</span>
 			</li>
 
-			<li *ngIf="canOrganize() || canOrganizeAndManage()" nz-menu-item nzMatchRouter routerLink="/department">
+			<!--<li *ngIf="canOrganize() || canOrganizeAndManage()" nz-menu-item nzMatchRouter routerLink="/department">
 				<i nz-icon nzType="apartment" nzTheme="outline"></i>
 				<span>{{ 'heading.department' | translate }}</span>
 			</li>
@@ -56,7 +66,7 @@
 			<li *ngIf="canOrganize() || canOrganizeAndManage()" nz-menu-item nzMatchRouter routerLink="/businessarea">
 				<i nz-icon nzType="shop" nzTheme="outline"></i>
 				<span>{{ 'heading.businessArea' | translate }}</span>
-			</li>
+			</li> //-->
 			
 			<li
 				*ngIf="canOrganize() || canOrganizeAndManage()"
@@ -98,15 +108,7 @@
 				<span>{{ 'heading.bank' | translate }}</span>
 			</li>
 
-			<li
-				*ngIf="canOrganize() || canOrganizeAndManage()"
-				nz-menu-item
-				nzMatchRouter
-				routerLink="/location"
-			>
-				<i nz-icon nzType="environment" nzTheme="outline"></i>
-				<span>{{ 'heading.location' | translate }}</span>
-			</li>
+			
 
 
 			<li

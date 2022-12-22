@@ -80,7 +80,7 @@
 		"location":"Location",
 		"business-type":"Business Type",
 		"business-unit":"Business Unit",
-		"employee-extended-info":"Employee Extended Ino"
+		"employee-extended-info":"Employee Extended Info"
 	},
 	"form": {
 		"disburse": {

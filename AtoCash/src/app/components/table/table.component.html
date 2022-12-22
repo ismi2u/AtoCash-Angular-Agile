@@ -356,7 +356,26 @@
 				{{ data.statusType }}
 			</td>
 			
-
+			<!--Employee Extended Info -->
+			<td *ngIf="data.employee && formName == 'employee-extended-info'">
+				{{ data.employee }}
+			</td>
+			<td *ngIf="data.businessType && formName == 'employee-extended-info'">
+				{{ data.businessType }}
+			</td>
+			<td *ngIf="data.businessUnit && formName == 'employee-extended-info'">
+				{{ data.businessUnit }}
+			</td>
+			<td *ngIf="data.jobRole && formName == 'employee-extended-info'">
+				{{ data.jobRole }}
+			</td>
+			<td *ngIf="data.approvalGroup && formName == 'employee-extended-info'">
+				{{ data.approvalGroup }}
+			</td>
+			<td *ngIf="data.statusType && formName == 'employee-extended-info'">
+				{{ data.statusType }}
+			</td>
+			
 			<!-- Sub Projects -->
 			<td *ngIf="data.projectName && formName == 'subProject'">
 				{{ data.projectName }}

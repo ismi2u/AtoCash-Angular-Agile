@@ -80,7 +80,7 @@
 		"location":"Location",
 		"business-type":"Business Type",
 		"business-unit":"Business Unit",
-		"employee-extended-info":"Employee Extended Ino"
+		"employee-extended-info":"Employee Extended Info"
 	},
 	"form": {
 		"disburse": {
@@ -530,12 +530,12 @@
 			"status": "Status"
 		},
 		"employee-extended-info":{
-			"id":"Id",
-			"employeeId":"Employee Id",
-			"jobRoleId":"Job Role Id",
-			"approvalGroupId":"Approval Group Id",
-			"approvalLevelId":"Level Id",
-			"status": "Status"
+			"employee":"Employee",
+			"businessType":"Business Type",
+			"businessUnit":"Business Unit",
+			"jobRole":"Job Role",
+			"approvalGroup":"Approval Group",			
+			"statusType": "Status"
 		}
 	},
 	"button": {

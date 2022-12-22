@@ -20,6 +20,17 @@ const routes: Routes = [
       ,canActivate:[RoleGuard]
       },
       {
+        path: "location",
+        loadChildren: () =>
+          import("../location/location.module").then(
+            (m) => m.LocationModule
+          ),
+          data:{
+            allowedRoles:['Admin','AtominosAdmin']
+          }
+          ,canActivate:[RoleGuard]
+      },
+      {
         path: "approval-group",
         loadChildren: () =>
           import("../approval-group/approval-group.module").then(
@@ -64,17 +75,6 @@ const routes: Routes = [
           ,canActivate:[RoleGuard]
       },
       {
-        path: "department",
-        loadChildren: () =>
-          import("../department/department.module").then(
-            (m) => m.DepartmentModule
-          ),
-          data:{
-            allowedRoles:['Admin','AtominosAdmin']
-          }
-          ,canActivate:[RoleGuard]
-      },
-      {
         path: "business-type",
         loadChildren: () =>
           import("../business-type/business-type.module").then(
@@ -96,17 +96,7 @@ const routes: Routes = [
           }
           ,canActivate:[RoleGuard]
       },
-      {
-        path: "businessarea",
-        loadChildren: () =>
-          import("../businessArea/businessArea.module").then(
-            (m) => m.BusinessAreaModule
-          ),
-          data:{
-            allowedRoles:['Admin','AtominosAdmin']
-          }
-          ,canActivate:[RoleGuard]
-      },
+      
       {
         path: "general-ledger",
         loadChildren: () =>
@@ -165,17 +155,6 @@ const routes: Routes = [
         loadChildren: () =>
           import("../bank/bank.module").then(
             (m) => m.BankModule
-          ),
-          data:{
-            allowedRoles:['Admin','AtominosAdmin']
-          }
-          ,canActivate:[RoleGuard]
-      },
-      {
-        path: "location",
-        loadChildren: () =>
-          import("../location/location.module").then(
-            (m) => m.LocationModule
           ),
           data:{
             allowedRoles:['Admin','AtominosAdmin']
