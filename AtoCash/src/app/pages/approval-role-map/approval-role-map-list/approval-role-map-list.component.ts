@@ -12,9 +12,10 @@ export class ApprovalRoleMapListComponent implements OnInit {
 	approvalRoleMaps: any;
 	approvalRoleMapsHeaders: any = [
 		'tableHeader.approvalRoleMap.group',
-		'tableHeader.approvalRoleMap.role',
+		'tableHeader.approvalRoleMap.jobRole',
 		'tableHeader.approvalRoleMap.level',
 		'tableHeader.approvalRoleMap.employeeName',
+		'tableHeader.approvalRoleMap.allAssignedEmployees',
 	];
 
 	constructor(

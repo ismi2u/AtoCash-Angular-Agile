@@ -316,13 +316,17 @@
 			<td *ngIf="data.approvalGroup && formName == 'roleMap'">
 				{{ data.approvalGroup }}
 			</td>
-			<td *ngIf="data.role && formName == 'roleMap'">{{ data.role }}</td>
+			<td *ngIf="data.jobRole && formName == 'roleMap'">{{ data.jobRole }}</td>
 			<td *ngIf="data.approvalLevel && formName == 'roleMap'">
 				{{ data.approvalLevel }}
 			</td>
 			<td *ngIf="data.employeeName && formName == 'roleMap'">
 				{{ data.employeeName }}
 			</td>
+			<td *ngIf="formName == 'roleMap'">
+				{{ data.allAssignedEmployees }}
+			</td>
+
 			<!-- Approval Status Types -->
 			<td *ngIf="data.status && formName == 'status'">{{ data.status }}</td>
 			<td *ngIf="data.statusDesc && formName == 'status'">

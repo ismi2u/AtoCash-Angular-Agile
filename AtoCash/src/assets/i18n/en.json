@@ -450,9 +450,10 @@
 		},
 		"approvalRoleMap": {
 			"group": "Group",
-			"role": "Role",
+			"jobRole": "Job Role",
 			"level": "Level",
-			"employeeName": "Employee Name"
+			"employeeName": "Assigned To",
+			"allAssignedEmployees": "Employee Name(s)"
 		},
 		"approvalStatus": {
 			"status": "Status",

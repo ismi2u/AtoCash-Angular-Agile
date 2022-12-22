@@ -440,7 +440,8 @@
 			"group": "الفريق",
 			"role": "الصلاحيات",
 			"level": "الدرجه",
-			"employeeName": "اسم الموظف"
+			"employeeName": "Assigned To",
+			"allAssignedEmployees":  "اسم الموظف"
 		},
 		"approvalStatus": {
 			"status": "الحاله",
