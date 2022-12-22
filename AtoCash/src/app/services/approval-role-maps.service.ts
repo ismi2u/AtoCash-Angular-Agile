@@ -15,7 +15,7 @@ export class ApprovalRoleMapsService {
 
 
   getApprovalRoleMaps = () =>{
-     this.http.get(`${this.commonService.getApi()}/api/ApprovalRoleMaps`).subscribe((response:any)=>{
+     this.http.get(`${this.commonService.getApi()}/api/ApprovalRoleMaps/GetApprovalRoleMaps`).subscribe((response:any)=>{
       this.approvalRoles.next(response.data);
       this.commonService.loading.next(false);
      });
