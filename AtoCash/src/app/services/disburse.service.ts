@@ -26,12 +26,12 @@ export class DisburseService {
 
 	getDisburseById = (id) => {
 		return this.http.get(
-			`${this.commonService.getApi()}/api/DisbursementsAndClaimsMasters/${id}`,
+			`${this.commonService.getApi()}/api/DisbursementsAndClaimsMasters/GetDisbursementsAndClaimsMaster/${id}`,
 		);
 	};
 	updateDisburseById = (data) => {
 		return this.http.put(
-			`${this.commonService.getApi()}/api/DisbursementsAndClaimsMasters/${data.id}`,
+			`${this.commonService.getApi()}/api/DisbursementsAndClaimsMasters/PutDisbursementsAndClaimsMaster/${data.id}`,
 			data,
 		);
 	};
