@@ -368,22 +368,24 @@
 			"requestDate": "Request Date",
 			"id": "Id",
 			"status": "Status",
-			"claimAmount": "Claim Amount"
+			"claimAmount": "Claim Amount",
+			"businessType":"Business Type",
+			"businessUnit":"Business Unit"
 		},
 		"inbox": {
 			"employee": "Employee",
 			"generalLedger": "General Ledger",
-			"department": "Department",
+			"businessType": "Business Type",
 			"project": "Project",
 			"requestDate": "Request Date",
-			"id": "Id",
+			"blendedRequestId": "Request Id",
 			"status": "Status",
 			"comments": "Comments",
 			"claimAmount": "Claim Amount",
 			"costCenter": "Cost Center",
 			"invoiceDate": "Invoice Date",
 			"expenseType": "Expense Type",
-			"businessArea":"Business Area"
+			"businessUnit":"Business Unit"
 		},
 		"costCenter": {
 			"costCenterCode": "Cost Center Code",
@@ -624,7 +626,8 @@
 			"cardNo": "Card.No",
 			"expenseId": "Expense Id",
 			"pettyCashId": "Petty Cash Id",
-			"businessArea":"Business Area"
+			"businessArea":"Business Area",
+			"blendedRequestId":"Request Id"
 		},
 		"filters": {
 			"reports": {

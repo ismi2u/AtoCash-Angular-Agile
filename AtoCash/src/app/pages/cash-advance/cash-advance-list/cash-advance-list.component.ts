@@ -18,7 +18,8 @@ export class CashAdvanceListComponent implements OnInit {
   cashRequests: any = [];
   cashRequestHeaders: any = [
     'tableHeader.cashAdvance.id',
-    'tableHeader.cashAdvance.department',
+    'tableHeader.cashAdvance.businessType',
+    'tableHeader.cashAdvance.businessUnit',
     'tableHeader.cashAdvance.project',
     'tableHeader.cashAdvance.advanceDescription',  
     'tableHeader.cashAdvance.claimAmount',

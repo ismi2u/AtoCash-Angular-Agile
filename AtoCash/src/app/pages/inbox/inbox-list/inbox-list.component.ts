@@ -20,10 +20,10 @@ import { InboxAlertComponent } from '../inbox-alert/inbox-alert.component';
 export class InboxListComponent implements OnInit {
 	requests: any = [];
 	requestHeaders: any = [
-		'tableHeader.inbox.id',
+		'tableHeader.inbox.blendedRequestId',
 		'tableHeader.inbox.employee',
-		'tableHeader.inbox.department',
-		'tableHeader.inbox.businessArea',
+		'tableHeader.inbox.businessType',
+		'tableHeader.inbox.businessUnit',
 		'tableHeader.inbox.project',
 		'tableHeader.inbox.requestDate',
 		'tableHeader.inbox.status',
@@ -62,10 +62,10 @@ export class InboxListComponent implements OnInit {
 			
 			if(type !== 'travelRequest') {
 				this.requestHeaders = [
-					'tableHeader.inbox.id',
+					'tableHeader.inbox.blendedRequestId',
 					'tableHeader.inbox.employee',
-					'tableHeader.inbox.department',
-					'tableHeader.inbox.businessArea',
+					'tableHeader.inbox.businessType',
+					'tableHeader.inbox.businessUnit',
 					'tableHeader.inbox.project',
 					'tableHeader.inbox.requestDate',
 					'tableHeader.inbox.claimAmount',
@@ -73,10 +73,10 @@ export class InboxListComponent implements OnInit {
 				];
 			}else {
 				this.requestHeaders = [
-					'tableHeader.inbox.id',
+					'tableHeader.inbox.blendedRequestId',
 					'tableHeader.inbox.employee',
-					'tableHeader.inbox.department',
-					'tableHeader.inbox.businessArea',
+					'tableHeader.inbox.buinessType',
+					'tableHeader.inbox.buinessUnit',
 					'tableHeader.inbox.project',
 					'tableHeader.inbox.requestDate',
 					'tableHeader.inbox.status',
@@ -100,11 +100,11 @@ export class InboxListComponent implements OnInit {
 	getCashAdvanceRowData = (event) => {
 		this.commonService.loading.next(true);
 		this.requestService
-			.getRequestStatus(event.pettyCashRequestId)
+			.getRequestStatus(event.blendedRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.cashRequestService
-					.geCashRequestById(event.pettyCashRequestId)
+					.geCashRequestById(event.blendedRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 						this.commonService.loading.next(false);
@@ -115,11 +115,11 @@ export class InboxListComponent implements OnInit {
 	getTravelRequestRowData = (event) => {
 		this.commonService.loading.next(true);
 		this.requestService
-			.getTravelRequestStatus(event.travelApprovalRequestId)
+			.getTravelRequestStatus(event.blendedRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.travelRequestService
-					.getTravelRequestById(event.travelApprovalRequestId)
+					.getTravelRequestById(event.blendedRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 						this.commonService.loading.next(false);
@@ -130,11 +130,11 @@ export class InboxListComponent implements OnInit {
 	getExpenseRequestRowData = (event) => {
 		this.commonService.loading.next(true);
 		this.requestService
-			.getExpenseRequestStatus(event.expenseReimburseRequestId)
+			.getExpenseRequestStatus(event.blendedRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.expenseRequestService
-					.getExpenseRequestById(event.expenseReimburseRequestId)
+					.getExpenseRequestById(event.blendedRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 						this.commonService.loading.next(false);
@@ -259,7 +259,7 @@ export class InboxListComponent implements OnInit {
 	requestTypeChange(type) {
 		if(type !== 'travelRequest') {
 			this.requestHeaders = [
-				'tableHeader.inbox.id',
+				'tableHeader.inbox.blendedRequestId',
 				'tableHeader.inbox.employee',
 				'tableHeader.inbox.department',
 				'tableHeader.inbox.businessArea',
@@ -270,7 +270,7 @@ export class InboxListComponent implements OnInit {
 			];
 		}else {
 			this.requestHeaders = [
-				'tableHeader.inbox.id',
+				'tableHeader.inbox.blendedRequestId',
 				'tableHeader.inbox.employee',
 				'tableHeader.inbox.department',
 				'tableHeader.inbox.businessArea',

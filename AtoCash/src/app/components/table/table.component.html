@@ -431,7 +431,10 @@
 				{{ data.id }}
 			</td>
 			<td *ngIf="data && formName == 'cashRequest'">
-				{{ limitString(data.department) }}
+				{{ limitString(data.businessType) }}
+			</td>
+			<td *ngIf="data && formName == 'cashRequest'">
+				{{ limitString(data.businessUnit) }}
 			</td>
 			<td *ngIf="data && formName == 'cashRequest'">
 				{{ data.project }}
@@ -471,20 +474,17 @@
 			</td>
 
 			<!-- Inbox -->
-			<td
-				*ngIf="
-					(data?.travelApprovalRequestId || data?.pettyCashRequestId) &&
-					formName == 'inbox'
-				"
-			>
-				{{ data.travelApprovalRequestId || data?.pettyCashRequestId }}
+			<td *ngIf="data.blendedRequestId && formName == 'inbox'">
+				{{ data.blendedRequestId}}
 			</td>
-
 			<td *ngIf="data.employeeName && formName == 'inbox'">
 				{{ limitString(data.employeeName) }}
 			</td>
 			<td *ngIf="data && formName == 'inbox'">
-				{{ limitString(data.departmentName) }}
+				{{ data.businessType }}
+			</td>
+			<td *ngIf="data && formName == 'inbox'">
+				{{ data.businessUnit }}
 			</td>
 			<td *ngIf="data && formName == 'inbox'">
 				{{ data.projectName }}

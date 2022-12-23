@@ -360,12 +360,14 @@
 			"requestDate": "تاريخ الطلب",
 			"id": "رقم الطلب",
 			"status": "الحاله",
-			"claimAmount": "القيمه المطلوبه"
+			"claimAmount": "القيمه المطلوبه",
+			"businessType":"Business Type",
+			"businessUnit":"Business Unit"
 		},
 		"inbox": {
 			"employee": "الموظف",
 			"generalLedger":"الدفتر العام",
-     		"department": "الاداره",
+			"businessType": "Business Type",
 			"project": "المشروع",
 			"requestDate": "تاريخ الطلب",
 			"id": "رقم الطلب",
@@ -375,7 +377,7 @@
 			"costCenter": "مركز التكلفه",
 			"invoiceDate": "تاريخ الفاتوره",
 			"expenseType": "نوع التكلفه",
-			"businessArea": "جهات العمل"
+			"businessUnit":"Business Unit"
 		},
 		"costCenter": {
 			"costCenterCode": "الرمز",
@@ -606,7 +608,8 @@
 			"cardNo": "رقم البطاقه",
 			"expenseId": "رقم المصروف",
 			"pettyCashId": "رقم المصروف النثري",
-			"businessArea":"جهات العمل"
+			"businessArea":"جهات العمل",
+			"requestTypeId":"Request Id"
 		},
 		"filters": {
 			"reports": {
