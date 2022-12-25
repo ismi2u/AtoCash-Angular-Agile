@@ -33,8 +33,8 @@
 		"approvalStatus": "Approval Status",
 		"dashboard": "Dashboard",
 		"costCenter": "Cost Centers",
-		"department": "Departments",
-		"businessArea": "Business Areas",
+		"businessType": "Business Type",
+		"businessUnit": "business Unit",
 		"generalLedger": "General Ledger",
 		"role": "Job Roles",
 		"employmentType": "Employment Types",
@@ -73,14 +73,13 @@
 		"settlementFrom": "From",
 		"settlementTo": "To",
 		"pendingApproval": "Pending Approvals",
-        "pendingSettlement" : "Pending Settlements",		
-		"expenseReimburseDepartment": "Dept. Reimburse",
-		"expenseReimburseBusiness": "Business Reimburse",
+        "pendingSettlement" : "Pending Settlements",
 		"vatRate":"VAT Rate",
 		"location":"Location",
 		"business-type":"Business Type",
 		"business-unit":"Business Unit",
-		"employee-extended-info":"Employee Extended Info"
+		"employee-extended-info":"Employee Extended Info",
+		"vendor":"Vendors"
 	},
 	"form": {
 		"disburse": {
@@ -96,7 +95,6 @@
 			"expensefor": "Expense For",
 			"expenseReimburseAmount": "Expense Amount",
 			"enableProject": "Enable Project",
-			"enabledepartment": "Enable Department",
 			"enablestore": "Enable Business",
 			"project": "Project",
 			"expense": "Expense",
@@ -112,12 +110,12 @@
 			"title": " Expense Title",
 			"employee": " Employee",
 			"location": "Location",
-			"department":"Department",
+			"businessType":"Business Type",
 			"taxNo":"Tax No.",
 			"NoOfDays":"No Of Days",
 			"StartDate":"Start Time",
 			"EndDate":"End Time",		 
-			"businessArea":"Business Area",
+			"businessUnit":"Business Unit",
 			"isVAT":"Is VAT"
 		},
 		"status": {
@@ -169,18 +167,6 @@
 		"costCenter": {
 			"costCenterCode": "Cost Centre Code",
 			"costCenterDescription": "Cost Centre Name",
-			"status": "Status"
-		},
-		"department": {
-			"departmentCode": "Department Code",
-			"departmentName": "Department Name",
-			"costCenter": "Cost Center",
-			"status": "Status"
-		},
-		"businessArea": {
-			"businessAreaCode": "Business Area Code",
-			"businessAreaName": "Business Area Name",
-			"costCenter": "Cost Center",
 			"status": "Status"
 		},
 		"generalLedger": {
@@ -248,14 +234,9 @@
 			"taxNumber": "Tax.No",
 			"dob": "Date of Birth",
 			"approvalGroup": "Dept Approval Group",
-			"role": "Department Job Role",
-			"businessAreaApprovalGroup": "Buss-Area Appr Group",
-			"businessAreaApprovalGroupP": "Business Area Approval Group ",
-			"businessAreaRoleName": "Business Area Role",
+			"role": "Department Job Role",			 
 			"employmentType": "Employment Type",
 			"department": "Department",
-			"businessArea": "Business Area",
-			"businessarea": "Business Area",
 			"gender": "Gender",
 			"email": "Email",
 			"mobile": "Mobile",
@@ -316,6 +297,12 @@
 			"businessType":"Business Type",
 			"businessUnit":"Business Unit",
 			"status": "Status"
+		},
+		"vendor":{
+			"vendorName":"Vendor Name",
+			"vendorDesc":"Description",
+			"city":"City",
+			"status": "Status"
 		}
 	},
 	"tableHeader": {
@@ -330,17 +317,17 @@
 		"disburse": {
 			"id": "Id",
 			"employee": "Employee",
-			"department": "Department",
+			"businessType": "Business Type",
 			"project": "Project",
-			"claimAmount": "Claim Amount",
+			"cashAdvance": "Cash Advance",
 			"status": "Settlement Status",
-			"businessArea":"Business Area"
+			"businessUnit":"business Unit"
 		},
 		"travel": {
 			"startDate": "Start Date",
 			"endDate": "End Date",
 			"travelPurpose": "Travel Purpose",
-			"department": "Department",
+			"businessType": "Business Type",
 			"project": "Project",
 			"requestDate": "Request Date",
 			"id": "Id",
@@ -362,23 +349,23 @@
 		},
 		"cashAdvance": {
 			"advanceAmount": "Amount",
-			"advanceDescription": "Description",
-			"department": "Department",
+			"cashAdvanceRequestDesc": "Description",
+			"businessType": "Business Type",
 			"project": "Project",
 			"requestDate": "Request Date",
 			"id": "Id",
-			"status": "Status",
-			"claimAmount": "Claim Amount",
+			"approvalStatusType": "Status",
+			"cashAdvanceAmount": "Advance Amount",
 			"businessType":"Business Type",
 			"businessUnit":"Business Unit"
 		},
 		"inbox": {
+			"id": "Request Id",
 			"employee": "Employee",
 			"generalLedger": "General Ledger",
 			"businessType": "Business Type",
 			"project": "Project",
-			"requestDate": "Request Date",
-			"blendedRequestId": "Request Id",
+			"requestDate": "Request Date",			
 			"status": "Status",
 			"comments": "Comments",
 			"claimAmount": "Claim Amount",
@@ -390,18 +377,6 @@
 		"costCenter": {
 			"costCenterCode": "Cost Center Code",
 			"costCenterDescription": "Cost Center Name",
-			"status": "Status"
-		},
-		"department": {
-			"departmentCode": "Department Code",
-			"departmentName": "Department Name",
-			"costCenter": "Cost Center",
-			"status": "Status"
-		},
-		"businessArea": {
-			"businessAreaCode": "Business Area Code",
-			"businessAreaName": "Business Area Name",
-			"costCenter": "Cost Center",
 			"status": "Status"
 		},
 		"generalLedger": {
@@ -496,8 +471,8 @@
 			"list": {
 				"expenseName": "Expense Name",
 				"claimAmount": "Claim Amount",
-				"department": "Department",
-				"businessArea":"Business Area",
+				"businessType": "Business Type",
+				"businessUnit":"Business Unit",
 				"project": "Project",
 				"requestDate": "Request Date",
 				"id": "Id",
@@ -539,6 +514,13 @@
 			"jobRole":"Job Role",
 			"approvalGroup":"Approval Group",			
 			"statusType": "Status"
+		},
+		"vendor":{
+			"id":"Id",
+			"vendorName":"Vendor Name",
+			"description":"Description",
+			"city":"City",
+			"status": "Status"
 		}
 	},
 	"button": {
@@ -595,7 +577,7 @@
 	"components": {
 		"requestDetails": {
 			"employee": "Employee",
-			"department": "Department",
+			"businessType": "Business Type",
 			"requestDate": "Requested Date",
 			"travelStartDate": "Start Date",
 			"travelEndDate": "End Date",
@@ -626,12 +608,12 @@
 			"cardNo": "Card.No",
 			"expenseId": "Expense Id",
 			"pettyCashId": "Petty Cash Id",
-			"businessArea":"Business Area",
+			"businessUnit":"Business Unit",
 			"blendedRequestId":"Request Id"
 		},
 		"filters": {
 			"reports": {
-				"department": "Department",
+				"businessType": "Business Type",
 				"project": "Project",
 				"subProject": "Sub Project",
 				"task": "Task",
@@ -666,7 +648,7 @@
 				"female": "Female",
 				"others": "Others",
 				"myReports": "My Reports",
-				"businessArea":"Business Area"
+				"businessUnit":"business Unit"
 			}
 		}
 	},

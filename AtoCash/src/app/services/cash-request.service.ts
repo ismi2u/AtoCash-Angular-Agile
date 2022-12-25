@@ -15,7 +15,7 @@ export class CashRequestService {
 
   getCashRequests = (id:any) => {
     this.http
-      .get(`${this.commonService.getApi()}/api/PettyCashRequests/GetPettyCashRequestRaisedForEmployee/${id}`)
+      .get(`${this.commonService.getApi()}/api/CashAdvanceRequests/GetCashAdvanceRequestRaisedForEmployee/${id}`)
       .subscribe((response: any) => {
         this.cashRequests.next(response.data);
       });
@@ -24,31 +24,31 @@ export class CashRequestService {
 
   geCashRequestById = (id: any) =>
     this.http.get(
-      `${this.commonService.getApi()}/api/PettyCashRequests/GetPettyCashRequest/${id}`
+      `${this.commonService.getApi()}/api/CashAdvanceRequests/GetCashAdvanceRequest/${id}`
     );
 
   updateCashRequestById = (id: any, data: any) =>
     this.http.put(
-      `${this.commonService.getApi()}/api/PettyCashRequests/PutPettyCashRequest/${id}`,
+      `${this.commonService.getApi()}/api/CashAdvanceRequests/PutCashAdvanceRequest/${id}`,
       data
     );
 
   addCashRequest = (data: any) =>
     this.http.post(
-      `${this.commonService.getApi()}/api/PettyCashRequests/PostPettyCashRequest`,
+      `${this.commonService.getApi()}/api/CashAdvanceRequests/PostCashAdvanceRequest`,
       data
     );
 
   deleteCashRequest = (id: any) =>
     this.http.delete(
-      `${this.commonService.getApi()}/api/PettyCashRequests/DeletePettyCashRequest/${id}`,
+      `${this.commonService.getApi()}/api/CashAdvanceRequests/DeleteCashAdvanceRequest/${id}`,
       {}
     );
 
   getPendingCashRequests = (id: any) =>
     this.http
       .get(
-        `${this.commonService.getApi()}/api/PettyCashRequests/ApprovalsPendingRaisedByEmployee/${id}`
+        `${this.commonService.getApi()}/api/CashAdvanceRequests/ApprovalsPendingRaisedByEmployee/${id}`
       )
       .subscribe((response: any) => {
         this.pendingCashRequest.next(response.data);
@@ -56,7 +56,7 @@ export class CashRequestService {
 
   geCashRequestCount = (id: any) =>
     this.http.get(
-      `${this.commonService.getApi()}/api/PettyCashRequests/CountAllPettyCashRequestRaisedByEmployee/${id}`
+      `${this.commonService.getApi()}/api/CashAdvanceRequests/CountAllCashAdvanceRequestRaisedByEmployee/${id}`
     );
 
 

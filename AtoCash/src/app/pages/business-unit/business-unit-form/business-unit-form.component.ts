@@ -65,9 +65,25 @@ export class BusinessUnitFormComponent implements OnInit {
 			: this.translate.instant('button.update');
 	};
 	ngOnInit(): void {
+		
+		this.businessTypeService.getBusinessTypesList().subscribe((response: any) => {
+			this.businessTypeList = response.data;
+		});
+		
 		this.statusService.getStatusList().subscribe((response: any) => {
 			this.status = response.data;
 		});
+
+		this.costCenterService.getCostCenterList().subscribe((response: any) => {
+			this.costCenterList = response.data;
+		});
+		
+		this.locationService.geLocationList().subscribe((response: any) => {
+			this.LocationList = response.data;
+		});
+
+		
+
 		this.snapshot.params.subscribe((param) => {
 			if (param.type === 'edit') {
 				this.mode = param.type;
@@ -87,17 +103,7 @@ export class BusinessUnitFormComponent implements OnInit {
 			}
 		});
 
-		this.costCenterService.getCostCenterList().subscribe((response: any) => {
-			this.costCenterList = response.data;
-		});
 		
-		this.locationService.geLocationList().subscribe((response: any) => {
-			this.LocationList = response.data;
-		});
-
-		this.businessTypeService.getBusinessTypesList().subscribe((response: any) => {
-			this.businessTypeList = response.data;
-		});
 
 		this.form = this.fb.group({
 			businessTypeId: [null, [Validators.required]],

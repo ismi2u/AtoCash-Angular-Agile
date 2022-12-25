@@ -22,8 +22,8 @@ export class DisburseListComponent implements OnInit {
 	cashRequestHeaders: any = [
 		'tableHeader.disburse.id',
 		'tableHeader.disburse.employee',
-		'tableHeader.disburse.department',
-		'tableHeader.disburse.businessArea',
+		'tableHeader.disburse.businessType',
+		'tableHeader.disburse.businessUnit',
 		'tableHeader.disburse.project',
 		'tableHeader.disburse.claimAmount',
 		'tableHeader.disburse.status',

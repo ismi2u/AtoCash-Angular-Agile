@@ -173,6 +173,17 @@ const routes: Routes = [
           ,canActivate:[RoleGuard]
       },
       {
+        path: "vendor",
+        loadChildren: () =>
+          import("../vendor/vendor.module").then(
+            (m) => m.VendorModule
+          ),
+          data:{
+            allowedRoles:['Admin','AtominosAdmin']
+          }
+          ,canActivate:[RoleGuard]
+      },
+      {
         path: "employee",
         loadChildren: () =>
           import("../employee/employee.module").then((m) => m.EmployeeModule),

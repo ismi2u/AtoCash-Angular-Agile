@@ -104,8 +104,8 @@ export class CashAdvanceFormComponent implements OnInit {
 
 		this.form = this.fb.group({
 			employeeId: [this.commonService.getUser().empId, [Validators.required]],
-			pettyClaimAmount: [0, [Validators.required]],
-			pettyClaimRequestDesc: [null, [Validators.required]],
+			cashAdvanceAmount: [0, [Validators.required]],
+			cashAdvanceRequestDesc: [null, [Validators.required]],
 			currencyTypeId: [
 				this.commonService.getUser().currencyId,
 				[Validators.required],
@@ -126,8 +126,8 @@ export class CashAdvanceFormComponent implements OnInit {
 					.geCashRequestById(param.id)
 					.subscribe((response: any) => {
 						let formData: any = {
-							pettyClaimAmount: response.data.pettyClaimAmount,
-							pettyClaimRequestDesc: response.data.pettyClaimRequestDesc,
+							cashAdvanceAmount: response.data.cashAdvanceAmount,
+							cashAdvanceRequestDesc: response.data.cashAdvanceRequestDesc,
 							employeeId: response.data.employeeId,
 							projectId: response.data.projectId,
 							subProjectId: response.data.subProjectId,
@@ -163,9 +163,7 @@ export class CashAdvanceFormComponent implements OnInit {
 	}
 
 	selectBusinessType = (event) => {
-		console.log("BusinessTypeSelect=="+event)
 		if (event) {
-			console.log("Came InSide=="+event)
 			this.businessUnitService
 				.getBusinessUnitsList()
 				.subscribe((response: any) => {

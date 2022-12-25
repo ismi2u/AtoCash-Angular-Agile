@@ -17,6 +17,8 @@ import { ExpenseCategoriesService } from 'src/app/services/expense-categories.se
 import { VATRateService } from 'src/app/services/vat-rate.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { objectEach } from 'highcharts';
+import { VendorService } from 'src/app/services/vendor.service';
+
 
 @Component({
 	selector: 'app-expense-reimburse-form',
@@ -42,8 +44,8 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 	expNoOfDays=null;
 	selectedValue = null;
 	isVAT=false;
-	@Input() IBC;
 	@Input() data;
+	vendors=[];
 
 	constructor(
 		private fb: FormBuilder,
@@ -58,7 +60,8 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 		private translate: TranslateService,
 		private modal: NzModalRef,
 		private expenseCategoriesService: ExpenseCategoriesService,
-		private vatRateService: VATRateService
+		private vatRateService: VATRateService,
+		private vendorService:VendorService,
 	) {}
 
 	getButtonLabel = () => {
@@ -102,7 +105,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		
-		this.expenseCategoriesService.getExpenseCategoriesListSelected(this.IBC).subscribe((data: any) => {
+		this.expenseCategoriesService.getExpenseCategoriesListSelected().subscribe((data: any) => {
 			this.expenseCategoriesList = data.data;
 		});
 
@@ -117,7 +120,10 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 			this.tasks = response.data;
 		});
 
-		
+		this.vendorService.getVendorList().subscribe((data: any) => {
+			this.vendors = data.data;
+		});
+
 		
 		this.form = this.fb.group({
 			expenseCategoryId: [null, [Validators.required]],
@@ -128,7 +134,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 			location: [null, [Validators.required]],
 			tax: [0, [Validators.required, Validators.max(100)]],
 			taxAmount: [null, [Validators.required]],
-			vendor: [null, [Validators.required]],
+			vendorId: [null, [Validators.required]],
 			description: [null, [Validators.required]],
 			taxNo: [null, [Validators.required]],
 			NoOfDays:[null],
@@ -150,7 +156,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 				isVAT:this.data.isVAT,
 				tax: Number(this.data.tax),
 				taxAmount: Number(this.data.taxAmount),
-				vendor: this.data.vendor,
+				vendorId: this.data.vendorId,
 				description: this.data.description,
 				taxNo: this.data.taxNo,
 				NoOfDays:this.data.expNoOfDays,

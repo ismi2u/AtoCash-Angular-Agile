@@ -304,6 +304,23 @@
 				{{ data.vatPercentage }}
 			</td> 
 
+			<!-- vatRate -->
+			<td *ngIf="data.id && formName == 'vendor'">
+				{{ data.id }}
+			</td>
+			<td *ngIf="data.vendorName && formName == 'vendor'">
+				{{ data.vendorName }}
+			</td> 
+			<td *ngIf="data.description && formName == 'vendor'">
+				{{ data.description }}
+			</td>
+			<td *ngIf="data.city && formName == 'vendor'">
+				{{ data.city }}
+			</td>
+			<td *ngIf="data.statusType && formName == 'vendor'">
+				{{ data.statusType }}
+			</td>
+
 			<!-- Approval Groups -->
 			<td *ngIf="data.approvalGroupCode && formName == 'group'">
 				{{ data.approvalGroupCode }}
@@ -439,11 +456,11 @@
 			<td *ngIf="data && formName == 'cashRequest'">
 				{{ data.project }}
 			</td>
-			<td *ngIf="data.pettyClaimRequestDesc && formName == 'cashRequest'">
-				{{ data.pettyClaimRequestDesc }}
+			<td *ngIf="data.cashAdvanceRequestDesc && formName == 'cashRequest'">
+				{{ data.cashAdvanceRequestDesc }}
 			</td>
-			<td *ngIf="data.pettyClaimAmount && formName == 'cashRequest'">
-				{{ data.pettyClaimAmount }}
+			<td *ngIf="data.cashAdvanceAmount && formName == 'cashRequest'">
+				{{ data.cashAdvanceAmount }}
 			</td>
 
 			<td *ngIf="data.approvalStatusType && formName == 'cashRequest'">
@@ -474,31 +491,31 @@
 			</td>
 
 			<!-- Inbox -->
-			<td *ngIf="data.blendedRequestId && formName == 'inbox'">
-				{{ data.blendedRequestId}}
+			<td *ngIf="data.id && formName == 'inbox'">
+				{{ data.id}}
 			</td>
 			<td *ngIf="data.employeeName && formName == 'inbox'">
 				{{ limitString(data.employeeName) }}
 			</td>
-			<td *ngIf="data && formName == 'inbox'">
+			<td *ngIf="data.businessType && formName == 'inbox'">
 				{{ data.businessType }}
 			</td>
-			<td *ngIf="data && formName == 'inbox'">
+			<td *ngIf="data.businessUnit && formName == 'inbox'">
 				{{ data.businessUnit }}
 			</td>
-			<td *ngIf="data && formName == 'inbox'">
+			<td *ngIf="data.projectName && formName == 'inbox'">
 				{{ data.projectName }}
 			</td>
-			<td *ngIf="data.reqDate && formName == 'inbox'">
-				{{ data.reqDate | date: 'dd/MM/yyyy' }}
+			<td *ngIf="data.requestedDate && formName == 'inbox'">
+				{{ data.requestedDate | date: 'dd/MM/yyyy' }}
 			</td>
 			<td
 				*ngIf="
-					(data?.pettyClaimAmount || data?.totalClaimAmount || data?.claimAmount ) &&
+					(data?.claimAmount || data?.totalClaimAmount || data?.cashAdvanceAmount ) &&
 					formName == 'inbox'
 				"
 			>
-				{{ data.claimAmount  || data.pettyClaimAmount || data?.totalClaimAmount }}
+				{{ data.claimAmount  || data.cashAdvanceAmount || data?.totalClaimAmount }}
 			</td>
 
 			<td *ngIf="data.approvalStatusType && formName == 'inbox'">
@@ -572,10 +589,10 @@
 				{{ data.expenseReportTitle }}
 			</td>
 			<td *ngIf="data && formName == 'expenseReimburseList'">
-				{{ limitString(data.departmentName) }}
+				{{ limitString(data.businessType) }}
 			</td>
 			<td *ngIf="data && formName == 'expenseReimburseList'">
-				{{ limitString(data.businessArea) }}
+				{{ limitString(data.businessUnit) }}
 			</td>
 			<td *ngIf="data && formName == 'expenseReimburseList'">
 				{{ data.projectName }}
@@ -605,7 +622,7 @@
 				{{ data.projectName }}
 			</td>
 			<td *ngIf="data && formName == 'disburseList'">
-				{{ data.claimAmount }}
+				{{ data.cashAdvanceAmount }}
 			</td>
 
 			<td *ngIf="data && formName == 'disburseList'">
@@ -676,14 +693,14 @@
 			</td>
 			<td
 				*ngIf="
-					(data?.pettyClaimAmount ||
+					(data?.cashAdvanceAmount ||
 						data?.totalClaimAmount ||
-						data?.claimAmount || data.expenseReimbClaimAmount) &&
+						data?.cashAdvanceAmount || data.expenseReimbClaimAmount) &&
 					formName == 'reports'
 				"
 			>
 				{{
-					data.pettyClaimAmount || data?.totalClaimAmount || data?.claimAmount || data.expenseReimbClaimAmount
+					data.cashAdvanceAmount || data?.totalClaimAmount || data?.cashAdvanceAmount || data.expenseReimbClaimAmount
 				}}
 			</td>
 			<td *ngIf="data.expenseType && formName == 'reports'">

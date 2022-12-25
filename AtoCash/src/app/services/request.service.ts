@@ -33,7 +33,7 @@ export class RequestService{
 
   getRequestToApprove = (id) => {
     return this.http.get(
-      `${this.commonService.getApi()}/api/ClaimApprovalStatusTrackers/ApprovalsPendingForApprover/${id}`
+      `${this.commonService.getApi()}/api/CashAdvanceStatusTrackers/ApprovalsPendingForApprover/${id}`
     );
   };
 
@@ -52,7 +52,7 @@ export class RequestService{
   updateCashAdvanceRequest = (data) => {
     
     return this.http.put(
-      `${this.commonService.getApi()}/api/ClaimApprovalStatusTrackers/PutClaimApprovalStatusTracker`,
+      `${this.commonService.getApi()}/api/CashAdvanceStatusTrackers/PutCashAdvanceStatusTracker`,
       data
     );
   };
@@ -75,7 +75,7 @@ export class RequestService{
 
   getRequestStatus = (id) => {
     return this.http.get(
-      `${this.commonService.getApi()}/api/ClaimApprovalStatusTrackers/ApprovalFlowForRequest/${id}`
+      `${this.commonService.getApi()}/api/CashAdvanceStatusTrackers/ApprovalFlowForRequest/${id}`
     );
   };
 
@@ -93,7 +93,7 @@ export class RequestService{
 
   getRequestDetails = (id) => {
     return this.http.get(
-      `${this.commonService.getApi()}/api/ClaimApprovalStatusTrackers/GetClaimApprovalStatusTracker/${id}`
+      `${this.commonService.getApi()}/api/CashAdvanceStatusTrackers/GetCashAdvanceStatusTracker/${id}`
     );
   };
 

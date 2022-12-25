@@ -15,7 +15,7 @@
 		[formName]="'expenseReimburseData'"
 		[pageSize]="5"
 		(onRowSelect)="getRowData($event)"
-		(onRowAdd)="showModal(null,primaryExpenseData)"
+		(onRowAdd)="showModal(null)"
 		[enableDuplicate]="mode !== 'view'"
 		(onDuplicate)="duplicateRow($event)"
 		(onMethodUpdate)="showPrimaryModal('exist')"

@@ -2,53 +2,74 @@
 	<nz-card
 		class="form-layout__card"
 		[nzBordered]="false"
-		[nzTitle]="'heading.expenseCategory'| translate"
+		[nzTitle]="'heading.vendor' | translate"
 		[nzExtra]="action"
 	>
 		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
-			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseCategoryName">{{
-					'form.expenseCategory.expenseCategoryName' | translate
-				}}</nz-form-label>
-				<nz-form-control
-					[nzSpan]="15"
-					[nzErrorTip]="'validation.required' | translate"
-				>
-					<input
-						formControlName="expenseCategoryName"
-						type="text"
-						nz-input
-						[placeholder]="'form.expenseCategory.expenseCategoryName' | translate"
-						appCapitalize
-						id="expenseCategoryName"
-					/>
-				</nz-form-control>
-			</nz-form-item>
-			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseCategoryDesc">{{
-					'form.expenseCategory.expenseCategoryDesc' | translate
-				}}</nz-form-label>
-				<nz-form-control
-					[nzSpan]="15"
-					[nzErrorTip]="'validation.required' | translate"
-				>
-					<input
-						formControlName="expenseCategoryDesc"
-						nz-input
-						type="text"
-						[placeholder]="'form.expenseCategory.expenseCategoryDesc' | translate"
-						appCapitalize
-						id="expenseCategoryDesc"
-					/>
-				</nz-form-control>
-			</nz-form-item>
-
 			 
-
-			
 			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="status">{{
-					'form.expenseCategory.status' | translate
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="vendorName">{{
+					'form.vendor.vendorName' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="vendorName"
+						nz-input
+						type="text"
+						[placeholder]="'form.vendor.vendorName' | translate"
+						appCapitalize
+						id="vendorName"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="vendorDesc">{{
+					'form.vendor.vendorDesc' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="description"
+						nz-input
+						type="text"
+						[placeholder]="'form.vendor.vendorDesc' | translate"
+						appCapitalize
+						id="description"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzFor="city">{{
+					'form.vendor.city' | translate
+				}}</nz-form-label>
+
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="city"
+						nz-input
+						type="text"
+						[placeholder]="'form.vendor.vendorDesc' | translate"
+						appCapitalize
+						id="city"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="Status">{{
+					'form.status.status' | translate
 				}}</nz-form-label>
 
 				<nz-form-control
@@ -60,7 +81,7 @@
 						nzAllowClear
 						id="statusTypeId"
 						formControlName="statusTypeId"
-						[nzPlaceHolder]="'form.expenseCategory.status' | translate"
+						[nzPlaceHolder]="'form.status.status' | translate"
 					>
 						<nz-option
 							*ngFor="let option of status"
@@ -70,8 +91,7 @@
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
-			
-			
+
 			<nz-form-item>
 				<nz-form-control class="action-control">
 					<button nz-button nzType="primary" [disabled]="!form.valid">
@@ -80,11 +100,12 @@
 				</nz-form-control>
 			</nz-form-item>
 		</form>
+
 		<ng-template #action>
-			<button nz-button routerLink="/expense-category" nzType="primary">
+			<button nz-button routerLink="/vendor/list" nzType="primary">
 				<i nz-icon nzType="arrow-left"></i>
 				{{ 'button.back' | translate }}
 			</button>
-		</ng-template></nz-card
-	>
+		</ng-template></nz-card>
+
 </div>

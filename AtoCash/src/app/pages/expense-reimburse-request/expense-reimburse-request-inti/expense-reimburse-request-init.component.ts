@@ -13,6 +13,8 @@ import { ExpenseReimburseRequestService } from 'src/app/services/expense-reimbur
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { constant } from 'src/app/constant/constant';
 import { CurrencyService } from 'src/app/services/currency.service';
+import { BusinessTypeService } from 'src/app/services/business-type.service';
+import { BusinessUnitService } from 'src/app/services/business-unit.service';
 
 @Component({
 	selector: 'app-expense-reimburse-form',
@@ -26,12 +28,15 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 	subProjects = [];
 	expenseType = [];
 	tasks = [];
-	enableProject = "Project";
+	enableProject = false;
 	empId = this.commonService.getUser().empId;
 	taxes = [...Array(31).keys()];
 	currencies = [];
-	isBusinessAreaReq = false;
-
+	businessTypes = [];
+	businessUnits=[];
+	enableBusinessType = false;
+	currencyCode = this.commonService.getUser().currencyId;
+	
 	@Input() data;
 
 	constructor(
@@ -47,6 +52,8 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 		private translate: TranslateService,
 		private modal: NzModalRef,
 		private currencyService: CurrencyService,
+		private businessTypeService: BusinessTypeService,
+		private businessUnitService:BusinessUnitService,
 	) {}
 
 	submitForm(): void {
@@ -60,7 +67,6 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 				...this.form.value,
 				employeeId: this.commonService.getUser().empId,
 				currencyTypeId: this.form.controls['currencyTypeId'].value,
-				isBusinessAreaReq:this.isBusinessAreaReq,
 			},
 		});
 	}
@@ -75,15 +81,19 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 			this.commonService.loading.next(false);
 		});
 
+		this.businessTypeService.getBusinessTypesList().subscribe((response: any) => {
+			this.businessTypes = response.data;
+		});
 		
 
 		this.form = this.fb.group({
-			currencyTypeId: [this.commonService.getUser().currencyId],
-			expenseReportTitle: [null, [Validators.required]],
+			currencyTypeId: [this.currencyCode],
+			expenseReportTitle: ['Expense Reimburse', [Validators.required]],
 			projectId: [null, [Validators.nullValidator]],
 			subProjectId: [null, [Validators.nullValidator]],
-			workTaskId: [null, [Validators.nullValidator]],
-			expensefor: [null]
+			workTaskId: [null, [Validators.nullValidator]],			
+			businessTypeId:[null, [Validators.nullValidator]],
+			businessUnitId:[null, [Validators.nullValidator]],
 		});
 
 		
@@ -94,7 +104,7 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 			delete this.data.employeeId;
 			this.form.setValue(this.data);
 			if (this.data.projectId) {
-				this.enableProject = "Project";
+				this.enableProject = true;
 				this.projectService
 					.getProjectListByEmpId()
 					.subscribe((response: any) => {
@@ -106,6 +116,16 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 
 			if (this.data.subProjectId) {
 				this.selectSubProject(this.data.subProjectId);
+			}
+
+			if (this.data.businessTypeId) {
+				this.enableBusinessType = true;
+				this.businessUnitService
+					.getBusinessUnitsList()
+					.subscribe((businessUnits: any) => {
+						this.businessUnits = businessUnits.data;
+						this.selectBusinessType(this.data.businessTypeId);
+					});
 			}
 		}
 
@@ -133,31 +153,33 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 
 	refreshForm = (event) => {
 		 
-        if(event=='Project')
+        if(event)
 		{
 			this.projectService.getProjectListByEmpId().subscribe((response: any) => {
 				this.projects = response.data;
 			});
-			this.isBusinessAreaReq=false;
-		}
-		else {
-
-			this.form.controls['projectId'].setValue(null);
-			this.form.controls['subProjectId'].setValue(null);
-			this.form.controls['workTaskId'].setValue(null);
-			if(event=='Department')
-			{
-				this.isBusinessAreaReq=false;
-
-			}
-			if(event=='Business Area')
-			{
-				 
-				this.isBusinessAreaReq=true;
-			}
-
 		}
 
+		if(!event){
+			this.form.controls['projectId'].reset();
+			this.form.controls['subProjectId'].reset();
+			this.form.controls['workTaskId'].reset();
+		}else{
+			this.form.controls['businessTypeId'].reset();
+			this.form.controls['businessUnitId'].reset();
+		}
+		
+
+	};
+
+	selectBusinessType = (event) => {
+		if (event) {
+			this.businessUnitService
+				.getBusinessUnitsList()
+				.subscribe((response: any) => {
+					this.businessUnits = response.data;
+				});
+		}
 	};
 
 	getModalButton(data) {

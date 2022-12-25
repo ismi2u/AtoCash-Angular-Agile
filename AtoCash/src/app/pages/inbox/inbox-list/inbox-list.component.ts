@@ -20,7 +20,7 @@ import { InboxAlertComponent } from '../inbox-alert/inbox-alert.component';
 export class InboxListComponent implements OnInit {
 	requests: any = [];
 	requestHeaders: any = [
-		'tableHeader.inbox.blendedRequestId',
+		'tableHeader.inbox.id',
 		'tableHeader.inbox.employee',
 		'tableHeader.inbox.businessType',
 		'tableHeader.inbox.businessUnit',
@@ -62,7 +62,7 @@ export class InboxListComponent implements OnInit {
 			
 			if(type !== 'travelRequest') {
 				this.requestHeaders = [
-					'tableHeader.inbox.blendedRequestId',
+					'tableHeader.inbox.id',
 					'tableHeader.inbox.employee',
 					'tableHeader.inbox.businessType',
 					'tableHeader.inbox.businessUnit',
@@ -73,10 +73,10 @@ export class InboxListComponent implements OnInit {
 				];
 			}else {
 				this.requestHeaders = [
-					'tableHeader.inbox.blendedRequestId',
+					'tableHeader.inbox.id',
 					'tableHeader.inbox.employee',
-					'tableHeader.inbox.buinessType',
-					'tableHeader.inbox.buinessUnit',
+					'tableHeader.inbox.businessType',
+					'tableHeader.inbox.businessType',
 					'tableHeader.inbox.project',
 					'tableHeader.inbox.requestDate',
 					'tableHeader.inbox.status',
@@ -100,11 +100,11 @@ export class InboxListComponent implements OnInit {
 	getCashAdvanceRowData = (event) => {
 		this.commonService.loading.next(true);
 		this.requestService
-			.getRequestStatus(event.blendedRequestId)
+			.getRequestStatus(event.cashAdvanceRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.cashRequestService
-					.geCashRequestById(event.blendedRequestId)
+					.geCashRequestById(event.cashAdvanceRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 						this.commonService.loading.next(false);
@@ -115,11 +115,11 @@ export class InboxListComponent implements OnInit {
 	getTravelRequestRowData = (event) => {
 		this.commonService.loading.next(true);
 		this.requestService
-			.getTravelRequestStatus(event.blendedRequestId)
+			.getTravelRequestStatus(event.expenseReimburseRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.travelRequestService
-					.getTravelRequestById(event.blendedRequestId)
+					.getTravelRequestById(event.expenseReimburseRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 						this.commonService.loading.next(false);
@@ -130,11 +130,11 @@ export class InboxListComponent implements OnInit {
 	getExpenseRequestRowData = (event) => {
 		this.commonService.loading.next(true);
 		this.requestService
-			.getExpenseRequestStatus(event.blendedRequestId)
+			.getExpenseRequestStatus(event.expenseReimburseRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.expenseRequestService
-					.getExpenseRequestById(event.blendedRequestId)
+					.getExpenseRequestById(event.expenseReimburseRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 						this.commonService.loading.next(false);
@@ -259,7 +259,7 @@ export class InboxListComponent implements OnInit {
 	requestTypeChange(type) {
 		if(type !== 'travelRequest') {
 			this.requestHeaders = [
-				'tableHeader.inbox.blendedRequestId',
+				'tableHeader.inbox.id',
 				'tableHeader.inbox.employee',
 				'tableHeader.inbox.department',
 				'tableHeader.inbox.businessArea',
@@ -270,7 +270,7 @@ export class InboxListComponent implements OnInit {
 			];
 		}else {
 			this.requestHeaders = [
-				'tableHeader.inbox.blendedRequestId',
+				'tableHeader.inbox.id',
 				'tableHeader.inbox.employee',
 				'tableHeader.inbox.department',
 				'tableHeader.inbox.businessArea',

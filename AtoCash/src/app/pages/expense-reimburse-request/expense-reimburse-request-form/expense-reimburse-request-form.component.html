@@ -1,7 +1,7 @@
 <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
 	
 	<nz-form-item>
-		<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseCategory">{{
+		<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseCategoryId">{{
 		'form.expenseType.expenseCategory' | translate
 		}}</nz-form-label>
 
@@ -27,7 +27,7 @@
 	</nz-form-item>
 
 	<nz-form-item>
-		<nz-form-label [nzSpan]="7" nzRequired nzFor="project">{{
+		<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseTypeId">{{
 			'form.expenseReimburse.expense' | translate
 		}}</nz-form-label>
 
@@ -141,24 +141,33 @@
 		</nz-form-control>
 	</nz-form-item>
 	
+
 	<nz-form-item>
-		<nz-form-label nzRequired [nzSpan]="7" nzFor="vendor">{{
-			'form.expenseReimburse.vendor' | translate
+		<nz-form-label [nzSpan]="7" nzRequired nzFor="vendorId">{{
+		'form.expenseReimburse.vendor' | translate
 		}}</nz-form-label>
 
 		<nz-form-control
-			[nzSpan]="15"
-			[nzErrorTip]="'validation.required' | translate"
+		[nzSpan]="15"
+		[nzErrorTip]="'validation.required' | translate"
 		>
-			<input
-				formControlName="vendor"
-				type="text"
-				nz-input
-				[placeholder]="'form.expenseReimburse.vendor' | translate"
-				id="vendor"
-			/>
+		<nz-select
+			nzShowSearch
+			nzAllowClear
+			id="vendorId"
+			formControlName="vendorId"
+			[nzPlaceHolder]="'form.expenseReimburse.vendor' | translate"
+		>
+			<nz-option
+			*ngFor="let option of vendors"
+			[nzValue]="option.id"
+			[nzLabel]="option.vendorName"
+			></nz-option>
+		</nz-select>
 		</nz-form-control>
 	</nz-form-item>
+
+	
 
 	<nz-form-item>
 		<nz-form-label nzRequired [nzSpan]="7" nzFor="taxNo">{{

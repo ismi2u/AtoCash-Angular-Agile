@@ -39,7 +39,6 @@ export class ExpenseReimburseRequestCreateComponent implements OnInit {
 	disableActions = false;
 	claimDocuments = [];
 	totalClaimAmount = 0;
-	isBusinessRequest:any=[];
 
 	constructor(
 		private modalService: NzModalService,
@@ -104,7 +103,7 @@ export class ExpenseReimburseRequestCreateComponent implements OnInit {
 	};
 
 	editRecord = (event) => {
-		this.showModal({ ...this.expenses[event.index], index: event.index },this.primaryExpenseData);
+		this.showModal({ ...this.expenses[event.index], index: event.index });
 	};
 
 	getRowData = (event) => {
@@ -126,14 +125,13 @@ export class ExpenseReimburseRequestCreateComponent implements OnInit {
 		}, 0);
 	}
 
-	showModal(data,isBusinessRequest) {
+	showModal(data) {
 		const modal = this.modalService.create({
 			nzTitle: this.primaryExpenseData.expenseReportTitle,
 			nzContent: ExpenseReimburseRequestFormComponent,
 			nzFooter: null,
 			nzComponentParams: {
 				data: data || null,
-				IBC:isBusinessRequest.isBusinessAreaReq,
 			},
 		});
 		modal.afterClose.subscribe((data) => {
@@ -166,7 +164,7 @@ export class ExpenseReimburseRequestCreateComponent implements OnInit {
 		modal.afterClose.subscribe((data) => {
 			if (data && data.data) {
 				this.primaryExpenseData = data.data;
-				state === 'new' ? this.showModal(null,data.data) : null;
+				state === 'new' ? this.showModal(null) : null;
 				
 			}
 		});

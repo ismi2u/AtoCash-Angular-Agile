@@ -123,6 +123,16 @@
 
 			<li
 				*ngIf="canOrganize() || canOrganizeAndManage()"
+				nz-menu-item
+				nzMatchRouter
+				routerLink="/vendor"
+			>
+				<i nz-icon nzType="file-text" nzTheme="outline"></i>
+				<span>{{ 'heading.vendor' | translate }}</span>
+			</li>
+
+			<li
+				*ngIf="canOrganize() || canOrganizeAndManage()"
 				nz-submenu
 				[nzTitle]="'heading.approval' | translate"
 				nzIcon="file-protect"

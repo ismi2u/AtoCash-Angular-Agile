@@ -21,9 +21,9 @@ export class CashAdvanceListComponent implements OnInit {
     'tableHeader.cashAdvance.businessType',
     'tableHeader.cashAdvance.businessUnit',
     'tableHeader.cashAdvance.project',
-    'tableHeader.cashAdvance.advanceDescription',  
-    'tableHeader.cashAdvance.claimAmount',
-    'tableHeader.cashAdvance.status',  
+    'tableHeader.cashAdvance.cashAdvanceRequestDesc',  
+    'tableHeader.cashAdvance.cashAdvanceAmount',
+    'tableHeader.cashAdvance.approvalStatusType',  
   ];
   requestApprovalFlow = null;
   requestDetails = null

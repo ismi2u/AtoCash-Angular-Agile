@@ -27,9 +27,9 @@ export class ExpenseCategoriesService {
 		);
 	};
 
-	getExpenseCategoriesListSelected = (isBussCategory:any) => {
+	getExpenseCategoriesListSelected = () => {
 		return this.http.get(
-			`${this.commonService.getApi()}/api/ExpenseCategories/GetSelectedExpenseCategoriesForDropdown?isBussCategory=${isBussCategory}`,
+			`${this.commonService.getApi()}/api/ExpenseCategories/GetSelectedExpenseCategoriesForDropdown`,
 		);
 	};
 

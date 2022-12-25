@@ -1,29 +1,16 @@
-<!-- <div class="enable-project">
+<div class="enable-project">
   <p class="label">{{ "form.expenseReimburse.enableProject" | translate }}</p>
   <nz-switch
     nzSize="small"
     (ngModelChange)="refreshForm($event)"
     [(ngModel)]="enableProject"
   ></nz-switch>
- //-->
+</div>
 
  
 <form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
   <nz-form-item>
 
-    <nz-form-label [nzSpan]="7" nzRequired nzFor="expensefor" >{{
-      "form.expenseReimburse.expensefor" | translate
-    }}</nz-form-label>
-
-    <nz-radio-group [(ngModel)]="enableProject" (ngModelChange)="refreshForm($event)"  id="expensefor"
-    formControlName="expensefor">
-      <label nz-radio-button nzValue="Project">{{"form.expenseReimburse.project" | translate }}</label>
-      <label nz-radio-button nzValue="Department">{{"form.expenseReimburse.department" | translate}}</label>
-      <label nz-radio-button nzValue="Business Area">{{"form.expenseReimburse.businessArea" | translate}}</label>
-    </nz-radio-group>
-  </nz-form-item>
-
-  <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired nzFor="expenseTitle">{{
       "form.expenseReimburse.title" | translate
     }}</nz-form-label>
@@ -41,25 +28,6 @@
       />
     </nz-form-control>
   </nz-form-item>
-  <!-- <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired nzFor="invoiceNo">{{
-      "form.expenseReimburse.employee" | translate
-    }}</nz-form-label>
-
-    <nz-form-control
-      [nzSpan]="15"
-      [nzErrorTip]="'validation.required' | translate"
-    >
-      <input
-        formControlName="employeeId"
-        type="text"
-        nz-input
-        [placeholder]="'form.expenseReimburse.employee' | translate"
-        id="employeeId"
-        disabled="true"
-      />
-    </nz-form-control>
-  </nz-form-item> -->
   
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired nzFor="currencyTypeId">{{
@@ -80,8 +48,51 @@
   </nz-form-item>
 
 
-  <!--Project Start -->
-  <nz-form-item *ngIf="enableProject==='Project'">
+  <!-- Non Project Request / Business Unit Request -->
+  <nz-form-item *ngIf="!enableProject">
+    <nz-form-label [nzSpan]="7"  nzFor="businessTypeId">{{
+      'form.cashAdvance.businessType' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate" >
+ 
+        <nz-select
+        nzShowSearch nzAllowClear
+          id="businessTypeId"
+          formControlName="businessTypeId"
+          [nzPlaceHolder]="'form.cashAdvance.businessType' | translate"  (ngModelChange)="selectBusinessType($event)">
+          <nz-option
+            *ngFor="let option of businessTypes"
+            [nzValue]="option.id"
+            [nzLabel]="option.businessTypeName"
+          ></nz-option>
+        </nz-select>
+  
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0 && form.controls['businessTypeId'].value">
+    <nz-form-label [nzSpan]="7"  nzFor="businessUnitId">{{
+      'form.cashAdvance.businessUnit' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+ 
+        <nz-select
+        nzShowSearch nzAllowClear
+          id="businessUnitId"
+          formControlName="businessUnitId"
+          [nzPlaceHolder]="'form.cashAdvance.businessUnit' | translate">
+          <nz-option
+            *ngFor="let option of businessUnits"
+            [nzValue]="option.id"
+            [nzLabel]="option.businessUnitName"
+          ></nz-option>
+        </nz-select>
+  
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- Project Start -->
+  <nz-form-item *ngIf="enableProject">
     <nz-form-label [nzSpan]="7" nzRequired nzFor="project">{{
       "form.expenseReimburse.project" | translate
     }}</nz-form-label>
@@ -109,7 +120,7 @@
 
   <nz-form-item
     *ngIf="
-      enableProject==='Project' &&
+      enableProject &&
       form.controls['projectId'].value &&
       subProjects.length > 0
     "
@@ -139,7 +150,7 @@
   </nz-form-item>
 
   <nz-form-item
-    *ngIf="enableProject==='Project' && form.controls['subProjectId'].value && tasks.length > 0">
+    *ngIf="enableProject && form.controls['subProjectId'].value && tasks.length > 0">
     <nz-form-label [nzSpan]="7"  nzFor="task">{{
       "form.expenseReimburse.task" | translate
     }}</nz-form-label>
@@ -167,11 +178,12 @@
    
   <nz-form-item>
     <nz-form-control class="action-control">
-      <button nz-button nzType="primary" [disabled]="(!form.valid && fileList.length == 0)  || (enableProject=='Project' && !form.controls['projectId'].value)">
+      <button nz-button nzType="primary" [disabled]="(!form.valid && fileList.length == 0)  || (enableProject==true && !form.controls['projectId'].value)">
        {{getModalButton(data)}}
       </button>
     </nz-form-control>
   </nz-form-item>
+
 
 </form>
 <ng-template #action>

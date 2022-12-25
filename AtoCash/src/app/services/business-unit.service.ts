@@ -26,7 +26,7 @@ export class BusinessUnitService {
 	};
 	 	
 	getBusinessUnitById = (id: any) =>
-		this.http.get(`${this.commonService.getApi()}/api/BusinessUnits/GetBusinessUnits/${id}`);
+		this.http.get(`${this.commonService.getApi()}/api/BusinessUnits/GetBusinessUnit/${id}`);
 
 	getBusinessUnitByBusinessTypeId = (id: any) =>
 		this.http.get(`${this.commonService.getApi()}/api/BusinessUnits/BusinessUnitsByBusinessTypeIdForDropdown/${id}`);

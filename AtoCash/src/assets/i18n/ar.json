@@ -80,7 +80,8 @@
 		"location":"Location",
 		"business-type":"Business Type",
 		"business-unit":"Business Unit",
-		"employee-extended-info":"Employee Extended Info"
+		"employee-extended-info":"Employee Extended Info",
+		"vendor":"Vendors"
 	},
 	"form": {
 		"disburse": {
@@ -308,6 +309,13 @@
 			"group":"Approval Group",
 			"level":"Level",
 			"status": "Status"
+		},
+		"vendor":{
+			 
+			"vendorName":"Vendor Name",
+			"description":"Description",
+			"city":"City",
+			"status": "Status"
 		}
 	},
 	"tableHeader": {
@@ -354,13 +362,13 @@
 		},
 		"cashAdvance": {
 			"advanceAmount": "القيمه",
-			"advanceDescription": "الوصف",
+			"cashAdvanceRequestDesc": "الوصف",
 			"department": "الاداره",
 			"project": "المشروع",
 			"requestDate": "تاريخ الطلب",
 			"id": "رقم الطلب",
-			"status": "الحاله",
-			"claimAmount": "القيمه المطلوبه",
+			"approvalStatusType": "الحاله",
+			"cashAdvanceAmount": "القيمه المطلوبه",
 			"businessType":"Business Type",
 			"businessUnit":"Business Unit"
 		},
@@ -520,6 +528,12 @@
 			"jobRoleId":"Job Role Id",
 			"approvalGroupId":"Approval Group Id",
 			"approvalLevelId":"Level Id",
+			"status": "Status"
+		},"vendor":{
+			"id":"Id",
+			"vendorName":"Vendor Name",
+			"description":"Description",
+			"city":"City",
 			"status": "Status"
 		}
 	},

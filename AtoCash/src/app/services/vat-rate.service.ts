@@ -14,7 +14,7 @@ export class VATRateService {
 	 
 	getVATRate = () => {
 		return this.http.get(
-			`${this.commonService.getApi()}/api/VATRate/GetVATPercentage/`,
+			`${this.commonService.getApi()}/api/VATRate/GetVATPercentage`,
 		);
 	};
 
