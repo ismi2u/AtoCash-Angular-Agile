@@ -72,9 +72,15 @@ export class ApprovalRoleMapFormComponent implements OnInit {
 					.getApprovalRoleMapById(param.id)
 					.subscribe((response: any) => {
 						this.recordId = param.id;
+						delete response.data.approvalGroup;
+						delete response.data.jobRole;
+						delete response.data.approvalLevel;
+						delete response.data.employeeName;
+						delete response.data.countOfEmployees;
+						delete response.data.allAssignedEmployees;
 						const formData = {
 							approvalGroupId: response.data.approvalGroupId,
-							JobRoleId: response.data.JobRoleId,
+							JobRoleId: response.data.jobRoleId,
 							approvalLevelId: response.data.approvalLevelId,
 						};
 						this.form.setValue(formData);
