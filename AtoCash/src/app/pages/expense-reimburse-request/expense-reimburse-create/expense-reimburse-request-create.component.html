@@ -31,9 +31,9 @@
 			<div class="info" *ngIf="primaryExpenseData">
 				<p class="expense-type">
 					<b>{{ 'heading.chargeTo' | translate }}</b>
-					{{
-						primaryExpenseData.expensefor
-					}}
+					<i>&nbsp;{{
+						primaryExpenseData.expenseReportTitle
+					}}</i>
 				</p>
 				<p class="amount">
 					<b>{{ 'heading.totalAmount' | translate }}</b> :

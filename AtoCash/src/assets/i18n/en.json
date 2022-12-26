@@ -319,7 +319,7 @@
 			"employee": "Employee",
 			"businessType": "Business Type",
 			"project": "Project",
-			"cashAdvance": "Cash Advance",
+			"claimAmount": "Claim Amount",
 			"status": "Settlement Status",
 			"businessUnit":"business Unit"
 		},
