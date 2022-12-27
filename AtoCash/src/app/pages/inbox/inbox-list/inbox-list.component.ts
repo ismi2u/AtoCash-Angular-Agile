@@ -115,11 +115,11 @@ export class InboxListComponent implements OnInit {
 	getTravelRequestRowData = (event) => {
 		this.commonService.loading.next(true);
 		this.requestService
-			.getTravelRequestStatus(event.expenseReimburseRequestId)
+			.getTravelRequestStatus(event.travelApprovalRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.travelRequestService
-					.getTravelRequestById(event.expenseReimburseRequestId)
+					.getTravelRequestById(event.travelApprovalRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 						this.commonService.loading.next(false);
