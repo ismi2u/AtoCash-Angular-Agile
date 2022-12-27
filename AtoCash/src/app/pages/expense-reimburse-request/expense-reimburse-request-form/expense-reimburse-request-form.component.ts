@@ -128,7 +128,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 		this.form = this.fb.group({
 			expenseCategoryId: [null, [Validators.required]],
 			invoiceNo: [null, [Validators.required]],
-			invoiceDate: [null, [Validators.required]],
+			invoiceDate: [new Date(), [Validators.required]],
 			expenseTypeId: [null, [Validators.required]],
 			expenseReimbClaimAmount: [null, [Validators.required]],
 			location: [null, [Validators.required]],

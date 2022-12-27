@@ -106,13 +106,13 @@ export class CommonService {
 
 	getEmployeeBalance = () => {
 		return this.http.get(
-			`${this.getApi()}/api/EmpCurrentPettyCashBalances/GetEmpMaxlimitcurBalAndCashInHandStatus/${this.getEmpId()}`,
+			`${this.getApi()}/api/EmpCurrentCashAdvanceBalances/GetEmpMaxlimitcurBalAndCashInHandStatus/${this.getEmpId()}`,
 		);
 	};
 
 	getEmployeeAdvanceBalance = () => {
 		return this.http.get(
-			`${this.getApi()}/api/EmpCurrentPettyCashBalances/GetEmpCashBalanceVsAdvanced/${this.getEmpId()}`,
+			`${this.getApi()}/api/EmpCurrentCashAdvanceBalances/GetEmpCashBalanceVsAdvanced/${this.getEmpId()}`,
 		);
 	};
 

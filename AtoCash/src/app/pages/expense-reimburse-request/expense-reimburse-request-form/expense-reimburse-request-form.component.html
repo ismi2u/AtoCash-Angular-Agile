@@ -122,26 +122,24 @@
 	</nz-form-item>
 
 	<nz-form-item>
-		<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseReimbClaimAmount">{{
-			'form.expenseReimburse.expenseReimburseAmount' | translate
+		<nz-form-label nzRequired [nzSpan]="7" nzFor="location">{{
+			'form.expenseReimburse.location' | translate
 		}}</nz-form-label>
+
 		<nz-form-control
 			[nzSpan]="15"
 			[nzErrorTip]="'validation.required' | translate"
 		>
 			<input
-				formControlName="expenseReimbClaimAmount"
-				type="number"
+				formControlName="location"
+				type="text"
 				nz-input
-				[placeholder]="
-					'form.expenseReimburse.expenseReimburseAmount' | translate
-				"
-				id="expenseReimbClaimAmount"
+				[placeholder]="'form.expenseReimburse.location' | translate"
+				id="location"
 			/>
 		</nz-form-control>
 	</nz-form-item>
 	
-
 	<nz-form-item>
 		<nz-form-label [nzSpan]="7" nzRequired nzFor="vendorId">{{
 		'form.expenseReimburse.vendor' | translate
@@ -169,24 +167,29 @@
 
 	
 
+	
 	<nz-form-item>
-		<nz-form-label nzRequired [nzSpan]="7" nzFor="taxNo">{{
-			'form.expenseReimburse.taxNo' | translate
+		<nz-form-label [nzSpan]="7" nzRequired nzFor="expenseReimbClaimAmount">{{
+			'form.expenseReimburse.expenseReimburseAmount' | translate
 		}}</nz-form-label>
-
 		<nz-form-control
 			[nzSpan]="15"
 			[nzErrorTip]="'validation.required' | translate"
 		>
 			<input
-				formControlName="taxNo"
-				type="text"
+				formControlName="expenseReimbClaimAmount"
+				type="number"
 				nz-input
-				[placeholder]="'form.expenseReimburse.taxNo' | translate"
-				id="taxNo"
+				[placeholder]="
+					'form.expenseReimburse.expenseReimburseAmount' | translate
+				"
+				id="expenseReimbClaimAmount"
 			/>
 		</nz-form-control>
 	</nz-form-item>
+	
+
+	
 	
 	<nz-form-item>
 		<nz-form-label [nzSpan]="7" nzRequired nzFor="isVAT" >{{
@@ -232,9 +235,10 @@
 			/>
 		</nz-form-control>
 	</nz-form-item>
+
 	<nz-form-item>
-		<nz-form-label nzRequired [nzSpan]="7" nzFor="vendor">{{
-			'form.expenseReimburse.location' | translate
+		<nz-form-label nzRequired [nzSpan]="7" nzFor="taxNo">{{
+			'form.expenseReimburse.taxNo' | translate
 		}}</nz-form-label>
 
 		<nz-form-control
@@ -242,14 +246,17 @@
 			[nzErrorTip]="'validation.required' | translate"
 		>
 			<input
-				formControlName="location"
+				formControlName="taxNo"
 				type="text"
 				nz-input
-				[placeholder]="'form.expenseReimburse.location' | translate"
-				id="vendor"
+				[placeholder]="'form.expenseReimburse.taxNo' | translate"
+				id="taxNo"
 			/>
 		</nz-form-control>
 	</nz-form-item>
+
+
+	
 	<nz-form-item>
 		<nz-form-label nzRequired [nzSpan]="7" nzFor="description">{{
 			'form.expenseReimburse.description' | translate

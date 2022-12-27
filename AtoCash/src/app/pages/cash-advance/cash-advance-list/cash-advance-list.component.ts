@@ -20,6 +20,7 @@ export class CashAdvanceListComponent implements OnInit {
     'tableHeader.cashAdvance.id',
     'tableHeader.cashAdvance.businessType',
     'tableHeader.cashAdvance.businessUnit',
+    'tableHeader.cashAdvance.location',
     'tableHeader.cashAdvance.project',
     'tableHeader.cashAdvance.cashAdvanceRequestDesc',  
     'tableHeader.cashAdvance.cashAdvanceAmount',

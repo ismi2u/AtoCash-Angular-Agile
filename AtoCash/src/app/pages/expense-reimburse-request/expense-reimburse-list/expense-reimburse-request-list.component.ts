@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApprovalLevelsService } from 'src/app/services/approval-levels.service';
 import { CommonService } from 'src/app/services/common.service';
 import { RequestService } from 'src/app/services/request.service';
-import { TravelRequestService } from 'src/app/services/travel-request.service';
 
 @Component({
 	selector: 'app-expense-reimburse-list',
@@ -22,6 +21,7 @@ export class ExpenseReimburseRequestListComponent implements OnInit {
 		'tableHeader.expenseReimburse.list.expenseName',
 		'tableHeader.expenseReimburse.list.businessType',
 		'tableHeader.expenseReimburse.list.businessUnit',
+		'tableHeader.expenseReimburse.list.location',
 		'tableHeader.expenseReimburse.list.project',
 		'tableHeader.expenseReimburse.list.claimAmount',
 		'tableHeader.expenseReimburse.list.status',

@@ -35,17 +35,24 @@
 					{{ requestDetails.travelApprovalRequestId || requestDetails?.id }}
 				</nz-descriptions-item>
 				<nz-descriptions-item
-					*ngIf="requestDetails?.department"
-					[nzTitle]="'components.requestDetails.department' | translate"
+					*ngIf="requestDetails?.businessType"
+					[nzTitle]="'components.requestDetails.businessType' | translate"
 				>
-					{{ requestDetails.department.deptName || requestDetails.department }}
+					{{ requestDetails.businessType }}
 				</nz-descriptions-item>
 				
 				<nz-descriptions-item
-					*ngIf="requestDetails?.businessArea"
-					[nzTitle]="'components.requestDetails.businessArea' | translate"
+					*ngIf="requestDetails?.businessUnit"
+					[nzTitle]="'components.requestDetails.businessUnit' | translate"
 				>
-					{{ requestDetails.businessArea }}
+					{{ requestDetails.businessUnit }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.location"
+					[nzTitle]="'components.requestDetails.location' | translate"
+				>
+					{{ requestDetails.location }}
 				</nz-descriptions-item>
 
 				<nz-descriptions-item
@@ -175,17 +182,24 @@
 				</nz-descriptions-item>
 				
 				<nz-descriptions-item
-					*ngIf="requestDetails?.departmentName"
-					[nzTitle]="'components.requestDetails.department' | translate"
+					*ngIf="requestDetails?.businessType"
+					[nzTitle]="'components.requestDetails.businessType' | translate"
 				>
-					{{ requestDetails.departmentName }}
+					{{ requestDetails.businessType }}
 				</nz-descriptions-item>
 
 				<nz-descriptions-item
-					*ngIf="requestDetails?.businessArea"
-					[nzTitle]="'components.requestDetails.businessArea' | translate"
+					*ngIf="requestDetails?.businessUnit"
+					[nzTitle]="'components.requestDetails.businessUnit' | translate"
 				>
-					{{ requestDetails.businessArea }}
+					{{ requestDetails.businessUnit }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.location"
+					[nzTitle]="'components.requestDetails.location' | translate"
+				>
+					{{ requestDetails.location }}
 				</nz-descriptions-item>
 
 				<nz-descriptions-item
@@ -279,10 +293,10 @@
 					>{{ requestDetails.workTaskName }}
 				</nz-descriptions-item>
 				<nz-descriptions-item
-					*ngIf="requestDetails?.departmentName"
-					[nzTitle]="'components.requestDetails.department' | translate"
+					*ngIf="requestDetails?.businessType"
+					[nzTitle]="'components.requestDetails.businessType' | translate"
 				>
-					{{ requestDetails.departmentName }}
+					{{ requestDetails.businessType }}
 				</nz-descriptions-item>
 				<nz-descriptions-item
 					*ngIf="requestDetails?.approvalStatusType"
@@ -307,12 +321,14 @@
 				>
 					{{ requestDetails.invoiceNo }}
 				</nz-descriptions-item>
+				
 				<nz-descriptions-item
-					*ngIf="requestDetails?.department"
+					*ngIf="requestDetails?.description"
 					[nzTitle]="'components.requestDetails.description' | translate"
 				>
 					{{ requestDetails.description }}
 				</nz-descriptions-item>
+
 				<nz-descriptions-item
 					*ngIf="requestDetails?.expenseReimbClaimAmount"
 					[nzTitle]="'components.requestDetails.claimAmount' | translate"
@@ -391,17 +407,27 @@
 					{{ requestDetails.workTaskName }}
 				</nz-descriptions-item>
 				<nz-descriptions-item
-					*ngIf="requestDetails?.department"
-					[nzTitle]="'components.requestDetails.department' | translate"
+					*ngIf="requestDetails?.businessType"
+					[nzTitle]="'components.requestDetails.businessType' | translate"
 				>
-					{{ requestDetails.department }}
+					{{ requestDetails.businessType }}
 				</nz-descriptions-item>
+
 				<nz-descriptions-item
-					*ngIf="requestDetails?.businessArea"
-					[nzTitle]="'components.requestDetails.businessArea' | translate"
+					*ngIf="requestDetails?.businessUnit"
+					[nzTitle]="'components.requestDetails.businessUnit' | translate"
 				>
-					{{ requestDetails.businessArea }}
+					{{ requestDetails.businessUnit }}
 				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.location"
+					[nzTitle]="'components.requestDetails.location' | translate"
+				>
+					{{ requestDetails.location }}
+				</nz-descriptions-item>
+
+				
 				<nz-descriptions-item
 					*ngIf="requestDetails?.recordDate"
 					[nzTitle]="'components.requestDetails.recordDate' | translate"

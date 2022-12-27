@@ -81,7 +81,7 @@ export class RequestService{
 
   getTravelRequestStatus = (id) => {
     return this.http.get(
-      `${this.commonService.getApi()}/api/TravelApprovalStatusTrackers/ApprovalFlowForTravelRequest/${id}`
+      `${this.commonService.getApi()}/api/TravelApprovalStatusTrackers/ApprovalFlowForRequest/${id}`
     );
   };
 

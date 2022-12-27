@@ -5,11 +5,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApprovalLevelsService } from 'src/app/services/approval-levels.service';
 import { CommonService } from 'src/app/services/common.service';
 import { CurrencyService } from 'src/app/services/currency.service';
-import { DepartmentService } from 'src/app/services/department.service';
 import { ProjectsService } from 'src/app/services/projects.service';
 import { SubProjectsService } from 'src/app/services/sub-projects.service';
 import { TasksService } from 'src/app/services/tasks.service';
 import { TravelRequestService } from 'src/app/services/travel-request.service';
+import { BusinessTypeService } from 'src/app/services/business-type.service';
+import { BusinessUnitService } from 'src/app/services/business-unit.service';
 
 @Component({
 	selector: 'app-approval-level-form',
@@ -21,18 +22,21 @@ export class TravelRequestFormComponent implements OnInit {
 	recordId: any;
 	mode: any = 'add';
 
-	departments = [];
+ 
 	projects = [];
 	subProjects = [];
 	tasks = [];
 	enableProject = false;
 	empId = this.commonService.getUser().empId;
 	currencies = [];
+	businessTypes = [];
+	businessUnits=[];
+	enableBusinessType = false;
+	
 	constructor(
 		private fb: FormBuilder,
 		private snapshot: ActivatedRoute,
 		private travelRequestService: TravelRequestService,
-		private departmentService: DepartmentService,
 		private projectService: ProjectsService,
 		private subProjectService: SubProjectsService,
 		private taskService: TasksService,
@@ -41,6 +45,8 @@ export class TravelRequestFormComponent implements OnInit {
 		private translate: TranslateService,
 		private currencyService: CurrencyService,
 		private _cdr: ChangeDetectorRef,
+		private businessTypeService: BusinessTypeService,
+		private businessUnitService:BusinessUnitService,
 	) {}
 
 	getButtonLabel = () => {
@@ -83,12 +89,13 @@ export class TravelRequestFormComponent implements OnInit {
 		this.currencyService.getCurrencyList().subscribe((response: any) => {
 			this.currencies = response.data;
 		});
-		this.departmentService.getDepartmentList().subscribe((response: any) => {
-			this.departments = response.data;
-		});
-
+		 
 		this.taskService.getTasksList().subscribe((response: any) => {
 			this.tasks = response.data;
+		});
+
+		this.businessTypeService.getBusinessTypesList().subscribe((response: any) => {
+			this.businessTypes = response.data;
 		});
 
 		this.snapshot.params.subscribe((param) => {
@@ -107,6 +114,8 @@ export class TravelRequestFormComponent implements OnInit {
 							subProjectId: response.data.subProjectId,
 							workTaskId: response.data.workTaskId,
 							currencyTypeId: response.data.currencyTypeId,
+							businessTypeId:response.data.currencyTypeId,
+							businessUnitId:response.data.currencyUnitId,
 						};
 
 						if (response.data.projectId) {
@@ -117,6 +126,17 @@ export class TravelRequestFormComponent implements OnInit {
 									this.projects = response.data;
 								});
 						}
+
+						if (response.data.businessTypeId) {
+							this.enableBusinessType = true;
+							this.businessUnitService
+								.getBusinessUnitsList()
+								.subscribe((businessUnits: any) => {
+									this.businessUnits = businessUnits.data;
+									this.selectBusinessType(response.data.businessTypeId);
+								});
+						}
+
 						this.form.setValue(formData);
 					});
 			}
@@ -130,6 +150,8 @@ export class TravelRequestFormComponent implements OnInit {
 			projectId: [null, [Validators.nullValidator]],
 			subProjectId: [null, [Validators.nullValidator]],
 			workTaskId: [null, [Validators.nullValidator]],
+			businessTypeId:[null, [Validators.nullValidator]],
+			businessUnitId:[null, [Validators.nullValidator]],
 		});
 
 		this.form.controls['travelEndDate'].disable();
@@ -144,6 +166,16 @@ export class TravelRequestFormComponent implements OnInit {
 
 		this.form.controls['travelEndDate'].valueChanges.subscribe();
 	}
+
+	selectBusinessType = (event) => {
+		if (event) {
+			this.businessUnitService
+				.getBusinessUnitsList()
+				.subscribe((response: any) => {
+					this.businessUnits = response.data;
+				});
+		}
+	};
 
 	selectProject = (event) => {
 		if(event)
@@ -168,10 +200,14 @@ export class TravelRequestFormComponent implements OnInit {
 		this.projectService.getProjectListByEmpId().subscribe((response: any) => {
 			this.projects = response.data;
 		});
+		
 		if (!event) {
 			this.form.controls['projectId'].reset();
 			this.form.controls['subProjectId'].reset();
 			this.form.controls['workTaskId'].reset();
+		}else{
+			this.form.controls['businessTypeId'].reset();
+			this.form.controls['businessUnitId'].reset();
 		}
 	};
 

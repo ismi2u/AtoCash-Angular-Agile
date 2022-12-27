@@ -478,7 +478,13 @@
 				{{ data.travelEndDate | date: 'dd/MM/yyyy' }}
 			</td> -->
 			<td *ngIf="data && formName == 'travelRequest'">
-				{{ limitString(data.departmentName) }}
+				{{ limitString(data.businessType) }}
+			</td>
+			<td *ngIf="data && formName == 'travelRequest'">
+				{{ limitString(data.businessUnit) }}
+			</td>
+			<td *ngIf="data && formName == 'travelRequest'">
+				{{ limitString(data.location) }}
 			</td>
 			<td *ngIf="data && formName == 'travelRequest'">
 				{{ data.projectName }}

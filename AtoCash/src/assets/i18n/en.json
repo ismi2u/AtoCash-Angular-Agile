@@ -328,6 +328,8 @@
 			"endDate": "End Date",
 			"travelPurpose": "Travel Purpose",
 			"businessType": "Business Type",
+			"businessUnit":"Business Unit",
+			"location":"Location",
 			"project": "Project",
 			"requestDate": "Request Date",
 			"id": "Id",
@@ -351,13 +353,13 @@
 			"advanceAmount": "Amount",
 			"cashAdvanceRequestDesc": "Description",
 			"businessType": "Business Type",
+			"businessUnit":"Business Unit",
+			"location":"Location",
 			"project": "Project",
 			"requestDate": "Request Date",
 			"id": "Id",
 			"approvalStatusType": "Status",
-			"cashAdvanceAmount": "Advance Amount",
-			"businessType":"Business Type",
-			"businessUnit":"Business Unit"
+			"cashAdvanceAmount": "Advance Amount"			
 		},
 		"inbox": {
 			"id": "Request Id",
@@ -473,6 +475,7 @@
 				"claimAmount": "Claim Amount",
 				"businessType": "Business Type",
 				"businessUnit":"Business Unit",
+				"location":"Location",
 				"project": "Project",
 				"requestDate": "Request Date",
 				"id": "Id",
