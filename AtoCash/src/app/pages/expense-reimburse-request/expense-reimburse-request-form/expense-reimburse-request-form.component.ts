@@ -48,7 +48,9 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 	@Input() data;
 	vendors=[];
 	totalClaimAmt=0;
-	withVAT:any;
+	withVAT=false;
+	ExpAmt:any;
+	TaxAmt:any;
 
 	constructor(
 		private fb: FormBuilder,
@@ -138,6 +140,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 			tax: [0, [Validators.required, Validators.max(100)]],
 			taxAmount: [null, [Validators.required]],
 			vendorId: [null, [Validators.required]],
+			additionalVendor:[null],
 			description: [null, [Validators.required]],
 			taxNo: [null, [Validators.required]],
 			NoOfDays:[null],
@@ -164,6 +167,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 				taxNo: this.data.taxNo,
 				NoOfDays:this.data.expNoOfDays,
 				NoOfDaysDate:[this.data.expStrtDate,this.data.expEndDate],
+				additionalVendor:this.data.additionalVendor
 				
 			};
 			/*if (this.data.documents && this.data.documents.length > 0) {
@@ -223,6 +227,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 
 			if(this.data.tax>0){
 				this.isVAT=true;
+				this.withVAT=true;
 			}
 		}
 	}
@@ -244,6 +249,13 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 	}
 
 
+	selectedVendor = (event) =>
+	{
+		if(event!=0)
+		{
+			this.form.controls['additionalVendor'].reset();
+		}
+	}
 
 	selectexpenseCategories = (event) =>
 	{
@@ -309,12 +321,22 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 	}
 
 	calcTolClaimAmt(){
-		if(isNaN(this.form.controls['expenseReimbClaimAmount'].value) && isNaN(this.form.controls['tax'].value))
+		 
+		if(!isNaN(this.form.controls['expenseReimbClaimAmount'].value) && (this.form.controls['expenseReimbClaimAmount'].value!==null))
 		{
-			this.totalClaimAmt=0;
+			this.ExpAmt = this.form.controls['expenseReimbClaimAmount'].value
 		}else{
-			this.totalClaimAmt=parseFloat(this.form.controls['expenseReimbClaimAmount'].value)+parseFloat(this.form.controls['tax'].value);
+			this.ExpAmt = 0;
 		}
+		if(!isNaN(this.form.controls['taxAmount'].value) && (this.form.controls['taxAmount'].value!==null) )
+		{
+			this.TaxAmt= this.form.controls['taxAmount'].value
+		}else{
+			this.TaxAmt=0;
+		}
+		
+		this.totalClaimAmt=parseFloat(this.ExpAmt)+parseFloat(this.TaxAmt);
+		
 	};
 
 

@@ -122,7 +122,8 @@
 			"isVAT":"ضريبة القيمه المضافه",
 			"totalClaimAmount":"Claim Amount",
 			"withVAT":"(Inclusive of VAT)",
-			"businessUnitLocation":"Location"
+			"businessUnitLocation":"Location",
+			"additionalVendor":"Other Vendor Name"
 		},
 		"status": {
 			"status": "الحاله"

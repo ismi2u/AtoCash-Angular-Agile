@@ -54,7 +54,7 @@
 						<div class="dashboard__tile-info">
 							<i class="dashboard__tile-icon" nz-icon nzType="bar-chart"></i>
 							<p class="dashboard__tile-heading">
-								{{ 'heading.expenseReimburseDepartment' | translate }}
+								{{ 'heading.expenseReimburse' | translate }}
 							</p>
 						</div>
 						<div
@@ -63,26 +63,7 @@
 						></div>
 					</div>
 
-					<!--Expense Reimbursement for Business Area Start -->
-					<div
-						class="dashboard__tile dashboard__tile--4"
-						(click)="updateChart('expenseRequestBA')"
-					>
-						<p *ngIf="expenseReimburseBA" class="dashboard__tile-text">
-							{{ expenseReimburseBA.totalCount }}
-						</p>
-						<div class="dashboard__tile-info">
-							<i class="dashboard__tile-icon" nz-icon nzType="bar-chart"></i>
-							<p class="dashboard__tile-heading">
-								{{ 'heading.expenseReimburseBusiness' | translate }}
-							</p>
-						</div>
-						<div
-							class="dashboard__tile-hover"
-							*ngIf="requestType === 'expenseRequestBA'"
-						></div>
-					</div>
-					<!--Expense Reimbursement for Business Area End -->
+					 
 				</div>
 			</div>
 			<div class="dashboard__chart">

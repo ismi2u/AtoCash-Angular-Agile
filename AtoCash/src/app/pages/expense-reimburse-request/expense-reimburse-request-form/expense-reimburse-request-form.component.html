@@ -141,7 +141,7 @@
 	</nz-form-item>
 	
 	<nz-form-item>
-		<nz-form-label [nzSpan]="7" nzRequired nzFor="vendorId">{{
+		<nz-form-label [nzSpan]="7" nzFor="vendorId">{{
 		'form.expenseReimburse.vendor' | translate
 		}}</nz-form-label>
 
@@ -154,7 +154,7 @@
 			nzAllowClear
 			id="vendorId"
 			formControlName="vendorId"
-			[nzPlaceHolder]="'form.expenseReimburse.vendor' | translate"
+			[nzPlaceHolder]="'form.expenseReimburse.vendor' | translate" (ngModelChange)="selectedVendor($event)"
 		>
 			<nz-option
 			*ngFor="let option of vendors"
@@ -165,7 +165,23 @@
 		</nz-form-control>
 	</nz-form-item>
 
-	
+	<nz-form-item *ngIf="form.controls['vendorId'].value=='0'">
+		<nz-form-label [nzSpan]="7" nzFor="additionalVendor">{{
+			'form.expenseReimburse.additionalVendor' | translate
+		}}</nz-form-label>
+		<nz-form-control
+			[nzSpan]="15"
+			[nzErrorTip]="'validation.required' | translate"
+		>
+			<input
+				formControlName="additionalVendor"
+				type="text"
+				nz-input
+				[placeholder]="'form.expenseReimburse.additionalVendor' | translate"
+				id="additionalVendor"
+			/>
+		</nz-form-control>
+	</nz-form-item>
 
 	
 	<nz-form-item>

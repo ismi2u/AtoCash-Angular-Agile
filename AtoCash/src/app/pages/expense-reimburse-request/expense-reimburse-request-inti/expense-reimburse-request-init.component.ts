@@ -37,7 +37,7 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 	enableBusinessType = false;
 	currencyCode = this.commonService.getUser().currencyId;
 	businessUnitLocation:any;
-	
+	MaxId:any;
 
 	@Input() data;
 
@@ -76,8 +76,11 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 	ngOnInit(): void {
 		this.commonService.loading.next(true);
 
-		this.expenseReimburseService.expenseReimburseRequest.subscribe((response: any) => {
-			this.currencies = response.data;
+		this.expenseReimburseService.getExpenseRequests(
+			this.commonService.getUser().empId,
+		)
+		this.expenseReimburseService.expenseReimburseRequest.subscribe((data) => {
+			this.MaxId = parseInt(Math.max.apply(Math, data.map(function(o) { return o.id; })))+1
 		});
 
 		this.currencyService.getCurrencyList().subscribe((response: any) => {
@@ -192,13 +195,16 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 
 	selectBusinessUnit = (event) => {
 		this.businessUnitLocation='';
+		this.form.controls['expenseReportTitle'].reset();
 		if (event) {
 			this.businessUnitService
 				.getBusinessUnitById(event)
 				.subscribe((response: any) => {
 					this.businessUnitLocation = response.data.location;
+					this.form.controls['expenseReportTitle'].setValue(this.businessUnitLocation+"-"+this.MaxId);
 				});
 		}
+		
 	};
 
 	getModalButton(data) {

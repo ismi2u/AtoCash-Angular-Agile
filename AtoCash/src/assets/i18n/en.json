@@ -119,7 +119,8 @@
 			"isVAT":"Is VAT",
 			"totalClaimAmount":"Claim Amount",
 			"withVAT":"(Inclusive of VAT)",
-			"businessUnitLocation":"Location"
+			"businessUnitLocation":"Location",
+			"additionalVendor":"Other Vendor Name"
 		},
 		"status": {
 			"status": "Status"

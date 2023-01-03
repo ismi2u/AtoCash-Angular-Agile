@@ -106,7 +106,7 @@ var ExpenseReimburseRequestFormComponent = /** @class */ (function () {
             return false;
         };
 
-       
+        
     
     }
     ExpenseReimburseRequestFormComponent.prototype.submitForm = function () {
@@ -163,7 +163,8 @@ var ExpenseReimburseRequestFormComponent = /** @class */ (function () {
             description: [null, [forms_1.Validators.required]],
             taxNo: [null, [forms_1.Validators.required]],
             NoOfDays:[null],
-			NoOfDaysDate:[null]
+			NoOfDaysDate:[null],
+            additionalVendor:[null]
         });
         if (this.data) {
             console.log(this.data);
@@ -181,7 +182,8 @@ var ExpenseReimburseRequestFormComponent = /** @class */ (function () {
                 taxNo:this.data.taxNo,
                 NoOfDays:this.data.expNoOfDays,
 				NoOfDaysDate:[this.data.expStrtDate,this.data.expEndDate],
-                isVAT:this.data.isVAT
+                isVAT:this.data.isVAT,
+                additionalVendor:this.data.additionalVendor
             };
 
             if (this.data.documents && this.data.documents.length > 0) {
