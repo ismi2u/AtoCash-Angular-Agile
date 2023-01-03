@@ -119,7 +119,10 @@
 			"StartDate":"تاريخ البدء",
 			"EndDate":"تاريخ الانتهاء",
 			"businessArea":"جهة العمل",
-			"isVAT":"ضريبة القيمه المضافه"				 
+			"isVAT":"ضريبة القيمه المضافه",
+			"totalClaimAmount":"Claim Amount",
+			"withVAT":"(Inclusive of VAT)",
+			"businessUnitLocation":"Location"
 		},
 		"status": {
 			"status": "الحاله"
@@ -134,7 +137,8 @@
             "task": "المهمه",
 			"currency": "العمله",
 			"businessType":"Business Type",
-			"businessUnit":"Business Unit"
+			"businessUnit":"Business Unit",
+			"businessUnitLocation":"Location"
 		},
 		"travel": {
 			"startDate": "تاريخ البدء",
@@ -144,7 +148,10 @@
 			"project": "المشروع",
 			"subProject": "المشروع الفرعي",
 			"task": "المهمه",
-			"currency": "العمله"
+			"currency": "العمله",
+			"businessType":"Business Type",
+			"businessUnit":"Business Unit",
+			"businessUnitLocation":"Location"
 		},
 		"login": {
 			"email": "البريد الالكتروني",
@@ -190,9 +197,9 @@
 			"status": "الحاله"
 		},
 		"role": {
-			"roleCode": "الرمز",
-			"roleName": "الاسم",
-			"maxAmount": "الحد الاقصي"
+			"jobRoleCode": "الرمز",
+			"jobRoleName": "الاسم",
+			"maxCashAdvanceAllowed": "الحد الاقصي"
 		},
 		"employmentType": {
 			"employmentTypeName": "الاسم",
@@ -411,9 +418,9 @@
 			"status": "الحاله"
 		},
 		"role": {
-			"roleCode": "الرمز",
-			"roleName": "الاسم",
-			"maxAmount": "الحد الاقصي"
+			"jobRoleCode": "الرمز",
+			"jobRoleName": "الاسم",
+			"maxCashAdvanceAllowed": "الحد الاقصي"
 		  },
 		  "employmentType": {
 			"employmentTypeName": "الاسم",
@@ -494,7 +501,7 @@
 				"claimAmount": "قيمة التكلفه",
 				"department": "الاداره",
 				"businessArea":"جهات العمل",
-				"project": "المشروع",
+				"projectName": "المشروع",
 				"requestDate": "تاريخ الطلب",
 				"id": "رقم الطلب",
 				"status": "الحاله"

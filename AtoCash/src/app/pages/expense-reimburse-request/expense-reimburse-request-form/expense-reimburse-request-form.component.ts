@@ -18,6 +18,7 @@ import { VATRateService } from 'src/app/services/vat-rate.service';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { objectEach } from 'highcharts';
 import { VendorService } from 'src/app/services/vendor.service';
+import { isNull } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -46,6 +47,8 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 	isVAT=false;
 	@Input() data;
 	vendors=[];
+	totalClaimAmt=0;
+	withVAT:any;
 
 	constructor(
 		private fb: FormBuilder,
@@ -142,7 +145,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 			isVAT:[false]
 		});
 
-
+		
 		this.form.controls['NoOfDays'].disable();
 		
 		if (this.data) {
@@ -160,7 +163,8 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 				description: this.data.description,
 				taxNo: this.data.taxNo,
 				NoOfDays:this.data.expNoOfDays,
-				NoOfDaysDate:[this.data.expStrtDate,this.data.expEndDate]
+				NoOfDaysDate:[this.data.expStrtDate,this.data.expEndDate],
+				
 			};
 			/*if (this.data.documents && this.data.documents.length > 0) {
 				this.fileList = this.data.documents.map((document) => ({
@@ -187,6 +191,8 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 			this.expenseReimburseService.totalClaimAmount.next(
 				this.form.controls['expenseReimbClaimAmount'].value + data,
 			);
+
+			this.calcTolClaimAmt();
 		});
 		this.form.controls['expenseReimbClaimAmount'].valueChanges.subscribe(
 			(data) => {
@@ -200,7 +206,9 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 				this.expenseReimburseService.totalClaimAmount.next(
 					this.form.controls['taxAmount'].value + data,
 				);
+				this.calcTolClaimAmt();
 			},
+			
 		);
 		
 		this.form.controls['tax'].disable();
@@ -223,11 +231,16 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 		if(event)
 		this.vatRateService.getVATRate().subscribe((response: any) => {
 			this.form.controls['tax'].setValue(response.data.vatPercentage);
+			this.withVAT=true;
 		});
 
 		if(!event){
 			this.form.controls['tax'].setValue(0);
+			this.withVAT=false;
 		}
+		
+		
+		
 	}
 
 
@@ -294,4 +307,15 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 
 		return diffDays+1;
 	}
+
+	calcTolClaimAmt(){
+		if(isNaN(this.form.controls['expenseReimbClaimAmount'].value) && isNaN(this.form.controls['tax'].value))
+		{
+			this.totalClaimAmt=0;
+		}else{
+			this.totalClaimAmt=parseFloat(this.form.controls['expenseReimbClaimAmount'].value)+parseFloat(this.form.controls['tax'].value);
+		}
+	};
+
+
 }

@@ -89,8 +89,8 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 						this.recordId = param.id;
 						const formData = {
 							employeeId: response.data.employeeId,
-							roleId: response.data.roleId,
-							approvalLevelId: response.data.approvalLevelId,
+							jobRoleId: response.data.jobRoleId,
+							approvalGroupId: response.data.approvalGroupId,
 							businessTypeId:response.data.businessTypeId,
 							businessUnitId:response.data.businessUnitId,
 							statusTypeId:response.data.statusTypeId,

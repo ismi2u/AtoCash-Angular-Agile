@@ -32,6 +32,7 @@ export class TravelRequestFormComponent implements OnInit {
 	businessTypes = [];
 	businessUnits=[];
 	enableBusinessType = false;
+	businessUnitLocation: any;
 	
 	constructor(
 		private fb: FormBuilder,
@@ -55,6 +56,8 @@ export class TravelRequestFormComponent implements OnInit {
 			: this.translate.instant('button.update');
 	};
 	submitForm(): void {
+		this.commonService.loading.next(true);
+
 		for (const i in this.form.controls) {
 			this.form.controls[i].markAsDirty();
 			this.form.controls[i].updateValueAndValidity();
@@ -113,9 +116,8 @@ export class TravelRequestFormComponent implements OnInit {
 							projectId: response.data.projectId,
 							subProjectId: response.data.subProjectId,
 							workTaskId: response.data.workTaskId,
-							currencyTypeId: response.data.currencyTypeId,
-							businessTypeId:response.data.currencyTypeId,
-							businessUnitId:response.data.currencyUnitId,
+							businessTypeId:response.data.businessTypeId,
+							businessUnitId:response.data.businessUnitId,
 						};
 
 						if (response.data.projectId) {
@@ -138,7 +140,11 @@ export class TravelRequestFormComponent implements OnInit {
 						}
 
 						this.form.setValue(formData);
+						this.commonService.loading.next(false);
 					});
+					
+			}else{
+				this.commonService.loading.next(false);
 			}
 		});
 
@@ -168,11 +174,23 @@ export class TravelRequestFormComponent implements OnInit {
 	}
 
 	selectBusinessType = (event) => {
+		this.form.controls['businessUnitId'].reset();
 		if (event) {
 			this.businessUnitService
-				.getBusinessUnitsList()
+				.getBusinessUnitByBusinessTypeId(event)
 				.subscribe((response: any) => {
 					this.businessUnits = response.data;
+				});
+		}
+	};
+
+	selectBusinessUnit = (event) => {
+		this.businessUnitLocation='';
+		if (event) {
+			this.businessUnitService
+				.getBusinessUnitById(event)
+				.subscribe((response: any) => {
+					this.businessUnitLocation = response.data.location;
 				});
 		}
 	};

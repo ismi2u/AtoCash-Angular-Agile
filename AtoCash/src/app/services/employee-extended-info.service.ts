@@ -24,7 +24,7 @@ export class EmployeeExtendedInfoService {
 	
 	 
 	getEmployeeExtendedInfoById = (id: any) =>
-		this.http.get(`${this.commonService.getApi()}/api/EmployeeExtendedInfo/GetEmployeeExtendedInfo/${id}`);
+		this.http.get(`${this.commonService.getApi()}/api/EmployeeExtendedInfo/GetEmployeeExtendedInfoById/${id}`);
 
   getEmployeeExtendedInfoByEmployeeId = (id) => {
     return this.http.get(

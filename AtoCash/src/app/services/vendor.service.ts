@@ -30,7 +30,7 @@ export class VendorService {
 
 	updateVendorById = (id: any, data: any) =>
 		this.http.put(
-			`${this.commonService.getApi()}/api/Vendor/PutVendors/${id}`,
+			`${this.commonService.getApi()}/api/Vendors/PutVendor/${id}`,
 			data,
 		);
 

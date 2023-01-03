@@ -1,4 +1,4 @@
-<nz-card [nzBordered]="false" [nzTitle]="'heading.userRole' | translate" [nzExtra]="action">
+<nz-card [nzBordered]="false" [nzTitle]="'heading.userRole' | translate">
   <app-table
     [tableHeaders]="userRolesHeaders"
     [tableData]="userRoles"
@@ -8,8 +8,8 @@
   ></app-table>
 </nz-card>
 
-<ng-template #action>
+<!-- <ng-template #action>
   <button nz-button routerLink="/user-role/action/add" nzType="primary" i18n>
     {{ 'button.create' | translate }}
   </button>
-</ng-template>
+</ng-template> //-->

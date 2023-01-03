@@ -41,6 +41,7 @@ export class TravelRequestListComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		this.commonService.loading.next(true);
 		this.travelRequestService.getTravelRequests(
 			this.commonService.getUser().empId,
 		);
@@ -48,13 +49,16 @@ export class TravelRequestListComponent implements OnInit {
 			this.travelRequests = data;
 			this._cdr.detectChanges();
 		});
+		this.commonService.loading.next(false);
 	}
 
 	deleteRecord = (event) => {
+		this.commonService.loading.next(true);
 		this.travelRequestService.deleteTravelRequest(event.id).subscribe(() => {
 			this.travelRequestService.getTravelRequests(
 				this.commonService.getUser().empId,
 			);
+			this.commonService.loading.next(false);
 		});
 	};
 

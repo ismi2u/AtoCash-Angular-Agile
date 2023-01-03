@@ -70,7 +70,7 @@
     <!-- Non Project Request / Business Unit Request -->
     <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0">
       <nz-form-label [nzSpan]="7"  nzFor="businessTypeId">{{
-        'form.cashAdvance.businessType' | translate
+        'form.travel.businessType' | translate
       }}</nz-form-label>
       <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate" >
    
@@ -78,7 +78,7 @@
           nzShowSearch nzAllowClear
             id="businessTypeId"
             formControlName="businessTypeId"
-            [nzPlaceHolder]="'form.cashAdvance.businessType' | translate"  (ngModelChange)="selectBusinessType($event)">
+            [nzPlaceHolder]="'form.travel.businessType' | translate"  (ngModelChange)="selectBusinessType($event)">
             <nz-option
               *ngFor="let option of businessTypes"
               [nzValue]="option.id"
@@ -91,7 +91,7 @@
 
     <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0 && form.controls['businessTypeId'].value">
       <nz-form-label [nzSpan]="7"  nzFor="businessUnitId">{{
-        'form.cashAdvance.businessUnit' | translate
+        'form.travel.businessUnit' | translate
       }}</nz-form-label>
       <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
    
@@ -99,7 +99,7 @@
           nzShowSearch nzAllowClear
             id="businessUnitId"
             formControlName="businessUnitId"
-            [nzPlaceHolder]="'form.cashAdvance.businessUnit' | translate">
+            [nzPlaceHolder]="'form.travel.businessUnit' | translate" (ngModelChange)="selectBusinessUnit($event)">
             <nz-option
               *ngFor="let option of businessUnits"
               [nzValue]="option.id"
@@ -110,6 +110,18 @@
       </nz-form-control>
     </nz-form-item>
     
+    <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0 && form.controls['businessUnitId'].value">
+      <nz-form-label [nzSpan]="7" nzFor="businessUnitLocation">{{
+        'form.travel.businessUnitLocation' | translate
+      }}</nz-form-label>
+      <nz-form-control
+        [nzSpan]="15">
+        
+        <span>{{businessUnitLocation}}</span>
+  
+      </nz-form-control>
+    </nz-form-item>
+
      <!-- Project Request -->
     <nz-form-item *ngIf="enableProject">
       <nz-form-label [nzSpan]="7" nzRequired nzFor="project">{{

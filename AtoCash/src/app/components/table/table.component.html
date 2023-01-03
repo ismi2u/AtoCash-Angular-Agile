@@ -218,8 +218,8 @@
 			<!-- User Roles -->
 			<td *ngIf="data.jobRoleCode && formName == 'role'">{{ data.jobRoleCode }}</td>
 			<td *ngIf="data.jobRoleName && formName == 'role'">{{ data.jobRoleName }}</td>
-			<td *ngIf="data.maxPettyCashAllowed && formName == 'role'">
-				{{ data.maxPettyCashAllowed }}
+			<td *ngIf="data.maxCashAdvanceAllowed && formName == 'role'">
+				{{ data.maxCashAdvanceAllowed }}
 			</td>
 
 			<!-- Employment Types -->
@@ -454,6 +454,9 @@
 				{{ limitString(data.businessUnit) }}
 			</td>
 			<td *ngIf="data && formName == 'cashRequest'">
+				{{ data.location }}
+			</td>
+			<td *ngIf="data && formName == 'cashRequest'">
 				{{ data.project }}
 			</td>
 			<td *ngIf="data.cashAdvanceRequestDesc && formName == 'cashRequest'">
@@ -599,6 +602,9 @@
 			</td>
 			<td *ngIf="data && formName == 'expenseReimburseList'">
 				{{ limitString(data.businessUnit) }}
+			</td>
+			<td *ngIf="data && formName == 'expenseReimburseList'">
+				{{ data.location }}
 			</td>
 			<td *ngIf="data && formName == 'expenseReimburseList'">
 				{{ data.projectName }}

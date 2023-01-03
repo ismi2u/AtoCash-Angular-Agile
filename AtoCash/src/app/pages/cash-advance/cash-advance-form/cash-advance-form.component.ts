@@ -32,7 +32,8 @@ export class CashAdvanceFormComponent implements OnInit {
 	businessTypes = [];
 	businessUnits=[];
 	enableBusinessType = false;
-
+	businessUnitLocation:any;
+	
 	constructor(
 		private fb: FormBuilder,
 		private snapshot: ActivatedRoute,
@@ -163,11 +164,23 @@ export class CashAdvanceFormComponent implements OnInit {
 	}
 
 	selectBusinessType = (event) => {
+		this.form.controls['businessUnitId'].reset();
 		if (event) {
 			this.businessUnitService
-				.getBusinessUnitsList()
+			.getBusinessUnitByBusinessTypeId(event)
 				.subscribe((response: any) => {
 					this.businessUnits = response.data;
+				});
+		}
+	};
+
+	selectBusinessUnit = (event) => {
+		this.businessUnitLocation='';
+		if (event) {
+			this.businessUnitService
+				.getBusinessUnitById(event)
+				.subscribe((response: any) => {
+					this.businessUnitLocation = response.data.location;
 				});
 		}
 	};

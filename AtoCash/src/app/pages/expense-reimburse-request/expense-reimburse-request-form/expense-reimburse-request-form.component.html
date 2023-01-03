@@ -15,7 +15,7 @@
 			id="expenseCategoryId"
 			formControlName="expenseCategoryId"
 			[nzPlaceHolder]="'form.expenseType.expenseCategory' | translate"
-			(ngModelChange)="selectExpenseType($event)"
+			(ngModelChange)="selectExpenseType($event);"
 		>
 			<nz-option
 			*ngFor="let option of expenseCategoriesList"
@@ -183,7 +183,7 @@
 				[placeholder]="
 					'form.expenseReimburse.expenseReimburseAmount' | translate
 				"
-				id="expenseReimbClaimAmount"
+				id="expenseReimbClaimAmount"  (blur)="calcTolClaimAmt()" (keyup)="calcTolClaimAmt()"
 			/>
 		</nz-form-control>
 	</nz-form-item>
@@ -195,7 +195,7 @@
 		<nz-form-label [nzSpan]="7" nzRequired nzFor="isVAT" >{{
 		  "form.expenseReimburse.isVAT" | translate
 		}}</nz-form-label>		
-		<nz-switch nzSize="small"  formControlName="isVAT" id="isVAT" (ngModelChange)="getVATRate($event)" [(ngModel)]="isVAT"></nz-switch>		 
+		<nz-switch nzSize="small"  formControlName="isVAT" id="isVAT" (ngModelChange)="getVATRate($event);"></nz-switch>		 
 	</nz-form-item>
 
 	<nz-form-item>
@@ -231,11 +231,27 @@
 				nz-input
 				[placeholder]="'form.expenseReimburse.taxAmount' | translate"
 				id="vendor"
-				[disabled]="true"
+				[disabled]="true"  
 			/>
 		</nz-form-control>
 	</nz-form-item>
 
+	<nz-form-item>
+		<nz-form-label [nzSpan]="7" nzFor="totalClaimAmount">
+			{{
+			'form.expenseReimburse.totalClaimAmount' | translate
+			}}
+			
+		</nz-form-label>
+
+		<nz-form-control
+		[nzSpan]="15">
+			<b>{{totalClaimAmt}}</b>
+			&nbsp;<span *ngIf="withVAT==true">{{'form.expenseReimburse.withVAT' | translate }}</span>
+		</nz-form-control>
+
+	</nz-form-item>
+	
 	<nz-form-item>
 		<nz-form-label nzRequired [nzSpan]="7" nzFor="taxNo">{{
 			'form.expenseReimburse.taxNo' | translate

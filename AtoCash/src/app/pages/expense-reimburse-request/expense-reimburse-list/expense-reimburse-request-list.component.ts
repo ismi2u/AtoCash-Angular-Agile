@@ -22,7 +22,7 @@ export class ExpenseReimburseRequestListComponent implements OnInit {
 		'tableHeader.expenseReimburse.list.businessType',
 		'tableHeader.expenseReimburse.list.businessUnit',
 		'tableHeader.expenseReimburse.list.location',
-		'tableHeader.expenseReimburse.list.project',
+		'tableHeader.expenseReimburse.list.projectName',
 		'tableHeader.expenseReimburse.list.claimAmount',
 		'tableHeader.expenseReimburse.list.status',
 	];

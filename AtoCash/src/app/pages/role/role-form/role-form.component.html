@@ -44,8 +44,8 @@
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label [nzSpan]="7" nzRequired nzFor="maxPettyCashAllowed">{{
-					'form.role.maxPettyCashAllowed' | translate
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="maxCashAdvanceAllowed">{{
+					'form.role.maxCashAdvanceAllowed' | translate
 				}}</nz-form-label>
 
 				<nz-form-control
@@ -53,11 +53,11 @@
 					[nzErrorTip]="'validation.required' | translate"
 				>
 					<input
-						formControlName="maxPettyCashAllowed"
+						formControlName="maxCashAdvanceAllowed"
 						nz-input
 						type="number"
-						[placeholder]="'form.role.maxPettyCashAllowed' | translate"
-						id="maxPettyCashAllowed"
+						[placeholder]="'form.role.maxCashAdvanceAllowed' | translate"
+						id="maxCashAdvanceAllowed"
 					/>
 				</nz-form-control>
 			</nz-form-item>

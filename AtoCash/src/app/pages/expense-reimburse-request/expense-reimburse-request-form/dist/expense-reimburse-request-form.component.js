@@ -53,6 +53,7 @@ var ExpenseReimburseRequestFormComponent = /** @class */ (function () {
         this.taxes = __spreadArrays(Array(31).keys());
         this.responseFileList = [];
         this.expenseCategoriesList=[];
+        
         this.getButtonLabel = function () {
             return !_this.data
                 ? _this.translate.instant('button.add')
@@ -91,7 +92,7 @@ var ExpenseReimburseRequestFormComponent = /** @class */ (function () {
         };
 
         this.selectExpenseType = function (event) {
-           _this.expenseTypeService.getExpenseTypeForExpenseCaegoryId(event).subscribe(function(response) {
+           _this.expenseTypeService.getExpenseTypeForExpenseCategoryId(event).subscribe(function(response) {
                 _this.expenseType = response.data
             });
         };
@@ -190,23 +191,7 @@ var ExpenseReimburseRequestFormComponent = /** @class */ (function () {
 
             this.form.setValue(formData);
         }
-        this.form.controls['tax'].valueChanges.subscribe(function (data) {
-            if (data !== 0 && _this.form.controls['expenseReimbClaimAmount'].value) {
-                _this.form.controls['taxAmount'].setValue(((_this.form.controls['expenseReimbClaimAmount'].value / 100) *
-                    data).toFixed(2));
-            }
-            else {
-                _this.form.controls['taxAmount'].setValue((0).toFixed(2));
-            }
-        });
-        this.form.controls['expenseReimbClaimAmount'].valueChanges.subscribe(function (data) {
-            if (data && _this.form.controls['tax'].value) {
-                _this.form.controls['taxAmount'].setValue(((_this.form.controls['tax'].value / 100) * data).toFixed(2));
-            }
-            else {
-                _this.form.controls['taxAmount'].setValue((0).toFixed(2));
-            }
-        });
+         
         
         this.form.controls['tax'].disable();
         this.form.controls['taxAmount'].disable();
