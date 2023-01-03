@@ -37,6 +37,7 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 	enableBusinessType = false;
 	currencyCode = this.commonService.getUser().currencyId;
 	businessUnitLocation:any;
+	
 
 	@Input() data;
 
@@ -74,6 +75,11 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.commonService.loading.next(true);
+
+		this.expenseReimburseService.expenseReimburseRequest.subscribe((response: any) => {
+			this.currencies = response.data;
+		});
+
 		this.currencyService.getCurrencyList().subscribe((response: any) => {
 			this.currencies = response.data;
 		});
@@ -89,7 +95,7 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 
 		this.form = this.fb.group({
 			currencyTypeId: [this.currencyCode],
-			expenseReportTitle: ['Expense Reimburse', [Validators.required]],
+			expenseReportTitle: [null, [Validators.required]],
 			projectId: [null, [Validators.nullValidator]],
 			subProjectId: [null, [Validators.nullValidator]],
 			workTaskId: [null, [Validators.nullValidator]],			
