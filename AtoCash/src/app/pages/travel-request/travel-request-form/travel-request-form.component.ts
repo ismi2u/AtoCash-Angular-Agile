@@ -49,12 +49,13 @@ export class TravelRequestFormComponent implements OnInit {
 		private businessTypeService: BusinessTypeService,
 		private businessUnitService:BusinessUnitService,
 	) {}
-
+	
 	getButtonLabel = () => {
 		return this.mode !== 'edit'
 			? this.translate.instant('button.create')
 			: this.translate.instant('button.update');
 	};
+
 	submitForm(): void {
 		this.commonService.loading.next(true);
 
@@ -71,9 +72,10 @@ export class TravelRequestFormComponent implements OnInit {
 					travelEndDate:new Date(this.form.controls['travelEndDate'].value),
 				})
 				.subscribe(()=>{
+					this.commonService.loading.next(false);
 					this.router.navigateByUrl(`/travel-request/list`);
 				});
-		} else {
+		}else {
 			this.travelRequestService
 				.addTravelRequest({
 					...this.form.value,
@@ -81,11 +83,13 @@ export class TravelRequestFormComponent implements OnInit {
 					
 				})
 				.subscribe(()=>{
+					this.commonService.loading.next(false);
 					this.router.navigateByUrl(`/travel-request/list`);
 
-				});
-		}
-
+				},
+				(err) => void this.commonService.loading.next(false),
+				);
+		} 
 	}
 
 	ngOnInit(): void {
@@ -108,6 +112,7 @@ export class TravelRequestFormComponent implements OnInit {
 				this.travelRequestService
 					.getTravelRequestById(param.id)
 					.subscribe((response: any) => {
+						
 						const formData = {
 							employeeId: response.data.employeeId,
 							travelStartDate: response.data.travelStartDate,
@@ -131,20 +136,11 @@ export class TravelRequestFormComponent implements OnInit {
 
 						if (response.data.businessTypeId) {
 							this.enableBusinessType = true;
-							this.businessUnitService
-								.getBusinessUnitsList()
-								.subscribe((businessUnits: any) => {
-									this.businessUnits = businessUnits.data;
-									this.selectBusinessType(response.data.businessTypeId);
-								});
+							this.selectBusinessType(response.data.businessTypeId);
 						}
 
 						this.form.setValue(formData);
-						this.commonService.loading.next(false);
 					});
-					
-			}else{
-				this.commonService.loading.next(false);
 			}
 		});
 
@@ -153,11 +149,11 @@ export class TravelRequestFormComponent implements OnInit {
 			travelStartDate: [null, [Validators.required]],
 			travelEndDate: [null, [Validators.required]],
 			travelPurpose: [null, [Validators.required]],
+			businessTypeId:[null, [Validators.nullValidator]],
+			businessUnitId:[null, [Validators.nullValidator]],
 			projectId: [null, [Validators.nullValidator]],
 			subProjectId: [null, [Validators.nullValidator]],
 			workTaskId: [null, [Validators.nullValidator]],
-			businessTypeId:[null, [Validators.nullValidator]],
-			businessUnitId:[null, [Validators.nullValidator]],
 		});
 
 		this.form.controls['travelEndDate'].disable();
@@ -173,6 +169,34 @@ export class TravelRequestFormComponent implements OnInit {
 		this.form.controls['travelEndDate'].valueChanges.subscribe();
 	}
 
+	disabledStartDate = (startValue: Date): boolean => {
+		const date = new Date();
+		return (
+			new Date(date).getTime() - 24 * 60 * 60 * 1000 >=
+			new Date(startValue).getTime()
+		);
+	};
+
+	disabledEndDate = (endValue: Date): boolean => {
+		const date = new Date();
+
+		if (this.form.controls['travelStartDate'].value) {
+			const startDate = new Date(
+				this.form.controls['travelStartDate'].value,
+			).getTime();
+			return (
+				new Date(date).getTime() - 24 * 60 * 60 * 1000 >=
+					new Date(endValue).getTime() ||
+				startDate > new Date(endValue).getTime()
+			);
+		} else {
+			return (
+				new Date(date).getTime() - 24 * 60 * 60 * 1000 >=
+				new Date(endValue).getTime()
+			);
+		}
+	};
+	 
 	selectBusinessType = (event) => {
 		this.form.controls['businessUnitId'].reset();
 		if (event) {
@@ -217,6 +241,7 @@ export class TravelRequestFormComponent implements OnInit {
 			});
 	};
 
+
 	refreshForm = (event) => {
 		if(event)
 		this.projectService.getProjectListByEmpId().subscribe((response: any) => {
@@ -233,31 +258,6 @@ export class TravelRequestFormComponent implements OnInit {
 		}
 	};
 
-	disabledEndDate = (endValue: Date): boolean => {
-		const date = new Date();
 
-		if (this.form.controls['travelStartDate'].value) {
-			const startDate = new Date(
-				this.form.controls['travelStartDate'].value,
-			).getTime();
-			return (
-				new Date(date).getTime() - 24 * 60 * 60 * 1000 >=
-					new Date(endValue).getTime() ||
-				startDate > new Date(endValue).getTime()
-			);
-		} else {
-			return (
-				new Date(date).getTime() - 24 * 60 * 60 * 1000 >=
-				new Date(endValue).getTime()
-			);
-		}
-	};
 
-	disabledStartDate = (startValue: Date): boolean => {
-		const date = new Date();
-		return (
-			new Date(date).getTime() - 24 * 60 * 60 * 1000 >=
-			new Date(startValue).getTime()
-		);
-	};
 }

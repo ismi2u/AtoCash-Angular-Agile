@@ -33,6 +33,25 @@
 			</nz-form-item>
 			
 			<nz-form-item>
+				<nz-form-label [nzSpan]="7" nzRequired nzFor="businessUnitCode">{{
+					'form.business-unit.businessUnitCode' | translate
+				}}</nz-form-label>
+				<nz-form-control
+					[nzSpan]="15"
+					[nzErrorTip]="'validation.required' | translate"
+				>
+					<input
+						formControlName="businessUnitCode"
+						type="text"
+						nz-input
+						[placeholder]="'form.business-unit.businessUnitCode' | translate"
+						appCapitalize
+						id="businessUnitCode"
+					/>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
 				<nz-form-label [nzSpan]="7" nzRequired nzFor="businessUnitName">{{
 					'form.business-unit.businessUnitName' | translate
 				}}</nz-form-label>

@@ -157,6 +157,9 @@
 			<td *ngIf="data.businessType && formName == 'business-unit'">
 				{{ data.businessType }}
 			</td>
+			<td *ngIf="data && formName == 'business-unit'">
+				{{ data.businessUnitCode }}
+			</td>
 			<td *ngIf="data.businessUnitName && formName == 'business-unit'">
 				{{ data.businessUnitName }}
 			</td>
@@ -516,7 +519,7 @@
 				{{ data.projectName || data.project }}
 			</td>
 			<td *ngIf="data && formName == 'inbox'">
-				{{ data.requestedDate | date: 'dd/MM/yyyy' || data.requestDate | date: 'dd/MM/yyyy'}}
+				{{ data.requestDate | date: 'dd/MM/yyyy'}}
 			</td>
 			<td
 				*ngIf="

@@ -12,6 +12,7 @@ export class BusinessUnitListComponent implements OnInit {
 	businessUnits: any;
 	businessUnitHeaders: any = [
 		'tableHeader.business-unit.businessType',
+		'tableHeader.business-unit.businessUnitCode',
 		'tableHeader.business-unit.businessUnitName',
 		'tableHeader.business-unit.businessDesc',
 		'tableHeader.business-unit.costCenter',		

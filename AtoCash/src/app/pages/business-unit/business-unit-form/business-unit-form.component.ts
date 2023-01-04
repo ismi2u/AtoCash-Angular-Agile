@@ -107,6 +107,7 @@ export class BusinessUnitFormComponent implements OnInit {
 
 		this.form = this.fb.group({
 			businessTypeId: [null, [Validators.required]],
+			businessUnitCode:[null],
 			businessUnitName: [null, [Validators.required]],
 			costCenterId: [null, [Validators.required]],
 			businessDesc: [null, [Validators.required]],

@@ -5,7 +5,7 @@
   [nzTitle]="'heading.travelRequest' | translate"
   [nzExtra]="action"
 >
-  <div class="enable-project" *ngIf="mode == 'add' || form.controls['projectId'].value ">
+  <div class="enable-project" *ngIf="mode == 'add'">
     <p class="label">{{'form.travel.enableProject' | translate}}</p>
     <nz-switch
       nzSize="small"
@@ -19,20 +19,22 @@
     [formGroup]="form"
     (ngSubmit)="submitForm()"
   >
+
   <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelEndDate">{{
+    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelStartDate">{{
       "form.travel.startDate" | translate
     }}</nz-form-label>
 
     <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
       <nz-date-picker
       [nzDisabledDate]="disabledStartDate"
-        id="travelEndDate"
+        id="travelStartDate"
         formControlName="travelStartDate"
         [nzPlaceHolder]="'form.travel.startDate' | translate"
       ></nz-date-picker>
     </nz-form-control>
   </nz-form-item>
+  
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired nzFor="travelEndDate">{{
       "form.travel.endDate" | translate
@@ -48,157 +50,146 @@
     </nz-form-control>
   </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzRequired nzFor="travelPurpose">{{
-        'form.travel.travelPurpose' | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-        
-          <input
-            formControlName="travelPurpose"
-            nz-input
-            type="text"
-            [placeholder]=" 'form.travel.travelPurpose' | translate"
-            appCapitalize
-            id="travelPurpose"
-          />
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelPurpose">{{
+      'form.travel.travelPurpose' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+      
+        <input
+          formControlName="travelPurpose"
+          nz-input
+          type="text"
+          [placeholder]=" 'form.travel.travelPurpose' | translate"
+          appCapitalize
+          id="travelPurpose"
+        />
+
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- Non Project Request / Business Unit Request -->
+  <nz-form-item *ngIf="!enableProject">
+    <nz-form-label [nzSpan]="7"  nzFor="businessTypeId">{{
+      'form.travel.businessType' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate" >
+ 
+        <nz-select
+        nzShowSearch nzAllowClear
+          id="businessTypeId"
+          formControlName="businessTypeId"
+          [nzPlaceHolder]="'form.travel.businessType' | translate"  (ngModelChange)="selectBusinessType($event)">
+          <nz-option
+            *ngFor="let option of businessTypes"
+            [nzValue]="option.id"
+            [nzLabel]="option.businessTypeName"
+          ></nz-option>
+        </nz-select>
   
-      </nz-form-control>
-    </nz-form-item>
+    </nz-form-control>
+  </nz-form-item>
 
-    
-    <!-- Non Project Request / Business Unit Request -->
-    <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0">
-      <nz-form-label [nzSpan]="7"  nzFor="businessTypeId">{{
-        'form.travel.businessType' | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate" >
-   
-          <nz-select
-          nzShowSearch nzAllowClear
-            id="businessTypeId"
-            formControlName="businessTypeId"
-            [nzPlaceHolder]="'form.travel.businessType' | translate"  (ngModelChange)="selectBusinessType($event)">
-            <nz-option
-              *ngFor="let option of businessTypes"
-              [nzValue]="option.id"
-              [nzLabel]="option.businessTypeName"
-            ></nz-option>
-          </nz-select>
-    
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0 && form.controls['businessTypeId'].value">
-      <nz-form-label [nzSpan]="7"  nzFor="businessUnitId">{{
-        'form.travel.businessUnit' | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-   
-          <nz-select
-          nzShowSearch nzAllowClear
-            id="businessUnitId"
-            formControlName="businessUnitId"
-            [nzPlaceHolder]="'form.travel.businessUnit' | translate" (ngModelChange)="selectBusinessUnit($event)">
-            <nz-option
-              *ngFor="let option of businessUnits"
-              [nzValue]="option.id"
-              [nzLabel]="option.businessUnitName"
-            ></nz-option>
-          </nz-select>
-    
-      </nz-form-control>
-    </nz-form-item>
-    
-    <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0 && form.controls['businessUnitId'].value">
-      <nz-form-label [nzSpan]="7" nzFor="businessUnitLocation">{{
-        'form.travel.businessUnitLocation' | translate
-      }}</nz-form-label>
-      <nz-form-control
-        [nzSpan]="15">
-        
-        <span>{{businessUnitLocation}}</span>
+  <nz-form-item *ngIf="!enableProject && form.controls['businessTypeId'].value">
+    <nz-form-label [nzSpan]="7"  nzFor="businessUnitId">{{
+      'form.travel.businessUnit' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+ 
+        <nz-select
+        nzShowSearch nzAllowClear
+          id="businessUnitId"
+          formControlName="businessUnitId"
+          [nzPlaceHolder]="'form.travel.businessUnit' | translate" (ngModelChange)="selectBusinessUnit($event)">
+          <nz-option
+            *ngFor="let option of businessUnits"
+            [nzValue]="option.id"
+            [nzLabel]="option.businessUnitName"
+          ></nz-option>
+        </nz-select>
   
-      </nz-form-control>
-    </nz-form-item>
+    </nz-form-control>
+  </nz-form-item>
 
-     <!-- Project Request -->
-    <nz-form-item *ngIf="enableProject">
-      <nz-form-label [nzSpan]="7" nzRequired nzFor="project">{{
-        'form.travel.project' | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-       
-          <nz-select
-          nzShowSearch nzAllowClear
-            id="project"
-            formControlName="projectId"
-            [nzPlaceHolder]="'form.travel.project' | translate"
-            (ngModelChange)="selectProject($event)"
-          >
-            <nz-option
-              *ngFor="let option of projects"
-              [nzValue]="option.id"
-              [nzLabel]="option.projectName"
-            ></nz-option>
-          </nz-select>
-    
-      </nz-form-control>
-    </nz-form-item>
 
-    <nz-form-item *ngIf="enableProject && form.controls['projectId'].value && subProjects.length > 0">
-      <nz-form-label [nzSpan]="7"  nzFor="subProject">{{
-        'form.travel.subProject' | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-   
-          <nz-select
-          nzShowSearch nzAllowClear
-            id="subProject"
-            formControlName="subProjectId"
-            [nzPlaceHolder]="'form.travel.subProject' | translate"
-            (ngModelChange)="selectSubProject($event)"
-          >
-            <nz-option
-              *ngFor="let option of subProjects"
-              [nzValue]="option.id"
-              [nzLabel]="option.subProjectName"
-            ></nz-option>
-          </nz-select>
-    
-      </nz-form-control>
-    </nz-form-item>
+   <!-- Project Request -->
+   <nz-form-item *ngIf="enableProject">
+    <nz-form-label [nzSpan]="7" nzRequired nzFor="project">{{
+      'form.travel.project' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+     
+        <nz-select
+        nzShowSearch nzAllowClear
+          id="projectId"
+          formControlName="projectId"
+          [nzPlaceHolder]="'form.travel.project' | translate"
+          (ngModelChange)="selectProject($event)"
+        >
+          <nz-option
+            *ngFor="let option of projects"
+            [nzValue]="option.id"
+            [nzLabel]="option.projectName"
+          ></nz-option>
+        </nz-select>
+  
+    </nz-form-control>
+  </nz-form-item>
 
-    <nz-form-item *ngIf="enableProject && form.controls['subProjectId'].value && tasks.length > 0">
-      <nz-form-label [nzSpan]="7"  nzFor="task">{{
-        'form.travel.task' | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-   
-          <nz-select
-          nzShowSearch nzAllowClear
-            id="task"
-            formControlName="workTaskId"
-            [nzPlaceHolder]="'form.travel.task' | translate"
-          >
-            <nz-option
-              *ngFor="let option of tasks"
-              [nzValue]="option.id"
-              [nzLabel]="option.taskName"
-            ></nz-option>
-          </nz-select>
+  <nz-form-item *ngIf="enableProject && form.controls['projectId'].value && subProjects.length > 0">
+    <nz-form-label [nzSpan]="7"  nzFor="subProject">{{
+      'form.travel.subProject' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+ 
+        <nz-select
+        nzShowSearch nzAllowClear
+          id="subProjectId"
+          formControlName="subProjectId"
+          [nzPlaceHolder]="'form.travel.subProject' | translate"
+          (ngModelChange)="selectSubProject($event)"
+        >
+          <nz-option
+            *ngFor="let option of subProjects"
+            [nzValue]="option.id"
+            [nzLabel]="option.subProjectName"
+          ></nz-option>
+        </nz-select>
+  
+    </nz-form-control>
+  </nz-form-item>
 
-      </nz-form-control>
-    </nz-form-item>
+  <nz-form-item *ngIf="enableProject && form.controls['subProjectId'].value && tasks.length > 0">
+    <nz-form-label [nzSpan]="7"  nzFor="task">{{
+      'form.travel.task' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+ 
+        <nz-select
+        nzShowSearch nzAllowClear
+          id="workTaskId"
+          formControlName="workTaskId"
+          [nzPlaceHolder]="'form.travel.task' | translate"
+        >
+          <nz-option
+            *ngFor="let option of tasks"
+            [nzValue]="option.id"
+            [nzLabel]="option.taskName"
+          ></nz-option>
+        </nz-select>
 
-    <nz-form-item>
-      <nz-form-control class="action-control">
-        <button nz-button nzType="primary" [disabled]="!form.valid  || (enableProject && !this.form.get('projectId').value)">
-          {{ getButtonLabel() }}
-        </button>
-      </nz-form-control>
-    </nz-form-item>
-  </form>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control class="action-control">
+      <button nz-button nzType="primary" [disabled]="!form.valid  || (enableProject && !this.form.get('projectId').value) || (!enableProject && !this.form.get('businessUnitId').value)">
+        {{ getButtonLabel() }}
+      </button>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>
   <ng-template #action>
     <button nz-button routerLink="/travel-request" nzType="primary">
       <i nz-icon nzType="arrow-left"></i>

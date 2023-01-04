@@ -305,8 +305,9 @@
 		"business-unit":{
 			"id":"Id",
 			"businessType":"Business Type",
-			"businessUnitName":"Business Name",
-			"businessDesc":"Business Description",
+			"businessUnitName":"Business Unit Code",
+			"businessUnitDesc":"Business Unit Name",
+			"businessDesc":"Business Unit Desc.",
 			"costCenter":"Cost Center",			
 			"location":"Location",
 			"status": "Status"
@@ -524,8 +525,9 @@
 		"business-unit":{
 			"id":"Id",
 			"businessType":"Business Type",
-			"businessUnitName":"Business Name",
-			"businessDesc":"Business Description",
+			"businessUnitCode":"Business Unit Code",
+			"businessUnitName":"Business Unit Name",
+			"businessDesc":"Business Unit Desc.",
 			"costCenter":"Cost Center",			
 			"location":"Location",
 			"status": "Status"
