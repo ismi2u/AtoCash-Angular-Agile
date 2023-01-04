@@ -161,7 +161,7 @@ var ExpenseReimburseRequestFormComponent = /** @class */ (function () {
             taxAmount: [null, [forms_1.Validators.required]],
             vendor: [null, [forms_1.Validators.required]],
             description: [null, [forms_1.Validators.required]],
-            taxNo: [null, [forms_1.Validators.required]],
+            taxNo: [null],
             NoOfDays:[null],
 			NoOfDaysDate:[null],
             additionalVendor:[null]

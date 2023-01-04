@@ -167,12 +167,18 @@ export class CashAdvanceFormComponent implements OnInit {
 		this.form.controls['businessUnitId'].reset();
 		if (event) {
 			this.businessUnitService
-			.getBusinessUnitByBusinessTypeId(event)
+				.getBusinessUnitByBizTypeIdAndEmployeeId({
+					businessTypeId:event,
+					empId:this.empId,
+
+				})
 				.subscribe((response: any) => {
 					this.businessUnits = response.data;
 				});
 		}
-	};
+	}; 
+
+	
 
 	selectBusinessUnit = (event) => {
 		this.businessUnitLocation='';

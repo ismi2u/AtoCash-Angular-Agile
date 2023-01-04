@@ -34,7 +34,7 @@
 		"dashboard": "Dashboard",
 		"costCenter": "Cost Centers",
 		"businessType": "Business Type",
-		"businessUnit": "business Unit",
+		"businessUnit": "Business Unit",
 		"generalLedger": "General Ledger",
 		"role": "Job Roles",
 		"employmentType": "Employment Types",
@@ -329,7 +329,7 @@
 			"project": "Project",
 			"claimAmount": "Claim Amount",
 			"status": "Settlement Status",
-			"businessUnit":"business Unit"
+			"businessUnit":"Business Unit"
 		},
 		"travel": {
 			"startDate": "Start Date",
@@ -659,7 +659,7 @@
 				"female": "Female",
 				"others": "Others",
 				"myReports": "My Reports",
-				"businessUnit":"business Unit"
+				"businessUnit":"Business Unit"
 			}
 		}
 	},

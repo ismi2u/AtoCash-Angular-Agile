@@ -43,7 +43,7 @@
           nzShowSearch nzAllowClear
             id="businessTypeId"
             formControlName="businessTypeId"
-            [nzPlaceHolder]="'form.employee-extended-info.businessType' | translate"
+            [nzPlaceHolder]="'form.employee-extended-info.businessType' | translate" (ngModelChange)="selectBusinessType($event)"
           >
             <nz-option
               *ngFor="let option of businessTypes"

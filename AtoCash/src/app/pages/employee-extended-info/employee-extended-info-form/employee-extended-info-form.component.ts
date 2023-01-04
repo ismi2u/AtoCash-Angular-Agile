@@ -87,6 +87,7 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 					.getEmployeeExtendedInfoById(param.id)
 					.subscribe((response: any) => {
 						this.recordId = param.id;
+						delete response.data.businessUnit;
 						const formData = {
 							employeeId: response.data.employeeId,
 							jobRoleId: response.data.jobRoleId,
@@ -95,21 +96,23 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 							businessUnitId:response.data.businessUnitId,
 							statusTypeId:response.data.statusTypeId,
 						};
+						this.selectBusinessType(response.data.businessTypeId);
 						this.form.setValue(formData);
-            this.commonService.loading.next(false);
+            			this.commonService.loading.next(false);
+						
 					});
-			} else {
+				} else {
 				this.commonService.loading.next(false);
 			}
+
+			
 		});
 
 		this.businessTypeService.getBusinessTypesList().subscribe((response: any) => {
 			this.businessTypes = response.data;
 		});
 
-		this.businessUnitService.getBusinessUnitsList().subscribe((response: any) => {
-			this.businessUnits = response.data;
-		});
+		 
 
 		this.rolesService.getJobRoleList().subscribe((response: any) => {
 			this.roles = response.data;
@@ -136,5 +139,20 @@ export class EmployeeExtendedInfoFormComponent implements OnInit {
 			jobRoleId: [null, [Validators.required]],
 			statusTypeId: [null, [Validators.required]],
 		});
+
+		
 	}
+
+	selectBusinessType = (event) => {
+		this.form.controls['businessUnitId'].reset();
+		if (event) {
+			this.businessUnitService
+				.getBusinessUnitByBusinessTypeId(event)
+				.subscribe((response: any) => {
+					this.businessUnits = response.data;
+				});
+		}
+	};
+
+
 }

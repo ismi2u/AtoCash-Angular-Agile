@@ -81,6 +81,9 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 		)
 		this.expenseReimburseService.expenseReimburseRequest.subscribe((data) => {
 			this.MaxId = parseInt(Math.max.apply(Math, data.map(function(o) { return o.id; })))+1
+			if(isNaN(this.MaxId)){
+				this.MaxId=1001;
+			}
 		});
 
 		this.currencyService.getCurrencyList().subscribe((response: any) => {
@@ -98,7 +101,7 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 
 		this.form = this.fb.group({
 			currencyTypeId: [this.currencyCode],
-			expenseReportTitle: [null, [Validators.required]],
+			expenseReportTitle: [null, [Validators.required,Validators.maxLength(200)]],
 			projectId: [null, [Validators.nullValidator]],
 			subProjectId: [null, [Validators.nullValidator]],
 			workTaskId: [null, [Validators.nullValidator]],			
@@ -182,16 +185,22 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 
 	};
 
-	selectBusinessType = (event) => {
+	 selectBusinessType = (event) => {
 		this.form.controls['businessUnitId'].reset();
 		if (event) {
 			this.businessUnitService
-				.getBusinessUnitByBusinessTypeId(event)
+				.getBusinessUnitByBizTypeIdAndEmployeeId({
+					businessTypeId:event,
+					empId:this.empId,
+
+				})
 				.subscribe((response: any) => {
 					this.businessUnits = response.data;
 				});
 		}
-	};
+	}; 
+
+	
 
 	selectBusinessUnit = (event) => {
 		this.businessUnitLocation='';
@@ -200,8 +209,9 @@ export class ExpenseReimburseRequestInitComponent implements OnInit {
 			this.businessUnitService
 				.getBusinessUnitById(event)
 				.subscribe((response: any) => {
+					 
 					this.businessUnitLocation = response.data.location;
-					this.form.controls['expenseReportTitle'].setValue(this.businessUnitLocation+"-"+this.MaxId);
+					this.form.controls['expenseReportTitle'].setValue(response.data.businessUnitName+"-"+this.businessUnitLocation+"-"+this.MaxId);
 				});
 		}
 		

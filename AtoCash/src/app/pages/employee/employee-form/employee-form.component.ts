@@ -81,6 +81,9 @@ export class EmployeeFormComponent implements OnInit {
 						delete response.data.businessAreaApprovalGroup;
 						delete response.data.businessAreaRoleName;
 						delete response.data.statusType;
+						delete response.data.businessUnits;
+						delete response.data.jobRoles;
+						delete response.data.approvalGroups;
 						this.form.setValue(response.data);
 						this.commonService.loading.next(false);
 					});
