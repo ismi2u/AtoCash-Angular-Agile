@@ -512,11 +512,11 @@
 			<td *ngIf="data.businessUnit && formName == 'inbox'">
 				{{ data.businessUnit }}
 			</td>
-			<td *ngIf="data.projectName && formName == 'inbox'">
-				{{ data.projectName }}
+			<td *ngIf="data && formName == 'inbox'">
+				{{ data.projectName || data.project }}
 			</td>
-			<td *ngIf="data.requestedDate && formName == 'inbox'">
-				{{ data.requestedDate | date: 'dd/MM/yyyy' }}
+			<td *ngIf="data && formName == 'inbox'">
+				{{ data.requestedDate | date: 'dd/MM/yyyy' || data.requestDate | date: 'dd/MM/yyyy'}}
 			</td>
 			<td
 				*ngIf="
@@ -544,16 +544,16 @@
 				{{ limitString(data.employeeName) }}
 			</td>
 			<td *ngIf="data && formName == 'expense-reimburse-inbox'">
-				{{ limitString(data.department) }}
+				{{ limitString(data.businessType) }}
 			</td>
 			<td *ngIf="data && formName == 'expense-reimburse-inbox'">
-				{{ limitString(data.businessArea) }}
+				{{ limitString(data.businessUnit) }}
 			</td>
 			<td *ngIf="data && formName == 'expense-reimburse-inbox'">
-				{{ data.projectName }}
+				{{ data.project }}
 			</td>
-			<td *ngIf="data.expReimReqDate && formName == 'expense-reimburse-inbox'">
-				{{ data.expReimReqDate | date: 'dd/MM/yyyy' }}
+			<td *ngIf="data.requestDate && formName == 'expense-reimburse-inbox'">
+				{{ data.requestDate | date: 'dd/MM/yyyy' }}
 			</td>
 			<td
 				*ngIf="data.totalClaimAmount && formName == 'expense-reimburse-inbox'"
