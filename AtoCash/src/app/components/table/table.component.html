@@ -509,10 +509,10 @@
 			<td *ngIf="data.employeeName && formName == 'inbox'">
 				{{ limitString(data.employeeName) }}
 			</td>
-			<td *ngIf="data.businessType && formName == 'inbox'">
+			<td *ngIf="data && formName == 'inbox'">
 				{{ data.businessType }}
 			</td>
-			<td *ngIf="data.businessUnit && formName == 'inbox'">
+			<td *ngIf="data && formName == 'inbox'">
 				{{ data.businessUnit }}
 			</td>
 			<td *ngIf="data && formName == 'inbox'">

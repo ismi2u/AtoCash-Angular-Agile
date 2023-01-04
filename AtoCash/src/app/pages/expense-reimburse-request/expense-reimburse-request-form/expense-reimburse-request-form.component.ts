@@ -139,7 +139,7 @@ export class ExpenseReimburseRequestFormComponent implements OnInit {
 			location: [null, [Validators.required]],
 			tax: [0, [Validators.required, Validators.max(100)]],
 			taxAmount: [null, [Validators.required]],
-			vendorId: [null, [Validators.required]],
+			vendorId: [null],
 			additionalVendor:[null],
 			description: [null, [Validators.required]],
 			taxNo: [null],
