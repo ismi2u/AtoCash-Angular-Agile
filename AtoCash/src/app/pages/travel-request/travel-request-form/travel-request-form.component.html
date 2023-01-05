@@ -111,7 +111,18 @@
     </nz-form-control>
   </nz-form-item>
 
+  <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0 && form.controls['businessUnitId'].value">
+    <nz-form-label [nzSpan]="7" nzFor="businessUnitLocation">{{
+      'form.cashAdvance.businessUnitLocation' | translate
+    }}</nz-form-label>
+    <nz-form-control
+      [nzSpan]="15">
+      
+      <span>{{businessUnitLocation}}</span>
 
+    </nz-form-control>
+  </nz-form-item>
+  
    <!-- Project Request -->
    <nz-form-item *ngIf="enableProject">
     <nz-form-label [nzSpan]="7" nzRequired nzFor="project">{{

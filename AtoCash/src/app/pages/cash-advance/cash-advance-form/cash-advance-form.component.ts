@@ -150,12 +150,7 @@ export class CashAdvanceFormComponent implements OnInit {
 
 						if (response.data.businessTypeId) {
 							this.enableBusinessType = true;
-							this.businessUnitService
-								.getBusinessUnitsList()
-								.subscribe((businessUnits: any) => {
-									this.businessUnits = businessUnits.data;
-									this.selectBusinessType(response.data.businessTypeId);
-								});
+							this.selectBusinessType(response.data.businessTypeId);
 						}
 						this.form.setValue(formData);
 					});
