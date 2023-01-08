@@ -691,31 +691,31 @@
 				{{ data.generalLedger }}
 			</td>
 			<td *ngIf="data && formName == 'reports'">
-				{{ data.departmentName || data.department  }}
+				{{ data.businessType  }}
 			</td>
 			<td *ngIf="data && formName == 'reports'">
-				{{ data.businessArea  }}
+				{{ data.businessUnit  }}
 			</td>
 			<td *ngIf="(data && !data?.doj) && formName == 'reports'">
 				{{ data.projectName || data.project  }}
 			</td>
 			<td
 				*ngIf="
-					(data?.recordDate &&  formName != 'disburseList') || ((data?.reqRaisedDate|| data.invoiceDate) && formName == 'reports')
+					(data?.recordDate &&  formName != 'disburseList') || ((data?.requestDate|| data.invoiceDate) && formName == 'reports')
 				"
 			>
-				{{ data?.recordDate || data?.reqRaisedDate || data.invoiceDate | date: 'dd/MM/yyyy' }}
+				{{ data?.recordDate || data?.requestDate || data.invoiceDate | date: 'dd/MM/yyyy' }}
 			</td>
 			<td
 				*ngIf="
 					(data?.cashAdvanceAmount ||
 						data?.totalClaimAmount ||
-						data?.cashAdvanceAmount || data.expenseReimbClaimAmount) &&
+						data?.cashAdvanceAmount || data?.expenseReimbClaimAmount || data.claimAmount) &&
 					formName == 'reports'
 				"
 			>
 				{{
-					data.cashAdvanceAmount || data?.totalClaimAmount || data?.cashAdvanceAmount || data.expenseReimbClaimAmount
+					data.claimAmount || data?.cashAdvanceAmount || data?.totalClaimAmount || data?.cashAdvanceAmount || data.expenseReimbClaimAmount
 				}}
 			</td>
 			<td *ngIf="data.expenseType && formName == 'reports'">

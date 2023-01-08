@@ -1,6 +1,5 @@
 import { ReportsService } from './../../../services/reports.service';
 import { StatusService } from './../../../services/status.service';
-import { DepartmentService } from 'src/app/services/department.service';
 import { TravelRequestService } from '../../../services/travel-request.service';
 import { ApprovalStatusService } from '../../../services/approval-status.service';
 import { ChangeDetectorRef } from '@angular/core';
@@ -28,8 +27,8 @@ export class ReportsListComponent implements OnInit {
 		'tableHeader.inbox.id',
 		'tableHeader.inbox.employee',
 		'tableHeader.inbox.costCenter',
-		'tableHeader.inbox.department',
-		'tableHeader.inbox.businessArea',
+		'tableHeader.inbox.businessType',
+		'tableHeader.inbox.businessUnit',
 		'tableHeader.inbox.project',
 		'tableHeader.inbox.requestDate',
 		'tableHeader.inbox.status',
@@ -68,11 +67,11 @@ export class ReportsListComponent implements OnInit {
 
 	getCashAdvanceRowData = (event) => {
 		this.requestService
-			.getRequestStatus(event.pettyCashRequestId)
+			.getRequestStatus(event.blendedRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.cashRequestService
-					.geCashRequestById(event.pettyCashRequestId)
+					.geCashRequestById(event.blendedRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 					});
@@ -81,11 +80,11 @@ export class ReportsListComponent implements OnInit {
 
 	getTravelRequestRowData = (event) => {
 		this.requestService
-			.getTravelRequestStatus(event.id)
+			.getTravelRequestStatus(event.blendedRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.travelRequestService
-					.getTravelRequestById(event.id)
+					.getTravelRequestById(event.blendedRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 					});
@@ -94,11 +93,11 @@ export class ReportsListComponent implements OnInit {
 
 	getExpenseRequestRowData = (event) => {
 		this.requestService
-			.getExpenseRequestStatus(event.expenseReimburseReqId)
+			.getExpenseRequestStatus(event.blendedRequestId)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.expenseRequestService
-					.getExpenseRequestById(event.expenseReimburseReqId)
+					.getExpenseRequestById(event.blendedRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 					});
@@ -153,8 +152,8 @@ export class ReportsListComponent implements OnInit {
 				'tableHeader.inbox.id',
 				'tableHeader.inbox.employee',
 				'tableHeader.inbox.costCenter',
-				'tableHeader.inbox.department',
-				'tableHeader.inbox.businessArea',
+				'tableHeader.inbox.businessType',
+				'tableHeader.inbox.businessUnit',
 				'tableHeader.inbox.project',
 				'tableHeader.inbox.requestDate',
 				'tableHeader.inbox.claimAmount',
@@ -165,8 +164,8 @@ export class ReportsListComponent implements OnInit {
 				'tableHeader.inbox.id',
 				'tableHeader.inbox.employee',
 				'tableHeader.inbox.costCenter',
-				'tableHeader.inbox.department',
-				'tableHeader.inbox.businessArea',
+				'tableHeader.inbox.businessType',
+				'tableHeader.inbox.businessUnit',
 				'tableHeader.inbox.project',
 				'tableHeader.inbox.requestDate',
 				'tableHeader.inbox.status',
@@ -179,9 +178,7 @@ export class ReportsListComponent implements OnInit {
 				'tableHeader.employee.name',
 				'tableHeader.employee.email',
 				'tableHeader.employee.mobile',
-				'tableHeader.employee.doj',
-				'tableHeader.employee.jobRole',
-				'tableHeader.inbox.department',
+				'tableHeader.employee.doj'
 			];
 		}
 		if (type === 'subClaims') {
@@ -190,8 +187,8 @@ export class ReportsListComponent implements OnInit {
 				'tableHeader.inbox.employee',
 				'tableHeader.inbox.costCenter',
 				'tableHeader.inbox.generalLedger',
-				'tableHeader.inbox.department',
-				'tableHeader.inbox.businessArea',
+				'tableHeader.inbox.businessType',
+				'tableHeader.inbox.busniessUnit',
 				'tableHeader.inbox.project',
 				'tableHeader.inbox.invoiceDate',
 				'tableHeader.inbox.claimAmount',

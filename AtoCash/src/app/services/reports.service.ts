@@ -12,7 +12,6 @@ import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CostService } from './cost.service';
-import { DepartmentService } from './department.service';
 import { ProjectsService } from './projects.service';
 import { StatusService } from './status.service';
 import { constant } from 'src/app/constant/constant';
@@ -31,7 +30,6 @@ export class ReportsService implements OnInit {
 
 	constructor(
 		private http: HttpClient,
-		private departmentService: DepartmentService,
 		private costCenterService: CostService,
 		private projectService: ProjectsService,
 		private approvalStatusService: ApprovalStatusService,
@@ -371,18 +369,6 @@ export class ReportsService implements OnInit {
 					});
 
 					break;
-				case 'departmentId':
-					this.departmentService
-						.getDepartmentList()
-						.subscribe((response: any) => {
-							const statusTypeOptions = response.data.map((department) => ({
-								name: department.deptDesc,
-								id: department.id,
-							}));
-							filter.options = [filter.options[0], ...statusTypeOptions];
-						});
-
-					break;
 			}
 			return filter;
 		});
@@ -400,18 +386,7 @@ export class ReportsService implements OnInit {
 	}
 
 	updateFilters(type) {
-		if (
-			this.selectedFilters &&
-			this.selectedFilters.costCenterId !== 0 &&
-			type === 'costCenterId'
-		) {
-			const index = this.populatedFilters.findIndex(
-				(filter) => filter.name === 'departmentId',
-			);
-			if (index !== -1) {
-				this.populateDepartmentFilter(index, this.selectedFilters.costCenterId);
-			}
-		}
+		
 		if (
 			this.selectedFilters &&
 			this.selectedFilters.projectId !== 0 &&
@@ -438,21 +413,7 @@ export class ReportsService implements OnInit {
 		}
 	}
 
-	populateDepartmentFilter(index, costCenterId) {
-		this.departmentService
-			.getDepartmentsByCostCenterId(costCenterId)
-			.subscribe((departments: any) => {
-				departments = departments.data.map((department) => ({
-					id: department.id,
-					name: department.deptDesc,
-				}));
-				this.populatedFilters[index].options = [
-					this.populatedFilters[index].options[0],
-					...departments,
-				];
-				this.filterStatus.next(this.populatedFilters);
-			});
-	}
+	
 
 	populateSubProjectFilter(index, projectId) {
 		this.subProjectService
