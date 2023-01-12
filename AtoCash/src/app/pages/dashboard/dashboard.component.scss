@@ -205,4 +205,10 @@
           font-weight: bold;
         }
       }
+
+      &__line_separator {
+        padding-bottom: 1px;
+        background: #f0f0f0;
+        margin: 10px 5px;
+      }
 }

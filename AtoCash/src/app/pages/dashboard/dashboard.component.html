@@ -100,11 +100,20 @@
 				<p class="dashboard__amount-label">{{'heading.onHand' | translate}}</p>
 				<p class="dashboard__amount-value ">{{(balance?.cashInHand).toFixed(2)}}</p>
 			</div>
+
+			
 			<div class="dashboard__amount">
-				<p class="dashboard__amount-label">{{'heading.pendingApproval' | translate}}</p>
-				<p class="dashboard__amount-value ">{{(balance?.pendingApproval).toFixed(2)}}</p>
+				<p class="dashboard__amount-label" title="{{'heading.title-pendingApprovalCA' | translate}}">{{'heading.pendingApprovalCA' | translate}}</p>
+				<p class="dashboard__amount-value ">{{(balance?.pendingApprovalCA).toFixed(2)}}</p>
 			</div>
 
+			<div class="dashboard__line_separator"></div>
+
+			<div class="dashboard__amount">
+				<p class="dashboard__amount-label" title="{{'heading.title-pendingApprovalER' | translate}}">{{'heading.pendingApprovalER' | translate}}</p>
+				<p class="dashboard__amount-value ">{{(balance?.pendingApprovalER).toFixed(2)}}</p>
+			</div>
+			
 			<div class="dashboard__amount">
 				<p class="dashboard__amount-label">{{'heading.pendingSettlement' | translate}}</p>
 				<p class="dashboard__amount-value ">{{(balance?.pendingSettlement).toFixed(2)}}</p>

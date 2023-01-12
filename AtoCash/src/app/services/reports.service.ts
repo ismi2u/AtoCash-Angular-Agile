@@ -49,11 +49,12 @@ export class ReportsService implements OnInit {
 
 	getCashReportsByEmployee = (data) => {
 		const exceptionalParams = {
-			empId:
+			LoggedEmpId:
 				!data.empId || data.empId == -1 || data.empId == 0
 					? this.commonService.getEmpId()
 					: data.empId,
 			IsManager: data.empId == 0,
+			ReporteeEmpId:null,
 		};
 
 		return this.http.post(
@@ -66,7 +67,7 @@ export class ReportsService implements OnInit {
 	};
 	downloadSubClaimsReport = (data) => {
 		const exceptionalParams = {
-			empId:
+			ReporteeEmpId:
 				!this.selectedFilters.empId ||
 				this.selectedFilters.empId == -1 ||
 				this.selectedFilters.empId == 0
