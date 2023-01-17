@@ -457,7 +457,9 @@
 			"mobile": "Mobile",
 			"doj": "Date Joined",
 			"nationality": "Nationality",
-			"jobRole": "Job Role"
+			"jobRole": "Job Role",
+			"empCode":"Emp.Code",
+			"gender":"Gender"
 		},
 		"project": {
 			"projectName": "Name",

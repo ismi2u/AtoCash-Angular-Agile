@@ -74,6 +74,12 @@
 		"settlementTo": "الي",
 		"pendingApproval": "موافقات قيد الانتظار",
         "pendingSettlement" : "تحويلات قيد الانتظار",
+
+		"pendingApprovalCA": "Pending Approvals CA",
+		"pendingApprovalER": "Pending Approvals ER",
+		"title-pendingApprovalCA": "Pending Approvals Cash Advance",
+		"title-pendingApprovalER": "Pending Approvals Expense Reimburse",
+		
 		"expenseReimburseDepartment": "التعويض النقدي للاداره",
 		"expenseReimburseBusiness": "التعويض النقدي للمتجر",
 		"vatRate":"قيمة ضريبة القيمه المضافه",
@@ -473,7 +479,9 @@
 			"mobile": "رقم المحمول",
 			"doj": "تاريخ التعيين",
 			"nationality": "الجنسيه",
-			"jobRole" :"الدور الوظيفي"
+			"jobRole" :"الدور الوظيفي",
+			"empCode": "رقم الموظف",
+			"gender": "الجنس"
 		  },
 		  "project": {
 			"projectName": "الاسم",

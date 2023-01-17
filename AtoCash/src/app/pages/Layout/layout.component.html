@@ -224,7 +224,13 @@
 					<li *ngIf="canOrganize() || canOrganizeAndManage()" nz-menu-item nzMatchRouter routerLink="/user">
 						<a> {{ 'heading.user' | translate }}</a>
 					</li>	
-					
+					<li
+						nz-menu-item
+						nzMatchRouter
+						routerLink="/assign-role"
+					>
+						<a>{{ 'heading.assignRole' | translate }}</a>
+					</li>
 				</ul>
 			</li>
 
@@ -262,14 +268,6 @@
 						routerLink="/currency"
 					>
 						<a>{{ 'heading.currency' | translate }}</a>
-					</li>
-					<li
-					
-						nz-menu-item
-						nzMatchRouter
-						routerLink="/assign-role"
-					>
-						<a>{{ 'heading.assignRole' | translate }}</a>
 					</li>
 				</ul>
 			</li>

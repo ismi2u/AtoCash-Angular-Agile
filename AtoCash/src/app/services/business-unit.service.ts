@@ -49,4 +49,9 @@ export class BusinessUnitService {
 			`${this.commonService.getApi()}/api/BusinessUnits/DeleteBusinessUnits/${id}`,
 			{},
 		);
+
+
+		getBusinessUnitsforDropdownByCostCenterId = (id: any) =>
+		this.http.get(`${this.commonService.getApi()}/api/BusinessUnits/BusinessUnitsForDropdownByCostCentre/${id}`);
+
 }

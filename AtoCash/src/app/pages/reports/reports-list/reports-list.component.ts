@@ -57,6 +57,7 @@ export class ReportsListComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		
 		this.reportService.populateFilters(constant.FILTERS.REPORTS);
 		this.reportService.filterStatus.subscribe((data) => {
 			this.filters = data;
@@ -80,11 +81,11 @@ export class ReportsListComponent implements OnInit {
 
 	getTravelRequestRowData = (event) => {
 		this.requestService
-			.getTravelRequestStatus(event.blendedRequestId)
+			.getTravelRequestStatus(event.id)
 			.subscribe((statusResponse: any) => {
 				this.requestApprovalFlow = statusResponse.data;
 				this.travelRequestService
-					.getTravelRequestById(event.blendedRequestId)
+					.getTravelRequestById(event.id)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
 					});
@@ -172,13 +173,27 @@ export class ReportsListComponent implements OnInit {
 			];
 		}
 
-		if (type === 'employees' || type === 'users') {
+		if (type === 'employees') {
 			this.requestHeaders = [
 				'tableHeader.inbox.id',
+				'tableHeader.employee.empCode',
 				'tableHeader.employee.name',
 				'tableHeader.employee.email',
 				'tableHeader.employee.mobile',
-				'tableHeader.employee.doj'
+				'tableHeader.employee.doj',
+				'tableHeader.employee.gender',
+				'tableHeader.employee.nationality'
+			];
+		}
+		if (type === 'users') {
+			this.requestHeaders = [
+				'tableHeader.inbox.id',
+				'tableHeader.employee.empCode',
+				'tableHeader.employee.name',
+				'tableHeader.employee.email',
+				'tableHeader.employee.mobile',
+				'tableHeader.employee.doj',
+				'tableHeader.employee.gender'
 			];
 		}
 		if (type === 'subClaims') {
@@ -188,7 +203,7 @@ export class ReportsListComponent implements OnInit {
 				'tableHeader.inbox.costCenter',
 				'tableHeader.inbox.generalLedger',
 				'tableHeader.inbox.businessType',
-				'tableHeader.inbox.busniessUnit',
+				'tableHeader.inbox.businessUnit',
 				'tableHeader.inbox.project',
 				'tableHeader.inbox.invoiceDate',
 				'tableHeader.inbox.claimAmount',
@@ -319,7 +334,7 @@ export class ReportsListComponent implements OnInit {
 
 	onView(data) {
 		this.router.navigateByUrl(
-			`/expense-reimburse/action/view/${data.expenseReimburseReqId}`,
+			`/expense-reimburse/action/view/${data.blendedRequestId}`,
 		);
 	}
 

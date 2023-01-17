@@ -663,6 +663,8 @@
 						data?.id
 				}}
 			</td>
+			<td *ngIf="data.empCode && formName == 'reports'">{{ data.empCode }}</td>
+
 			<td *ngIf="(data.fullName || data.userFullName) && formName == 'reports'">
 				{{ data.fullName  || data.userFullName}}
 			</td>
@@ -676,6 +678,11 @@
 			<td *ngIf="data.doj && formName == 'reports'">
 				{{ data.doj | date: 'dd/MM/yyyy' }}
 			</td>
+			
+			<td *ngIf="data.gender && formName == 'reports'">{{ data.gender }}</td>
+			<td *ngIf="data.nationality && formName == 'reports'">{{ data.nationality }}</td>
+
+
 			<td *ngIf="data.jobRole && formName == 'reports'">
 				{{ data.jobRole }}
 			</td>
@@ -701,11 +708,11 @@
 			</td>
 			<td
 				*ngIf="
-					(data?.recordDate &&  formName != 'disburseList') || ((data?.requestDate|| data.invoiceDate) && formName == 'reports')
+					(data?.recordDate &&  formName != 'disburseList') || ((data?.requestDate || data.invoiceDate) && formName == 'reports')
 				"
 			>
 				{{ data?.recordDate || data?.requestDate || data.invoiceDate | date: 'dd/MM/yyyy' }}
-			</td>
+			</td> 
 			<td
 				*ngIf="
 					(data?.cashAdvanceAmount ||

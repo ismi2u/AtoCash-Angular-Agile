@@ -17,6 +17,7 @@ import { StatusService } from './status.service';
 import { constant } from 'src/app/constant/constant';
 import * as FileSaver from 'file-saver';
 import { RolesService } from './roles.service';
+import { BusinessUnitService } from './business-unit.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -43,18 +44,18 @@ export class ReportsService implements OnInit {
 		private employeeService: EmployeeService,
 		private userRoleService: UserRolesService,
 		private expenseTypeService: ExpenseTypesService,
+		private businessUnitService:BusinessUnitService,
 	) {}
 
 	ngOnInit(): void {}
 
 	getCashReportsByEmployee = (data) => {
 		const exceptionalParams = {
-			LoggedEmpId:
-				!data.empId || data.empId == -1 || data.empId == 0
-					? this.commonService.getEmpId()
-					: data.empId,
+			LoggedEmpId:this.commonService.getEmpId(),
 			IsManager: data.empId == 0,
-			ReporteeEmpId:null,
+			ReporteeEmpId:!data.empId || data.empId == -1 || data.empId == 0
+			? null
+			: data.empId,
 		};
 
 		return this.http.post(
@@ -67,13 +68,13 @@ export class ReportsService implements OnInit {
 	};
 	downloadSubClaimsReport = (data) => {
 		const exceptionalParams = {
-			ReporteeEmpId:
-				!this.selectedFilters.empId ||
-				this.selectedFilters.empId == -1 ||
-				this.selectedFilters.empId == 0
-					? this.commonService.getEmpId()
-					: this.selectedFilters.empId,
-			IsManager: this.selectedFilters.empId == 0,
+			LoggedEmpId:this.commonService.getEmpId(),	 
+			IsManager: this.selectedFilters.empId == 0,			
+			ReporteeEmpId: !this.selectedFilters.empId ||
+			this.selectedFilters.empId == -1 ||
+			this.selectedFilters.empId == 0
+				? null
+				: this.selectedFilters.empId,
 		};
 		this.http
 			.post(`${this.commonService.getApi()}/api/Reports/ExpenseSubClaimsReport`, {...this.selectedFilters, ...exceptionalParams})
@@ -88,11 +89,11 @@ export class ReportsService implements OnInit {
 	getSubClaimsReport = (data) =>
 	{
 		const exceptionalParams = {
-			empId:
-				!data.empId || data.empId == -1 || data.empId == 0
-					? this.commonService.getEmpId()
-					: data.empId,
+			LoggedEmpId:this.commonService.getEmpId(),		 
 			IsManager: data.empId == 0,
+			ReporteeEmpId:!data.empId || data.empId == -1 || data.empId == 0
+			? null
+			: data.empId,
 		};
 		return	this.http.post(`${this.commonService.getApi()}/api/Reports/ExpenseSubClaimsData`, {
 			...data,
@@ -139,13 +140,14 @@ export class ReportsService implements OnInit {
 
 	downloadCashReportsByEmployee = async (requestTypeId, type) => {
 		const exceptionalParams = {
-			empId:
-				!this.selectedFilters.empId ||
-				this.selectedFilters.empId == -1 ||
-				this.selectedFilters.empId == 0
-					? this.commonService.getEmpId()
-					: this.selectedFilters.empId,
+			LoggedEmpId:this.commonService.getEmpId(),	
 			IsManager: this.selectedFilters.empId == 0,
+			ReporteeEmpId:!this.selectedFilters.empId ||
+			this.selectedFilters.empId == -1 ||
+			this.selectedFilters.empId == 0
+				? null
+				: this.selectedFilters.empId, 
+			
 		};
 		this.http
 			.post(
@@ -165,11 +167,11 @@ export class ReportsService implements OnInit {
 
 	getTravelReportsByEmployee = (data) => {
 		const exceptionalParams = {
-			empId:
-				!data.empId || data.empId == -1 || data.empId == 0
-					? this.commonService.getEmpId()
-					: data.empId,
+			LoggedEmpId:this.commonService.getEmpId(),
 			IsManager: data.empId == 0,
+			ReporteeEmpId:!data.empId || data.empId == -1 || data.empId == 0
+			? null
+			: data.empId,
 		};
 		return this.http.post(
 			`${this.commonService.getApi()}/api/Reports/GetTravelRequestReportForEmployeeJson`,
@@ -179,13 +181,13 @@ export class ReportsService implements OnInit {
 
 	downloadTravelReportsByEmployee = (type) => {
 		const exceptionalParams = {
-			empId:
-				!this.selectedFilters.empId ||
+			LoggedEmpId:this.commonService.getEmpId(),
+			IsManager: this.selectedFilters.empId == 0,
+			ReporteeEmpId:!this.selectedFilters.empId ||
 				this.selectedFilters.empId == -1 ||
 				this.selectedFilters.empId == 0
-					? this.commonService.getEmpId()
+					? null
 					: this.selectedFilters.empId,
-			IsManager: this.selectedFilters.empId == 0,
 		};
 		this.http
 			.post(
@@ -412,6 +414,20 @@ export class ReportsService implements OnInit {
 				this.populateWorkTaskFilter(index, this.selectedFilters.subProjectId);
 			}
 		}
+
+		if (
+			this.selectedFilters &&
+			this.selectedFilters.costCenterId !== 0 &&
+			type === 'costCenterId'
+		) {
+			const index = this.populatedFilters.findIndex(
+				(filter) => filter.name === 'businessUnitId',
+			);
+			if (index !== -1) {
+				this.populateBusinessUnitFilter(index, this.selectedFilters.costCenterId);
+			}
+		}
+
 	}
 
 	
@@ -447,4 +463,22 @@ export class ReportsService implements OnInit {
 				this.filterStatus.next(this.populatedFilters);
 			});
 	}
+
+
+	populateBusinessUnitFilter(index, costCenterId) {
+		this.businessUnitService
+			.getBusinessUnitsforDropdownByCostCenterId(costCenterId)
+			.subscribe((businessUnits: any) => {
+				businessUnits = businessUnits.data.map((businessUnit) => ({
+					id: businessUnit.id,
+					name: businessUnit.businessUnitName,
+				}));
+				this.populatedFilters[index].options = [
+					this.populatedFilters[index].options[0],
+					...businessUnits,
+				];
+				this.filterStatus.next(this.populatedFilters);
+			});
+	}
+
 }
