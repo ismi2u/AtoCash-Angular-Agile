@@ -107,6 +107,11 @@
 				<p class="dashboard__amount-value ">{{(balance?.pendingApprovalCA).toFixed(2)}}</p>
 			</div>
 
+			<div class="dashboard__amount">
+				<p class="dashboard__amount-label" title="{{'heading.title-pendingSettlementCA' | translate}}">{{'heading.pendingSettlementCA' | translate}}</p>
+				<p class="dashboard__amount-value ">{{(balance?.pendingSettlementCA).toFixed(2)}}</p>
+			</div>
+
 			<div class="dashboard__line_separator"></div>
 
 			<div class="dashboard__amount">
@@ -115,8 +120,8 @@
 			</div>
 			
 			<div class="dashboard__amount">
-				<p class="dashboard__amount-label">{{'heading.pendingSettlement' | translate}}</p>
-				<p class="dashboard__amount-value ">{{(balance?.pendingSettlement).toFixed(2)}}</p>
+				<p class="dashboard__amount-label" title="{{'heading.title-pendingSettlementER' | translate}}">{{'heading.pendingSettlementER' | translate}}</p>
+				<p class="dashboard__amount-value ">{{(balance?.pendingSettlementER).toFixed(2)}}</p>
 			</div>
 			
 			

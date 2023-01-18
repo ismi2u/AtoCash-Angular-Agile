@@ -72,8 +72,15 @@
 		"settlementStatus":"حالة المخالصه",
 		"settlementFrom": "من",
 		"settlementTo": "الي",
+
+
 		"pendingApproval": "موافقات قيد الانتظار",
         "pendingSettlement" : "تحويلات قيد الانتظار",
+
+		"pendingSettlementER" : "Pending Settlements ER",
+		"pendingSettlementCA" : "Pending Settlements CA",
+		"title-pendingSettlementER" : "Pending Settlements Expense Reimburse",
+		"title-pendingSettlementCA" : "Pending Settlements Cash Advance",
 
 		"pendingApprovalCA": "Pending Approvals CA",
 		"pendingApprovalER": "Pending Approvals ER",

@@ -72,11 +72,17 @@
 		"settlementStatus":"Settlement Status",
 		"settlementFrom": "From",
 		"settlementTo": "To",
+
 		"pendingApprovalCA": "Pending Approvals CA",
 		"pendingApprovalER": "Pending Approvals ER",
 		"title-pendingApprovalCA": "Pending Approvals Cash Advance",
 		"title-pendingApprovalER": "Pending Approvals Expense Reimburse",
-        "pendingSettlement" : "Pending Settlements",
+        
+		"pendingSettlementER" : "Pending Settlements ER",
+		"pendingSettlementCA" : "Pending Settlements CA",
+		"title-pendingSettlementER" : "Pending Settlements Expense Reimburse",
+		"title-pendingSettlementCA" : "Pending Settlements Cash Advance",
+
 		"vatRate":"VAT Rate",
 		"location":"Location",
 		"business-type":"Business Type",
