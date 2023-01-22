@@ -83,6 +83,9 @@
 		"title-pendingSettlementER" : "Pending Settlements Expense Reimburse",
 		"title-pendingSettlementCA" : "Pending Settlements Cash Advance",
 
+		"adjustedAgainstCA":"To be adjusted against CA",
+		"title-adjustedAgainstCA":"To be adjusted against Cash Advance",
+
 		"vatRate":"VAT Rate",
 		"location":"Location",
 		"business-type":"Business Type",

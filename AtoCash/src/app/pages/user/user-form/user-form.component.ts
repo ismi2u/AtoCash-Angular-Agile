@@ -52,7 +52,7 @@ export class UserFormComponent implements OnInit {
           this.router.navigateByUrl(`/user/list`);
         });
     } else {
-      this.userService.addUser({...this.form.value, email: this.form.controls['email'].value}).subscribe(() => {
+      this.userService.addUser({...this.form.value, username:this.form.controls['username'].value, email: this.form.controls['email'].value}).subscribe(() => {
         this.router.navigateByUrl(`/user/list`);
       });
     }
@@ -92,16 +92,22 @@ export class UserFormComponent implements OnInit {
             email: [null, [Validators.required]],
             username: [null, [Validators.required]],
           });
-
+        
+    
+    this.form.controls['username'].disable();
     this.form.controls['email'].disable();
+    
     this.form.get('employeeId').valueChanges.subscribe((value) => {
       this.setEmail(value);
     });
+
+
   }
 
   setEmail = (value) => {
     const index = this.employees.findIndex((employee) => employee.id === value);
     if (index !== -1) {
+      this.form.controls['username'].setValue(this.employees[index].email);
       this.form.controls['email'].setValue(this.employees[index].email);
     }
   };
@@ -109,4 +115,6 @@ export class UserFormComponent implements OnInit {
   getLabel = (option) => {
      return `${option.empCode} ${option.firstName} ${option.lastName}`
   }
+
+
 }

@@ -137,6 +137,7 @@ export class TravelRequestFormComponent implements OnInit {
 						if (response.data.businessTypeId) {
 							this.enableBusinessType = true;
 							this.selectBusinessType(response.data.businessTypeId);
+							this.selectBusinessUnit(response.data.businessUnitId);
 						}
 
 						this.form.setValue(formData);
@@ -167,6 +168,8 @@ export class TravelRequestFormComponent implements OnInit {
 		});
 
 		this.form.controls['travelEndDate'].valueChanges.subscribe();
+
+		
 	}
 
 	disabledStartDate = (startValue: Date): boolean => {

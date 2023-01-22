@@ -19,57 +19,7 @@
     [formGroup]="form"
     (ngSubmit)="submitForm()"
   >
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzRequired nzFor="advanceAmount">{{
-        'form.cashAdvance.advanceAmount' | translate
-      }}</nz-form-label>
-      <nz-form-control  [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-        
-          <input
-            formControlName="cashAdvanceAmount"
-            type="number"
-            nz-input
-            [placeholder]="'form.cashAdvance.advanceAmount' | translate"
-            id="advanceAmount"
-          />
-      
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzRequired nzFor="requestDescription">{{
-        'form.cashAdvance.requestDescription' | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-        
-          <input
-            formControlName="cashAdvanceRequestDesc"
-            nz-input
-            type="text"
-            [placeholder]=" 'form.cashAdvance.requestDescription' | translate"
-            appCapitalize
-            id="requestDescription"
-          />
-  
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="7" nzRequired nzFor="status">{{
-        "form.cashAdvance.currency" | translate
-      }}</nz-form-label>
-
-      <nz-form-control [nzSpan]="15" [nzErrorTip]="'validation.required' |translate ">
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          id="status"
-          formControlName="currencyTypeId"
-          [nzPlaceHolder]="'form.cashAdvance.currency' | translate"
-        >
-          <nz-option *ngFor="let option of currencies" [nzValue]="option.id" [nzLabel]="option.currencyCode"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
-
+    
 
      <!-- Non Project Request / Business Unit Request -->
      <nz-form-item *ngIf="!enableProject && !form.controls['projectId'].value && subProjects.length <= 0">
@@ -198,6 +148,60 @@
       </nz-form-control>
     </nz-form-item>
 
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired nzFor="advanceAmount">{{
+        'form.cashAdvance.advanceAmount' | translate
+      }}</nz-form-label>
+      <nz-form-control  [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+        
+          <input
+            formControlName="cashAdvanceAmount"
+            type="number"
+            nz-input
+            [placeholder]="'form.cashAdvance.advanceAmount' | translate"
+            id="advanceAmount"
+          />
+      
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired nzFor="requestDescription">{{
+        'form.cashAdvance.requestDescription' | translate
+      }}</nz-form-label>
+      <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+        
+          <input
+            formControlName="cashAdvanceRequestDesc"
+            nz-input
+            type="text"
+            [placeholder]=" 'form.cashAdvance.requestDescription' | translate"
+            appCapitalize
+            id="requestDescription"
+          />
+  
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired nzFor="status">{{
+        "form.cashAdvance.currency" | translate
+      }}</nz-form-label>
+
+      <nz-form-control [nzSpan]="15" [nzErrorTip]="'validation.required' |translate ">
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          id="status"
+          formControlName="currencyTypeId"
+          [nzPlaceHolder]="'form.cashAdvance.currency' | translate"
+        >
+          <nz-option *ngFor="let option of currencies" [nzValue]="option.id" [nzLabel]="option.currencyCode"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+
+    
     <nz-form-item>
       <nz-form-control class="action-control">
         <button nz-button nzType="primary" [disabled]="!form.valid || (enableProject && !this.form.get('projectId').value)  || (!enableProject && !this.form.get('businessUnitId').value)">
@@ -205,6 +209,7 @@
         </button>
       </nz-form-control>
     </nz-form-item>
+
   </form>
   <ng-template #action>
     <button nz-button routerLink="/cash-advance" nzType="primary">

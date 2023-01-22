@@ -20,53 +20,7 @@
     (ngSubmit)="submitForm()"
   >
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelStartDate">{{
-      "form.travel.startDate" | translate
-    }}</nz-form-label>
-
-    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-      <nz-date-picker
-      [nzDisabledDate]="disabledStartDate"
-        id="travelStartDate"
-        formControlName="travelStartDate"
-        [nzPlaceHolder]="'form.travel.startDate' | translate"
-      ></nz-date-picker>
-    </nz-form-control>
-  </nz-form-item>
   
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelEndDate">{{
-      "form.travel.endDate" | translate
-    }}</nz-form-label>
-
-    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-      <nz-date-picker
-      [nzDisabledDate]="disabledEndDate"
-        id="travelEndDate"
-        formControlName="travelEndDate"
-        [nzPlaceHolder]="'form.travel.endDate' | translate"
-      ></nz-date-picker>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelPurpose">{{
-      'form.travel.travelPurpose' | translate
-    }}</nz-form-label>
-    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
-      
-        <input
-          formControlName="travelPurpose"
-          nz-input
-          type="text"
-          [placeholder]=" 'form.travel.travelPurpose' | translate"
-          appCapitalize
-          id="travelPurpose"
-        />
-
-    </nz-form-control>
-  </nz-form-item>
 
   <!-- Non Project Request / Business Unit Request -->
   <nz-form-item *ngIf="!enableProject">
@@ -192,6 +146,56 @@
     </nz-form-control>
   </nz-form-item>
 
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelStartDate">{{
+      "form.travel.startDate" | translate
+    }}</nz-form-label>
+
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+      <nz-date-picker
+      [nzDisabledDate]="disabledStartDate"
+        id="travelStartDate"
+        formControlName="travelStartDate"
+        [nzPlaceHolder]="'form.travel.startDate' | translate"
+      ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelEndDate">{{
+      "form.travel.endDate" | translate
+    }}</nz-form-label>
+
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+      <nz-date-picker
+      [nzDisabledDate]="disabledEndDate"
+        id="travelEndDate"
+        formControlName="travelEndDate"
+        [nzPlaceHolder]="'form.travel.endDate' | translate"
+      ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired nzFor="travelPurpose">{{
+      'form.travel.travelPurpose' | translate
+    }}</nz-form-label>
+    <nz-form-control [nzSpan]="15"  [nzErrorTip]="'validation.required' | translate">
+      
+        <input
+          formControlName="travelPurpose"
+          nz-input
+          type="text"
+          [placeholder]=" 'form.travel.travelPurpose' | translate"
+          appCapitalize
+          id="travelPurpose"
+        />
+
+    </nz-form-control>
+  </nz-form-item>
+
+  
   <nz-form-item>
     <nz-form-control class="action-control">
       <button nz-button nzType="primary" [disabled]="!form.valid  || (enableProject && !this.form.get('projectId').value) || (!enableProject && !this.form.get('businessUnitId').value)">

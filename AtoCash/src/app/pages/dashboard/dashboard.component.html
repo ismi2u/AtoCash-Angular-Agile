@@ -124,7 +124,11 @@
 				<p class="dashboard__amount-value ">{{(balance?.pendingSettlementER).toFixed(2)}}</p>
 			</div>
 			
-			
+			<div class="dashboard__amount">
+				<p class="dashboard__amount-label" title="{{'heading.title-adjustedAgainstCA' | translate}}">{{'heading.adjustedAgainstCA' | translate}}</p>
+				<p class="dashboard__amount-value ">{{(balance?.adjustedAgainstCA).toFixed(2)}}</p>
+			</div>
+
 			<p class="dashboard__credit-card-label margin-top-16">{{'heading.information' | translate}}</p>
 			<div class="dashboard__amount">
 				<p class="dashboard__amount-label">{{'heading.accountStatus' | translate}}</p>
