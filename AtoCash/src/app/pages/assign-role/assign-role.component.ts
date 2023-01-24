@@ -1,3 +1,4 @@
+import { CommonService } from 'src/app/services/common.service';
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -20,65 +21,84 @@ export class AssignRoleComponent implements OnInit {
     private snapshot: ActivatedRoute,
     private userRolesService: UserRolesService,
     private userService: UserService,
-
+    private commonService: CommonService,
     private router: Router
-  ) {}
+
+  ) { }
 
   submitForm(): void {
+
+    this.commonService.loading.next(true);
+
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
       this.form.controls[i].updateValueAndValidity();
     }
-    this.userService.assignUserRole(this.form.value).subscribe(()=>{
+    this.userService.assignUserRole(this.form.value).subscribe(() => {
       this.userService
-      .getUserById(this.userId)
-      .subscribe((response: any) => {
-        this.form.controls['roleIds'].setValue(response.data.roleids)
-      });
-    
+        .getUserById(this.userId)
+        .subscribe((response: any) => {
+          this.form.controls['roleIds'].setValue(response.data.roleids)
+        });
+
     });
   }
 
   ngOnInit(): void {
+    
     this.userService.getUsers();
     this.userRolesService.getUserRoles();
-    this.userRolesService.userRoles.subscribe(data=>{
+    this.userRolesService.userRoles.subscribe(data => {
       this.userRoles = data
-    })
-    this.userService.users.subscribe((data) => {
-      this.users = data;
-   if(data.length > 0) {
-      this.userService
-      .getUserById(data[0].id)
-      .subscribe((response: any) => {
-        let formData = {
-          userId: response.data.user.id,
-          roleIds:response.data.roleids,
-        };
-        this.form.setValue(formData);
-      });
-    }
+      
     });
-   
+
+    this.userService.users.subscribe((data) => {
+      
+      this.users = data;
+      if (data.length > 0) {
+        
+        this.userService
+          .getUserById(data[0].id)
+          .subscribe((response: any) => {
+            let formData = {
+              userId: response.data.user.id,
+              roleIds: response.data.roleids,
+            };
+
+            
+            this.form.setValue(formData);
+          });
+          
+      }
+      
+    });
+
+    
 
     this.form = this.fb.group({
       roleIds: [[], [Validators.required]],
       userId: [null, [Validators.required]],
     });
 
-    this.form.get('userId').valueChanges.subscribe(value=>{
-     this.userChange(value)
+    this.form.get('userId').valueChanges.subscribe(value => {
+      this.userChange(value)
     })
+
   }
 
+  
+
   userChange(id) {
+    this.commonService.loading.next(true);
     this.userId = id;
 
-      this.userService
+    this.userService
       .getUserById(id)
       .subscribe((response: any) => {
-        this.form.controls['roleIds'].setValue(response.data.roleids)
+        this.form.controls['roleIds'].setValue(response.data.roleids);
+        this.commonService.loading.next(false);
       });
-    
+
   }
 }

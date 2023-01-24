@@ -465,7 +465,7 @@
 			<td *ngIf="data.cashAdvanceRequestDesc && formName == 'cashRequest'">
 				{{ data.cashAdvanceRequestDesc }}
 			</td>
-			<td *ngIf="data.cashAdvanceAmount && formName == 'cashRequest'">
+			<td *ngIf="data && formName == 'cashRequest'">
 				{{ data.cashAdvanceAmount }}
 			</td>
 
@@ -571,8 +571,8 @@
 			</td>
 
 			<!-- Expense Sub Claims -->
-			<td *ngIf="data && formName == 'expenseReimburseData'">
-				{{ data.invoiceNo }}
+			<td *ngIf="data?.expenseCategory && formName == 'expenseReimburseData'">
+				{{ data.expenseCategory }}
 			</td>
 			<td *ngIf="data?.expenseType && formName == 'expenseReimburseData'">
 				{{ data.expenseType }}
@@ -585,6 +585,9 @@
 				"
 			>
 				{{ getExpenseName(data.expenseTypeId) }}
+			</td>
+			<td *ngIf="data && formName == 'expenseReimburseData'">
+				{{ data.invoiceNo }}
 			</td>
 			<td *ngIf="data && formName == 'expenseReimburseData'">
 				{{ data.invoiceDate | date: 'dd/MM/yyyy' }}
@@ -715,14 +718,14 @@
 			</td> 
 			<td
 				*ngIf="
-					(data?.cashAdvanceAmount ||
-						data?.totalClaimAmount ||
-						data?.cashAdvanceAmount || data?.expenseReimbClaimAmount || data.claimAmount) &&
+					(data.cashAdvanceAmount>=0 ||
+						data?.totalClaimAmount>=0 ||
+						data?.cashAdvanceAmount>=0 || data?.expenseReimbClaimAmount>=0 || data.claimAmount>=0 ) &&
 					formName == 'reports'
 				"
 			>
 				{{
-					data.claimAmount || data?.cashAdvanceAmount || data?.totalClaimAmount || data?.cashAdvanceAmount || data.expenseReimbClaimAmount
+					data.claimAmount || data.cashAdvanceAmount || data.totalClaimAmount || data.cashAdvanceAmount || data.expenseReimbClaimAmount
 				}}
 			</td>
 			<td *ngIf="data.expenseType && formName == 'reports'">

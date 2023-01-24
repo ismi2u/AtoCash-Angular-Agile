@@ -23,8 +23,9 @@ import { ExpenseReimburseRequestSummaryComponent } from '../expense-reimburse-re
 export class ExpenseReimburseRequestCreateComponent implements OnInit {
 	expenses: any = [];
 	travelRequestHeaders: any = [
-		'tableHeader.expenseReimburse.create.invoiceNo',
+		'tableHeader.expenseReimburse.create.expenseCategory',
 		'tableHeader.expenseReimburse.create.expenseType',
+		'tableHeader.expenseReimburse.create.invoiceNo',		
 		'tableHeader.expenseReimburse.create.invoiceDate',
 		'tableHeader.expenseReimburse.create.claimAmount',
 	];

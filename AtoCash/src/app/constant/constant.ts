@@ -469,9 +469,9 @@ export const constant = {
 				role: 'canOrganize',
 			},
 			{
-				label: 'components.filters.reports.department',
-				name: 'departmentId',
-				options: [{ id: 0, name: 'components.filters.reports.all' }],
+				label: 'components.filters.reports.businessUnit',
+				name: 'businessUnitId',
+				options: [{ id: 0, name: 'components.filters.reports.all'}],
 				defaultValue: 0,
 				type: 'select',
 				onlyIf: 'costCenterId',

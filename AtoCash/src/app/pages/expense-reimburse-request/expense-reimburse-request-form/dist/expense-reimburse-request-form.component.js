@@ -155,7 +155,7 @@ var ExpenseReimburseRequestFormComponent = /** @class */ (function () {
             invoiceDate: [null, [forms_1.Validators.required]],
             expenseTypeId: [null, [forms_1.Validators.required]],
             expenseReimbClaimAmount: [null, [forms_1.Validators.required]],
-            location: [null, [forms_1.Validators.required]],
+            location: [null],
             isVAT:[true],
             tax: [0, [forms_1.Validators.required, forms_1.Validators.max(100)]],
             taxAmount: [null, [forms_1.Validators.required]],

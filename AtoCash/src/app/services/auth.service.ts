@@ -31,8 +31,8 @@ export class AuthService {
 || domain=="shawarmaplus.sa" || domain=="signsa.com" || domain=="tameesa.com"
 || domain=="tameesa.com.sa" || domain=="thouq.sa" || domain=="tameesa.com" || domain=="gmail.com")
 {
-  //domain="fwserver"
-  domain="foodunitcoserver"
+  domain="fwserver"
+  //domain="foodunitcoserver"
 }
 		//console.log('2=='+domain);
 

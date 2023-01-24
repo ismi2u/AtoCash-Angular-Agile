@@ -73,28 +73,31 @@
 		"settlementFrom": "من",
 		"settlementTo": "الي",
 
-
 		"pendingApproval": "موافقات قيد الانتظار",
         "pendingSettlement" : "تحويلات قيد الانتظار",
-
-		"pendingSettlementER" : "Pending Settlements ER",
-		"pendingSettlementCA" : "Pending Settlements CA",
-		"title-pendingSettlementER" : "Pending Settlements Expense Reimburse",
-		"title-pendingSettlementCA" : "Pending Settlements Cash Advance",
 
 		"pendingApprovalCA": "Pending Approvals CA",
 		"pendingApprovalER": "Pending Approvals ER",
 		"title-pendingApprovalCA": "Pending Approvals Cash Advance",
 		"title-pendingApprovalER": "Pending Approvals Expense Reimburse",
+
+		"pendingSettlementER" : "Pending Settlements ER",
+		"pendingSettlementCA" : "Pending Settlements CA",
+		"title-pendingSettlementER" : "Pending Settlements Expense Reimburse",
+		"title-pendingSettlementCA" : "Pending Settlements Cash Advance",		
 		
+		"adjustedAgainstCA":"To be adjusted against CA",
+		"title-adjustedAgainstCA":"To be adjusted against Cash Advance",
+
 		"expenseReimburseDepartment": "التعويض النقدي للاداره",
 		"expenseReimburseBusiness": "التعويض النقدي للمتجر",
+
 		"vatRate":"قيمة ضريبة القيمه المضافه",
-		"location":"Location",
-		"business-type":"Business Type",
-		"business-unit":"Business Unit",
-		"employee-extended-info":"Employee Extended Info",
-		"vendor":"Vendors"
+		"location":"المكان",
+		"business-type":"نوع جهة العمل",
+		"business-unit":"وحدة العمل",
+		"employee-extended-info":"بيانات اضافيه للموظفين",
+		"vendor":"الموردين"
 	},
 	"form": {
 		"disburse": {
@@ -126,17 +129,17 @@
 			"title": " اسم التكلفه",
 			"employee": " الموظف",
 			"location": "المكان",
-			"department": "اداره",
+			"businessType":"نوع جهة العمل",
 			"taxNo": "الرقم الضريبي",
 			"NoOfDays":"عدد الايام",
 			"StartDate":"تاريخ البدء",
 			"EndDate":"تاريخ الانتهاء",
-			"businessArea":"جهة العمل",
+			"businessUnit":"وحدة العمل",
 			"isVAT":"ضريبة القيمه المضافه",
-			"totalClaimAmount":"Claim Amount",
-			"withVAT":"(Inclusive of VAT)",
-			"businessUnitLocation":"Location",
-			"additionalVendor":"Other Vendor Name"
+			"totalClaimAmount":"قيمة التعويض النقدي",
+			"withVAT":"(شامل الضريبه)",
+			"businessUnitLocation":"المكان",
+			"additionalVendor":"موردين اخرين"
 		},
 		"status": {
 			"status": "الحاله"
@@ -150,9 +153,9 @@
             "subProject": "المشروع الفرعي",
             "task": "المهمه",
 			"currency": "العمله",
-			"businessType":"Business Type",
-			"businessUnit":"Business Unit",
-			"businessUnitLocation":"Location"
+			"businessType":"نوع جهة العمل",
+			"businessUnit":"وحدة العمل",
+			"businessUnitLocation":"المكان"
 		},
 		"travel": {
 			"startDate": "تاريخ البدء",
@@ -163,9 +166,9 @@
 			"subProject": "المشروع الفرعي",
 			"task": "المهمه",
 			"currency": "العمله",
-			"businessType":"Business Type",
-			"businessUnit":"Business Unit",
-			"businessUnitLocation":"Location"
+			"businessType":"نوع جهة العمل",
+			"businessUnit":"وحدة العمل",
+			"businessUnitLocation":"المكان"
 		},
 		"login": {
 			"email": "البريد الالكتروني",
@@ -307,37 +310,37 @@
 			"project": "المشروع"
 		},
 		"location":{
-			"id":"Id",
-			"locationName":"Location Name",
-			"city":"City",
-			"latitude":"Latitude",
-			"longitude":"Longitude",
-			"locationDesc":"Description",
-			"status": "Status"
+			"id":  "الرقم",
+			"locationName":"اسم المكان",
+			"city":"المدينه",
+			"latitude":"خط العرض",
+			"longitude":"خط الطول",
+			"locationDesc":"الوصف",
+			"status": "الحاله"
 		},
 		"business-unit":{
-			"id":"Id",
-			"businessType":"Business Type",
-			"businessUnitName":"Business Unit Code",
-			"businessUnitDesc":"Business Unit Name",
-			"businessDesc":"Business Unit Desc.",
-			"costCenter":"Cost Center",			
-			"location":"Location",
-			"status": "Status"
+			"id":  "الرقم",
+			"businessType":"نوع جهة العمل",
+			"businessUnitName":"وحدة العمل",
+			"businessUnitDesc":"رمز وحدة العمل",
+			"businessDesc":"اسم وحدة العمل",
+			"costCenter":"مركز التكلفه",			
+			"location":"المكان",
+			"status": "الحاله"
 		},
 		"employee-extended-info":{
-			"employee":"Employee",
-			"role":"Job Role",
-			"group":"Approval Group",
-			"level":"Level",
-			"status": "Status"
+			"employee": "الموظف",
+			"role":"الصلاحيات",
+			"group":"الفريق",
+			"level":"الدرجه",
+			"status":"الحاله"
 		},
 		"vendor":{
 			 
-			"vendorName":"Vendor Name",
-			"description":"Description",
-			"city":"City",
-			"status": "Status"
+			"vendorName":"اسم المورد",
+			"description":"الوصف",
+			"city":"المدينه",
+			"status": "الحاله"
 		}
 	},
 	"tableHeader": {
@@ -352,18 +355,20 @@
 		"disburse": {
 			"id": "الرقم",
 			"employee": "الموظف",
-			"department": "الاداره",
+			"businessType":"نوع جهة العمل",
+			"businessUnit":"وحدة العمل",
+			"businessUnitLocation":"المكان",
 			"project": "المشروع",
 			"claimAmount": "القيمه المطلوبه",
-			"status": "الحاله",
-			"businessArea": "جهات العمل"
+			"status": "الحاله"
 		},
 		"travel": {
 			"startDate": "تاريخ البدء",
 			"endDate": "تاريخ الانتهاء",
 			"travelPurpose": "غرض السفر",
-			"department": "الاداره",
-			"project": "المشروع",
+			"businessType":"نوع جهة العمل",
+			"businessUnit":"وحدة العمل",
+			"businessUnitLocation":"المكان",
 			"requestDate": "تاريخ الطلب",
 			"id": "رقم الطلب",
 			"status": "الحاله",
@@ -385,19 +390,19 @@
 		"cashAdvance": {
 			"advanceAmount": "القيمه",
 			"cashAdvanceRequestDesc": "الوصف",
-			"department": "الاداره",
+			"businessType":"نوع جهة العمل",
+			"businessUnit":"وحدة العمل",
+			"businessUnitLocation":"المكان",
 			"project": "المشروع",
 			"requestDate": "تاريخ الطلب",
 			"id": "رقم الطلب",
 			"approvalStatusType": "الحاله",
-			"cashAdvanceAmount": "القيمه المطلوبه",
-			"businessType":"Business Type",
-			"businessUnit":"Business Unit"
+			"cashAdvanceAmount": "المبلغ المقدم"		
 		},
 		"inbox": {
 			"employee": "الموظف",
 			"generalLedger":"الدفتر العام",
-			"businessType": "Business Type",
+			"businessType": "نوع جهة العمل",
 			"project": "المشروع",
 			"requestDate": "تاريخ الطلب",
 			"id": "رقم الطلب",
@@ -407,7 +412,8 @@
 			"costCenter": "مركز التكلفه",
 			"invoiceDate": "تاريخ الفاتوره",
 			"expenseType": "نوع التكلفه",
-			"businessUnit":"Business Unit"
+			"businessUnit":"وحدة العمل",
+			"advanceAmount":"المبلغ المقدم"
 		},
 		"costCenter": {
 			"costCenterCode": "الرمز",
@@ -508,16 +514,18 @@
 		},
 		"expenseReimburse": {
 			"create": {
+				"expenseCategory":  "انواع المصاريف",
+				"expenseType": "نوع التكلفه",		
 				"invoiceNo": "رقم الفاتوره",
 				"invoiceDate": "تاريخ الفاتوره",
-				"claimAmount": "قيمة التكلفه",
-				"expenseType": "نوع التكلفه"
+				"claimAmount": "قيمة التكلفه"
 			},
 			"list": {
 				"expenseName": "نوع التكلفه",
 				"claimAmount": "قيمة التكلفه",
-				"department": "الاداره",
-				"businessArea":"جهات العمل",
+				"businessType": "نوع جهة العمل",
+				"businessUnit": "وحدة العمل",
+				"location":"المكان",
 				"projectName": "المشروع",
 				"requestDate": "تاريخ الطلب",
 				"id": "رقم الطلب",
@@ -529,37 +537,37 @@
 			"project": "المشروع"
 		},
 		"location":{
-			"id":"Id",
-			"locationName":"Location Name",
-			"city":"City",
-			"latitude":"Latitude",
-			"longitude":"Longitude",
-			"locationDesc":"Description",
-			"status": "Status"
+			"id":  "الرقم",
+			"locationName":"اسم المكان",
+			"city":"المدينه",
+			"latitude":"خط العرض",
+			"longitude":"خط الطول",
+			"locationDesc":"الوصف",
+			"status": "الحاله"
 		},
 		"business-unit":{
-			"id":"Id",
-			"businessType":"Business Type",
-			"businessUnitCode":"Business Unit Code",
-			"businessUnitName":"Business Unit Name",
-			"businessDesc":"Business Unit Desc.",
-			"costCenter":"Cost Center",			
-			"location":"Location",
-			"status": "Status"
+			"id":  "الرقم",
+			"businessType":"نوع جهة العمل",
+			"businessUnitCode":"رمز وحدة العمل",
+			"businessUnitName":"اسم وحدة العمل",
+			"businessDesc":"وصف وحدة العمل",
+			"costCenter":"مركز التكلفه",			
+			"location":"المكان",
+			"status": "الحاله"
 		},
 		"employee-extended-info":{
-			"id":"Id",
-			"employeeId":"Employee Id",
-			"jobRoleId":"Job Role Id",
-			"approvalGroupId":"Approval Group Id",
-			"approvalLevelId":"Level Id",
-			"status": "Status"
+			"id":  "الرقم",
+			"employeeId":"رقم الموظف",
+			"jobRoleId":"رقم الدور الوظيفي",
+			"approvalGroupId":"رقم تسلسل الموافقات",
+			"approvalLevelId":"رقم الدرجه",
+			"status": "الحاله"
 		},"vendor":{
-			"id":"Id",
-			"vendorName":"Vendor Name",
-			"description":"Description",
-			"city":"City",
-			"status": "Status"
+			"id":  "الرقم",
+			"vendorName":"الموردين",
+			"description":"اسم المورد",
+			"city":"المدينه",
+			"status": "الحاله"
 		}
 	},
 	"button": {
@@ -647,8 +655,16 @@
 			"cardNo": "رقم البطاقه",
 			"expenseId": "رقم المصروف",
 			"pettyCashId": "رقم المصروف النثري",
-			"businessArea":"جهات العمل",
-			"requestTypeId":"Request Id"
+			"businessUnit":"وحدة العمل",
+			"blendedRequestId":"رقم الطلب",
+			"expenseCategory":"الاسم",
+			"expenseType":"نوع التكلفه",
+			"StartDate":"تاريخ البدء",
+			"EndDate":"تاريخ الانتهاء",
+			"expNoOfDays":"عدد الايام",
+			"taxNo":"الرقم الضريبي",
+			"additionalVendor0":"موردين اخرين",
+			"expenseAmount":"مبلغ المصاريف"
 		},
 		"filters": {
 			"reports": {
@@ -687,7 +703,7 @@
 				"female": "انثي",
 				"others": "غير ذلك",
 				"myReports": "تقاريري",
-				"businessArea":"جهات العمل"
+				"businessUnit":"وحدة العمل"
 			}
 		}
 	},

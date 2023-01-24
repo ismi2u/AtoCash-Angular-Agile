@@ -24,16 +24,27 @@
 			class="request-details-card__right-pane"
 			[nzSpan]="disableStatusFlow && disableDocumentsView ? 16 : 17"
 		>
+			<!-- Cash Advance Details on Row Click START -->
 			<nz-descriptions
 				[nzTitle]="'components.requestDetails.cashAdvanceDetails' | translate"
-				*ngIf="requestType === 'cashAdvance'"
-			>
+				*ngIf="requestType === 'cashAdvance'">
+				
 				<nz-descriptions-item
-					*ngIf="requestDetails?.travelApprovalRequestId || requestDetails?.id"
+					*ngIf="requestDetails?.id"
 					[nzTitle]="'components.requestDetails.id' | translate"
 				>
-					{{ requestDetails.travelApprovalRequestId || requestDetails?.id }}
+					{{ requestDetails?.id }}
 				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.employee || requestDetails?.employeeName"
+					[nzTitle]="'components.requestDetails.employee' | translate"
+				>
+					{{
+						requestDetails?.employee?.firstName || requestDetails?.employeeName
+					}}
+				</nz-descriptions-item>
+
 				<nz-descriptions-item
 					*ngIf="requestDetails?.businessType"
 					[nzTitle]="'components.requestDetails.businessType' | translate"
@@ -50,31 +61,13 @@
 
 				<nz-descriptions-item
 					*ngIf="requestDetails?.location"
-					[nzTitle]="'components.requestDetails.location' | translate"
+					[nzTitle]="'components.requestDetails.businessUnitLocation' | translate"
 				>
 					{{ requestDetails.location }}
 				</nz-descriptions-item>
 
-				<nz-descriptions-item
-					*ngIf="requestDetails?.employee || requestDetails?.employeeName"
-					[nzTitle]="'components.requestDetails.employee' | translate"
-				>
-					{{
-						requestDetails?.employee?.firstName || requestDetails?.employeeName
-					}}
-				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.approvalStatusType"
-					[nzTitle]="'components.requestDetails.currentStatus' | translate"
-				>
-					{{ requestDetails.approvalStatusType }}
-				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.pettyClaimAmount"
-					[nzTitle]="'components.requestDetails.advanceAmount' | translate"
-					>{{ requestDetails.pettyClaimAmount }}
-				</nz-descriptions-item>
-
+				
+				
 				<nz-descriptions-item *ngIf="requestDetails?.project" nzTitle="Project"
 					>{{ requestDetails.project }}
 				</nz-descriptions-item>
@@ -91,16 +84,31 @@
 				</nz-descriptions-item>
 
 				<nz-descriptions-item
-					*ngIf="requestDetails?.cashReqDate"
-					[nzTitle]="'components.requestDetails.requestDate' | translate"
+					*ngIf="requestDetails?.approvalStatusType"
+					[nzTitle]="'components.requestDetails.currentStatus' | translate"
 				>
-					{{ requestDetails.cashReqDate | date: 'dd/MM/yyyy' }}
+					{{ requestDetails.approvalStatusType }}
 				</nz-descriptions-item>
 				<nz-descriptions-item
-					*ngIf="requestDetails?.pettyClaimRequestDesc"
-					[nzTitle]="'components.requestDetails.description' | translate"
-					>{{ requestDetails.pettyClaimRequestDesc }}
+					*ngIf="requestDetails?.cashAdvanceAmount"
+					[nzTitle]="'components.requestDetails.advanceAmount' | translate"
+					>{{ requestDetails.cashAdvanceAmount }}
 				</nz-descriptions-item>
+				
+				<nz-descriptions-item
+				*ngIf="requestDetails?.cashAdvanceRequestDesc"
+				[nzTitle]="'components.requestDetails.description' | translate"
+				>{{ requestDetails.cashAdvanceRequestDesc }}
+				</nz-descriptions-item>
+				
+				<nz-descriptions-item
+					*ngIf="requestDetails?.requestDate"
+					[nzTitle]="'components.requestDetails.requestDate' | translate"
+				>
+					{{ requestDetails.requestDate | date: 'dd/MM/yyyy' }}
+				</nz-descriptions-item>
+
+			
 				<nz-descriptions-item
 					*ngIf="requestDetails?.comments"
 					[nzTitle]="'components.requestDetails.comments' | translate"
@@ -121,8 +129,19 @@
 				>
 					{{ commonService.getSettlementType(requestDetails.isSettled) }}
 				</nz-descriptions-item>
-			</nz-descriptions>
-			<nz-descriptions
+
+				<nz-descriptions-item
+					*ngIf="requestDetails"
+					[nzTitle]="'heading.costCenter' | translate"
+				>
+					{{ requestDetails.costCentre }}
+				</nz-descriptions-item>
+				
+		</nz-descriptions>
+		<!-- Cash Advance Details on Row Click END -->
+
+		<!-- Expense Reimburse Details on Row Click START -->
+		<nz-descriptions
 				[nzTitle]="'components.requestDetails.expenseRequestTitle' | translate"
 				*ngIf="requestType === 'expenseReimburse'"
 			>
@@ -132,55 +151,13 @@
 				>
 					{{ requestDetails.id }}
 				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.expenseReportTitle"
-					[nzTitle]="'components.requestDetails.expenseTitle' | translate"
-					>{{ requestDetails.expenseReportTitle }}
-				</nz-descriptions-item>
+				
 				<nz-descriptions-item
 					*ngIf="requestDetails?.employeeName"
 					[nzTitle]="'components.requestDetails.employee' | translate"
 					>{{ requestDetails.employeeName }}
 				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="
-						requestDetails?.totalClaimAmount || requestDetails?.pettyClaimAmount
-					"
-					[nzTitle]="'components.requestDetails.claimAmount' | translate"
-					>{{
-						requestDetails.totalClaimAmount || requestDetails.pettyClaimAmount
-					}}</nz-descriptions-item
-				>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.expReimReqDate"
-					[nzTitle]="'components.requestDetails.requestDate' | translate"
-				>
-					{{ requestDetails.expReimReqDate | date: 'dd/MM/yyyy' }}
-				</nz-descriptions-item>
 
-				<nz-descriptions-item
-					*ngIf="requestDetails?.approvalStatusType"
-					[nzTitle]="'components.requestDetails.currentStatus' | translate"
-				>
-					{{ requestDetails.approvalStatusType }}
-				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.projectName"
-					[nzTitle]="'components.requestDetails.project' | translate"
-					>{{ requestDetails.projectName }}
-				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.subProjectName"
-					[nzTitle]="'components.requestDetails.subProject' | translate"
-					>{{ requestDetails.subProjectName }}
-				</nz-descriptions-item>
-
-				<nz-descriptions-item
-					*ngIf="requestDetails?.workTaskName"
-					[nzTitle]="'components.requestDetails.workTask' | translate"
-					>{{ requestDetails.workTaskName }}
-				</nz-descriptions-item>
-				
 				<nz-descriptions-item
 					*ngIf="requestDetails?.businessType"
 					[nzTitle]="'components.requestDetails.businessType' | translate"
@@ -197,9 +174,57 @@
 
 				<nz-descriptions-item
 					*ngIf="requestDetails?.location"
-					[nzTitle]="'components.requestDetails.location' | translate"
+					[nzTitle]="'components.requestDetails.businessUnitLocation' | translate"
 				>
 					{{ requestDetails.location }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.projectName"
+					[nzTitle]="'components.requestDetails.project' | translate"
+					>{{ requestDetails.projectName }}
+				</nz-descriptions-item>
+				<nz-descriptions-item
+					*ngIf="requestDetails?.subProjectName"
+					[nzTitle]="'components.requestDetails.subProject' | translate"
+					>{{ requestDetails.subProjectName }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.workTaskName"
+					[nzTitle]="'components.requestDetails.workTask' | translate"
+					>{{ requestDetails.workTaskName }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.approvalStatusType"
+					[nzTitle]="'components.requestDetails.currentStatus' | translate"
+				>
+					{{ requestDetails.approvalStatusType }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.expenseReportTitle"
+					[nzTitle]="'components.requestDetails.expenseTitle' | translate"
+					>{{ requestDetails.expenseReportTitle }}
+				</nz-descriptions-item>
+
+
+				<!-- This field from Cash Advance, Advance Amount -->
+				<nz-descriptions-item
+					*ngIf="
+						requestDetails?.totalClaimAmount || requestDetails?.pettyClaimAmount
+					"
+					[nzTitle]="'components.requestDetails.claimAmount' | translate"
+					>{{
+						requestDetails.totalClaimAmount || requestDetails.pettyClaimAmount
+					}}</nz-descriptions-item
+				>
+				<nz-descriptions-item
+					*ngIf="requestDetails?.requestDate"
+					[nzTitle]="'components.requestDetails.requestDate' | translate"
+				>
+					{{ requestDetails.requestDate | date: 'dd/MM/yyyy' }}
 				</nz-descriptions-item>
 
 				<nz-descriptions-item
@@ -229,10 +254,17 @@
 				>
 					{{ commonService.getSettlementType(requestDetails.isSettled) }}
 				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails"
+					[nzTitle]="'heading.costCenter' | translate"
+				>
+					{{ requestDetails.costCentre }}
+				</nz-descriptions-item>
 			</nz-descriptions>
+			<!-- Expense Reimburse Details on Row Click END -->
 
-			<!-- Travel Request -->
-
+			<!-- Travel Request Details on Row Click START -->
 			<nz-descriptions
 				[nzTitle]="'components.requestDetails.travelRequestDetails' | translate"
 				*ngIf="requestType === 'travelRequest'"
@@ -250,18 +282,7 @@
 					{{ requestDetails.travelApprovalRequestId }}
 				</nz-descriptions-item>
 
-				<nz-descriptions-item
-					*ngIf="requestDetails?.travelStartDate"
-					[nzTitle]="'components.requestDetails.travelStartDate' | translate"
-				>
-					{{ requestDetails.travelStartDate | date: 'dd/MM/yyyy' }}
-				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.travelEndDate"
-					[nzTitle]="'components.requestDetails.travelEndDate' | translate"
-				>
-					{{ requestDetails.travelEndDate | date: 'dd/MM/yyyy' }}
-				</nz-descriptions-item>
+				
 				<nz-descriptions-item
 					*ngIf="requestDetails?.employee || requestDetails?.employeeName"
 					[nzTitle]="'components.requestDetails.employee' | translate"
@@ -270,12 +291,28 @@
 						requestDetails?.employee?.firstName || requestDetails.employeeName
 					}}
 				</nz-descriptions-item>
+
 				<nz-descriptions-item
-					*ngIf="requestDetails?.travelPurpose"
-					[nzTitle]="'components.requestDetails.travelPurpose' | translate"
+					*ngIf="requestDetails?.businessType"
+					[nzTitle]="'components.requestDetails.businessType' | translate"
 				>
-					{{ requestDetails.travelPurpose }}
+					{{ requestDetails.businessType }}
 				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.businessUnit"
+					[nzTitle]="'components.requestDetails.businessUnit' | translate"
+				>
+					{{ requestDetails.businessUnit }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.location"
+					[nzTitle]="'components.requestDetails.businessUnitLocation' | translate"
+				>
+					{{ requestDetails.location }}
+				</nz-descriptions-item>
+				
 				<nz-descriptions-item
 					*ngIf="requestDetails?.projectName"
 					[nzTitle]="'components.requestDetails.project' | translate"
@@ -292,18 +329,43 @@
 					[nzTitle]="'components.requestDetails.workTask' | translate"
 					>{{ requestDetails.workTaskName }}
 				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.businessType"
-					[nzTitle]="'components.requestDetails.businessType' | translate"
-				>
-					{{ requestDetails.businessType }}
-				</nz-descriptions-item>
+				
 				<nz-descriptions-item
 					*ngIf="requestDetails?.approvalStatusType"
 					[nzTitle]="'components.requestDetails.currentStatus' | translate"
 				>
 					{{ requestDetails.approvalStatusType }}
 				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.travelStartDate"
+					[nzTitle]="'components.requestDetails.travelStartDate' | translate"
+				>
+					{{ requestDetails.travelStartDate | date: 'dd/MM/yyyy' }}
+				</nz-descriptions-item>
+				<nz-descriptions-item
+					*ngIf="requestDetails?.travelEndDate"
+					[nzTitle]="'components.requestDetails.travelEndDate' | translate"
+				>
+					{{ requestDetails.travelEndDate | date: 'dd/MM/yyyy' }}
+				</nz-descriptions-item>
+				
+				<nz-descriptions-item
+					*ngIf="requestDetails?.travelPurpose"
+					[nzTitle]="'components.requestDetails.travelPurpose' | translate"
+				>
+					{{ requestDetails.travelPurpose }}
+				</nz-descriptions-item>
+
+				
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.requestDate"
+					[nzTitle]="'components.requestDetails.requestDate' | translate"
+				>
+					{{ requestDetails.requestDate | date: 'dd/MM/yyyy' }}
+				</nz-descriptions-item>
+
 				<nz-descriptions-item
 					*ngIf="requestDetails?.comments"
 					[nzTitle]="'components.requestDetails.comments' | translate"
@@ -311,10 +373,24 @@
 					{{ requestDetails.comments }}
 				</nz-descriptions-item>
 			</nz-descriptions>
+			<!-- Travel Request Details on Row Click END -->
 
-			<!-- Expense -->
-
+			<!-- Expense Reimburse SubClaim Details on Row Click START -->
 			<nz-descriptions *ngIf="requestType === 'expense'">
+				<nz-descriptions-item
+					*ngIf="requestDetails?.expenseCategory"
+					[nzTitle]="'components.requestDetails.expenseCategory' | translate"
+				>
+					{{ requestDetails.expenseCategory }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.expenseTypeId"
+					[nzTitle]="'components.requestDetails.expense' | translate"
+				>
+					{{ getExpenseName(requestDetails.expenseTypeId) }}
+				</nz-descriptions-item>
+
 				<nz-descriptions-item
 					*ngIf="requestDetails?.invoiceNo"
 					[nzTitle]="'components.requestDetails.invoiceNo' | translate"
@@ -322,24 +398,34 @@
 					{{ requestDetails.invoiceNo }}
 				</nz-descriptions-item>
 				
-				<nz-descriptions-item
-					*ngIf="requestDetails?.description"
-					[nzTitle]="'components.requestDetails.description' | translate"
-				>
-					{{ requestDetails.description }}
-				</nz-descriptions-item>
-
-				<nz-descriptions-item
-					*ngIf="requestDetails?.expenseReimbClaimAmount"
-					[nzTitle]="'components.requestDetails.claimAmount' | translate"
-				>
-					{{ requestDetails.expenseReimbClaimAmount }}
-				</nz-descriptions-item>
+				
 				<nz-descriptions-item
 					*ngIf="requestDetails?.invoiceDate"
 					[nzTitle]="'components.requestDetails.invoiceDate' | translate"
 				>
 					{{ requestDetails.invoiceDate | date: 'dd/MM/yyyy' }}
+				</nz-descriptions-item>
+
+				
+				<nz-descriptions-item
+					*ngIf="requestDetails?.expStrtDate"
+					[nzTitle]="'components.requestDetails.expStrtDate' | translate"
+				>
+					{{ requestDetails.expStrtDate | date: 'dd/MM/yyyy' }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.expEndDate"
+					[nzTitle]="'components.requestDetails.expEndDate' | translate"
+				>
+					{{ requestDetails.expEndDate | date: 'dd/MM/yyyy' }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.expNoOfDays"
+					[nzTitle]="'components.requestDetails.expNoOfDays' | translate"
+				>
+					{{ requestDetails.expNoOfDays }}
 				</nz-descriptions-item>
 
 				<nz-descriptions-item
@@ -348,24 +434,58 @@
 				>
 					{{ requestDetails.location }}
 				</nz-descriptions-item>
-				<nz-descriptions-item
-					*ngIf="requestDetails?.taxAmount"
-					[nzTitle]="'components.requestDetails.taxAmount' | translate"
-				>
-					{{ requestDetails.taxAmount }}
-				</nz-descriptions-item>
+
 				<nz-descriptions-item
 					*ngIf="requestDetails?.vendor"
 					[nzTitle]="'components.requestDetails.vendor' | translate"
 				>
 					{{ requestDetails.vendor }}
 				</nz-descriptions-item>
+
 				<nz-descriptions-item
-					*ngIf="requestDetails?.expenseTypeId"
-					[nzTitle]="'components.requestDetails.expense' | translate"
+					*ngIf="requestDetails?.additionalVendor"
+					[nzTitle]="'components.requestDetails.additionalVendor' | translate"
 				>
-					{{ getExpenseName(requestDetails.expenseTypeId) }}
+					{{ requestDetails.additionalVendor }}
 				</nz-descriptions-item>
+
+				<!-- This field is to show Expense Amount, from Expense Reimburse Sub Claim -->
+				<nz-descriptions-item
+					*ngIf="requestDetails?.expenseReimbClaimAmount"
+					[nzTitle]="'components.requestDetails.expenseAmount' | translate"
+				>
+					{{ requestDetails.expenseReimbClaimAmount }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails"
+					[nzTitle]="'components.requestDetails.taxAmount' | translate"
+				>
+					{{ requestDetails.taxAmount }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails"
+					[nzTitle]="'components.requestDetails.claimAmount' | translate"
+				>
+					{{ requestDetails.expenseReimbClaimAmount+ requestDetails.taxAmount }}
+				</nz-descriptions-item>
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.taxNo"
+					[nzTitle]="'components.requestDetails.taxNo' | translate"
+				>
+					{{ requestDetails.taxNo }}
+				</nz-descriptions-item>
+
+
+				<nz-descriptions-item
+					*ngIf="requestDetails?.description"
+					[nzTitle]="'components.requestDetails.description' | translate"
+				>
+					{{ requestDetails.description }}
+				</nz-descriptions-item>
+
 				<nz-descriptions-item
 					*ngIf="requestDetails?.comments"
 					[nzTitle]="'components.requestDetails.comments' | translate"
@@ -374,7 +494,7 @@
 				</nz-descriptions-item>
 			</nz-descriptions>
 
-			<!--Disburse-->
+			<!-- Disburse -->
 			<nz-descriptions *ngIf="requestType === 'disburse'">
 				<nz-descriptions-item
 				*ngIf="requestDetails?.id"
@@ -422,7 +542,7 @@
 
 				<nz-descriptions-item
 					*ngIf="requestDetails?.location"
-					[nzTitle]="'components.requestDetails.location' | translate"
+					[nzTitle]="'components.requestDetails.businessUnitLocation' | translate"
 				>
 					{{ requestDetails.location }}
 				</nz-descriptions-item>
@@ -442,11 +562,13 @@
 					{{ requestDetails.currencyType }}
 				</nz-descriptions-item>
 
+				<!--  -->
 				<nz-descriptions-item
 					[nzTitle]="'components.requestDetails.claimAmount' | translate"
 				>
 					{{ requestDetails.claimAmount }}
 				</nz-descriptions-item>
+
 				<nz-descriptions-item
 					*ngIf="requestDetails.expenseReimburseReqId"
 					[nzTitle]="'components.requestDetails.expenseId' | translate"

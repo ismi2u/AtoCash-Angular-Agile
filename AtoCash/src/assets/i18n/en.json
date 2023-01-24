@@ -73,6 +73,9 @@
 		"settlementFrom": "From",
 		"settlementTo": "To",
 
+		"pendingApproval": "Pending Approval",
+        "pendingSettlement" : "Pending Settlement",
+
 		"pendingApprovalCA": "Pending Approvals CA",
 		"pendingApprovalER": "Pending Approvals ER",
 		"title-pendingApprovalCA": "Pending Approvals Cash Advance",
@@ -121,12 +124,12 @@
 			"taxAmount": "Tax Amount",
 			"title": " Expense Title",
 			"employee": " Employee",
-			"location": "Location",
+			"location": "Expense Location",
 			"businessType":"Business Type",
 			"taxNo":"Tax No.",
 			"NoOfDays":"No Of Days",
-			"StartDate":"Start Time",
-			"EndDate":"End Time",		 
+			"StartDate":"Start Date",
+			"EndDate":"End Date",		 
 			"businessUnit":"Business Unit",
 			"isVAT":"Is VAT",
 			"totalClaimAmount":"Claim Amount",
@@ -395,7 +398,8 @@
 			"costCenter": "Cost Center",
 			"invoiceDate": "Invoice Date",
 			"expenseType": "Expense Type",
-			"businessUnit":"Business Unit"
+			"businessUnit":"Business Unit",
+			"advanceAmount": "Advance Amount"
 		},
 		"costCenter": {
 			"costCenterCode": "Cost Center Code",
@@ -488,13 +492,14 @@
 		},
 		"expenseReimburse": {
 			"create": {
+				"expenseCategory":"Expense Category",
+				"expenseType": "Expense Type",				
 				"invoiceNo": "Invoice No",
 				"invoiceDate": "Invoice Date",
-				"claimAmount": "Claim Amount",
-				"expenseType": "Expense Type"
+				"claimAmount": "Claim Amount"				
 			},
 			"list": {
-				"expenseName": "Expense Name",
+				"expenseName": "Expense Title",
 				"claimAmount": "Claim Amount",
 				"businessType": "Business Type",
 				"businessUnit":"Business Unit",
@@ -623,7 +628,8 @@
 			"travelRequestDetails": "Travel Request Details",
 			"invoiceNo": "Invoice No",
 			"invoiceDate": "Invoice Date",
-			"location": "Location",
+			"location": "Expense Location",
+			"businessUnitLocation":"Location",
 			"taxAmount": "Tax Amount",
 			"vendor": "Vendor",
 			"expense": "Expense",
@@ -636,7 +642,15 @@
 			"expenseId": "Expense Id",
 			"pettyCashId": "Petty Cash Id",
 			"businessUnit":"Business Unit",
-			"blendedRequestId":"Request Id"
+			"blendedRequestId":"Request Id",
+			"expenseCategory":"Expense Category",
+			"expenseType":"Expense Type",
+			"expStrtDate":"Start Date",
+			"expEndDate":"End Date",
+			"expNoOfDays":"No. of Days",
+			"taxNo":"Tax No",
+			"additionalVendor0":"Other Vendor Name",
+			"expenseAmount":"Expense Amount"
 		},
 		"filters": {
 			"reports": {

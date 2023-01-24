@@ -67,6 +67,7 @@ export class ReportsListComponent implements OnInit {
 	}
 
 	getCashAdvanceRowData = (event) => {
+		this.commonService.loading.next(true);
 		this.requestService
 			.getRequestStatus(event.blendedRequestId)
 			.subscribe((statusResponse: any) => {
@@ -75,11 +76,13 @@ export class ReportsListComponent implements OnInit {
 					.geCashRequestById(event.blendedRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
+						this.commonService.loading.next(false);
 					});
 			});
 	};
 
 	getTravelRequestRowData = (event) => {
+		this.commonService.loading.next(true);
 		this.requestService
 			.getTravelRequestStatus(event.id)
 			.subscribe((statusResponse: any) => {
@@ -88,11 +91,13 @@ export class ReportsListComponent implements OnInit {
 					.getTravelRequestById(event.id)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
+						this.commonService.loading.next(false);
 					});
 			});
 	};
 
 	getExpenseRequestRowData = (event) => {
+		this.commonService.loading.next(true);
 		this.requestService
 			.getExpenseRequestStatus(event.blendedRequestId)
 			.subscribe((statusResponse: any) => {
@@ -101,54 +106,67 @@ export class ReportsListComponent implements OnInit {
 					.getExpenseRequestById(event.blendedRequestId)
 					.subscribe((detailsResponse: any) => {
 						this.requestDetails = detailsResponse.data;
+						this.commonService.loading.next(false);
 					});
 			});
 	};
 
-	async downloadReport() {
+		async downloadReport() {
 
-		if(!this.requests.length) {
-			this.commonService.createNotification(
-				'warning',
-				this.translate.instant('notification.noRecordsToDownload'),
-			);
-		}else {
+			if(!this.requests.length) {
+				this.commonService.createNotification(
+					'warning',
+					this.translate.instant('notification.noRecordsToDownload'),
+				);
+			}else {
 
-		let requestTypeId = 1;
-		const filters = this.reportService.selectedFilters;
-		switch (this.requestType) {
-			case 'cashAdvance':
-				await this.reportService.downloadCashReportsByEmployee(
-					requestTypeId,
-					this.requestType,
-				);
-				break;
-			case 'expenseReimburse':
-				requestTypeId = 2;
-				await this.reportService.downloadCashReportsByEmployee(
-					requestTypeId,
-					this.requestType,
-				);
-				break;
-			case 'travelRequest':
-				this.reportService.downloadTravelReportsByEmployee(this.requestType);
-				break;
-			case 'employees':
-				this.reportService.downloadEmployeesReport(this.requestType);
-				break;
-			case 'users':
-				this.reportService.downloadUserReport(this.requestType);
-				break;
-			case 'subClaims':
-				this.reportService.downloadSubClaimsReport(this.requestType);
-				break;
+			let requestTypeId = 1;
+			const filters = this.reportService.selectedFilters;
+			switch (this.requestType) {
+				case 'cashAdvance':
+					await this.reportService.downloadCashReportsByEmployee(
+						requestTypeId,
+						this.requestType,
+					);
+					break;
+				case 'expenseReimburse':
+					requestTypeId = 2;
+					await this.reportService.downloadCashReportsByEmployee(
+						requestTypeId,
+						this.requestType,
+					);
+					break;
+				case 'travelRequest':
+					this.reportService.downloadTravelReportsByEmployee(this.requestType);
+					break;
+				case 'employees':
+					this.reportService.downloadEmployeesReport(this.requestType);
+					break;
+				case 'users':
+					this.reportService.downloadUserReport(this.requestType);
+					break;
+				case 'subClaims':
+					this.reportService.downloadSubClaimsReport(this.requestType);
+					break;
+			}
+
 		}
-
-	}
 	}
 
 	requestTypeChange(type, filters, trigger) {
-		if (type !== 'travelRequest') {
+		if (type === 'cashAdvance') {
+			this.requestHeaders = [
+				'tableHeader.inbox.id',
+				'tableHeader.inbox.employee',
+				'tableHeader.inbox.costCenter',
+				'tableHeader.inbox.businessType',
+				'tableHeader.inbox.businessUnit',
+				'tableHeader.inbox.project',
+				'tableHeader.inbox.requestDate',
+				'tableHeader.inbox.advanceAmount',
+				'tableHeader.inbox.status',
+			];
+		}else if (type === 'expenseReimburse') {
 			this.requestHeaders = [
 				'tableHeader.inbox.id',
 				'tableHeader.inbox.employee',
@@ -160,7 +178,7 @@ export class ReportsListComponent implements OnInit {
 				'tableHeader.inbox.claimAmount',
 				'tableHeader.inbox.status',
 			];
-		} else {
+		}  else {
 			this.requestHeaders = [
 				'tableHeader.inbox.id',
 				'tableHeader.inbox.employee',
@@ -251,6 +269,7 @@ export class ReportsListComponent implements OnInit {
 					this.reportService.populateFilters(constant.FILTERS.SUB_CLAIMS);
 				break;
 		}
+		
 	}
 
 	onRowData(data) {
@@ -268,39 +287,53 @@ export class ReportsListComponent implements OnInit {
 	}
 
 	getCashOrExpenseReports(requestTypeId, filters) {
+		this.commonService.loading.next(true);
 		this.reportService
 			.getCashReportsByEmployee({ ...filters, requestTypeId })
 			.subscribe((response: any) => {
 				this.requests = response.data;
+				this.commonService.loading.next(false);
 			});
 	}
 
 	getTravelRequestReports(filters) {
+		this.commonService.loading.next(true);
 		this.reportService
 			.getTravelReportsByEmployee(filters)
 			.subscribe((response: any) => {
 				this.requests = response.data;
+				this.commonService.loading.next(false);
 			});
 	}
+
 	getEmployeesReports(filters) {
+		this.commonService.loading.next(true);
 		this.reportService
 			.getEmployeesReport(filters)
 			.subscribe((response: any) => {
 				this.requests = response.data;
+				this.commonService.loading.next(false);
 			});
 	}
+
 	getUsersReport(filters) {
+		this.commonService.loading.next(true);
 		this.reportService.getUsersReport(filters).subscribe((response: any) => {
 			this.requests = response.data;
+			this.commonService.loading.next(false);
 		});
 	}
+
 	getSubClaimReport(filters) {
+		this.commonService.loading.next(true);
 		this.reportService
 			.getSubClaimsReport(filters)
 			.subscribe((response: any) => {
 				this.requests = response.data;
+				this.commonService.loading.next(false);
 			});
 	}
+	
 	showFilters() {
 		this.enableFilters = !this.enableFilters;
 		if (!this.enableFilters) {

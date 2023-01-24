@@ -60,7 +60,18 @@ export class InboxListComponent implements OnInit {
 
 		this.commonService.inboxType.subscribe((type) => {
 			
-			if(type !== 'travelRequest') {
+			if(type === 'cashAdvance') {
+				this.requestHeaders = [
+					'tableHeader.inbox.id',
+					'tableHeader.inbox.employee',
+					'tableHeader.inbox.businessType',
+					'tableHeader.inbox.businessUnit',
+					'tableHeader.inbox.project',
+					'tableHeader.inbox.requestDate',
+					'tableHeader.inbox.advanceAmount',
+					'tableHeader.inbox.status',
+				];
+			}else if(type === 'expenseReimburse') {
 				this.requestHeaders = [
 					'tableHeader.inbox.id',
 					'tableHeader.inbox.employee',
@@ -71,7 +82,8 @@ export class InboxListComponent implements OnInit {
 					'tableHeader.inbox.claimAmount',
 					'tableHeader.inbox.status',
 				];
-			}else {
+			}
+			else {
 				this.requestHeaders = [
 					'tableHeader.inbox.id',
 					'tableHeader.inbox.employee',
