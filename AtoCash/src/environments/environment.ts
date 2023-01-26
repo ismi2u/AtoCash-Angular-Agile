@@ -6,8 +6,8 @@ export const environment = {
   production: false,
    //baseUrl: 'atocash.com'
  //baseUrl: 'localhost:5000'
-  baseUrl: 'atocash.com'
-  //baseUrl: 'atocash.tk'
+  //baseUrl: 'atocash.com'
+  baseUrl: 'atocash.tk'
   //baseUrl:'atocashdev.ml'
   //apiUrl: 'http://167.71.228.129'
   //apiUrl: 'localhost:44378'
