@@ -19,6 +19,7 @@ const routes: Routes = [
 // http://localhost:4200/change-password?token=CfDJ8IqIUuL4TKVBnhdcazDB+aZGv38+1tF0bZmTQtabi00l6NwNw38jhyyux+DWizy9cunDrI8bF8hUczxWDjQlDxvr6ya+eJEgytohmliDL9HWbrIvUFQNPmmZG+ydf2F7qFjNCEqYqXLU2GXsf+Ekp4IQ8Wy+3jecAcOTzdpHLJY1r9lL0M4DT+QB1uWAapiKhu3U1J1phE20mxxs+WhtY2ekMwLa8O9PHpVwzup&email=rsnk2013@gmail.com
 
 @NgModule({
+  //imports: [RouterModule.forRoot(routes,{useHash:true})],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

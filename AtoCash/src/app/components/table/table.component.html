@@ -104,7 +104,7 @@
 			></th>
 			<th
 			[ngStyle]="{'text-align': direction ==='rtl' ? 'right' :'left'}"
-				[nzWidth]="header.includes('id') ? '75px' : 'auto'"
+				[nzWidth]="header.includes('id') ? '105px' : 'auto'"
 				*ngFor="let header of tableHeaders"
 			>
 				{{ header | translate }}
@@ -574,6 +574,10 @@
 			<td *ngIf="data?.expenseCategory && formName == 'expenseReimburseData'">
 				{{ data.expenseCategory }}
 			</td>
+
+			<td *ngIf="!data.expenseCategory && data.expenseCategoryId && formName == 'expenseReimburseData'">
+				{{ getExpenseCategoryName(data.expenseCategoryId) }}
+			</td>
 			<td *ngIf="data?.expenseType && formName == 'expenseReimburseData'">
 				{{ data.expenseType }}
 			</td>
@@ -658,7 +662,7 @@
 						data?.id) &&
 					formName == 'reports'
 				"
-			>
+				>
 				{{
 					data.travelApprovalRequestId ||
 						data?.pettyCashRequestId ||
@@ -671,7 +675,7 @@
 			<td *ngIf="(data.fullName || data.userFullName) && formName == 'reports'">
 				{{ data.fullName  || data.userFullName}}
 			</td>
-			<td *ngIf="data.email && formName == 'reports'">
+			<td *ngIf="data.email && formName == 'reports'" [nzWidth]="'160px'">
 				{{ data.email }}
 			</td>
 			<td *ngIf="data.mobileNumber && formName == 'reports'">

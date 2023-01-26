@@ -49,7 +49,7 @@ export class LayoutComponent implements OnInit {
 		});
 
 		if (this.canMange()) {
-			//this.requestService.populateInbox();
+			this.requestService.populateInbox();
 		}
 	}
 

@@ -663,7 +663,7 @@
 			"EndDate":"تاريخ الانتهاء",
 			"expNoOfDays":"عدد الايام",
 			"taxNo":"الرقم الضريبي",
-			"additionalVendor0":"موردين اخرين",
+			"additionalVendor":"موردين اخرين",
 			"expenseAmount":"مبلغ المصاريف"
 		},
 		"filters": {

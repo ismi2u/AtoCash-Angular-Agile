@@ -649,7 +649,7 @@
 			"expEndDate":"End Date",
 			"expNoOfDays":"No. of Days",
 			"taxNo":"Tax No",
-			"additionalVendor0":"Other Vendor Name",
+			"additionalVendor":"Other Vendor Name",
 			"expenseAmount":"Expense Amount"
 		},
 		"filters": {

@@ -1,4 +1,5 @@
 import { CommonService } from './../../services/common.service';
+import { ExpenseCategoriesService } from 'src/app/services/expense-categories.service';
 import { ExpenseTypesService } from './../../services/expense-types.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
@@ -64,6 +65,8 @@ export class TableComponent implements OnInit {
 	};
 
 	expenses = [];
+	expenseCategories = [];
+
 	date = new Date().toISOString();
 
 	constructor(
@@ -71,6 +74,7 @@ export class TableComponent implements OnInit {
 		private translate: TranslateService,
 		private expenseService: ExpenseTypesService,
 		public commonService: CommonService,
+		private expenseCategoriesService: ExpenseCategoriesService
 	) {}
 
 	updateCheckedSet(id: number, checked: boolean): void {
@@ -167,6 +171,11 @@ export class TableComponent implements OnInit {
 			this.expenseService.expenseTypes.subscribe((expenses: any) => {
 				this.expenses = expenses;
 			});
+
+			this.expenseCategoriesService.getExpenseCategories();
+			this.expenseCategoriesService.expenseCategories.subscribe((expenseCategories:any) => {
+				this.expenseCategories =  expenseCategories;
+			  })
 		}
 
 		this.commonService.onStatusChange.subscribe(() => {
@@ -246,6 +255,10 @@ export class TableComponent implements OnInit {
 		// if (data) return data.length > 9 ? data.substr(0, 8) + '...' : data;
 		return data;
 	}
+
+	getExpenseCategoryName(id) {
+		return this.expenseCategories.filter(expenseCategories=>expenseCategories.id == id)[0].expenseCategoryName
+	  }
 
 	getExpenseName(id) {
 		return this.expenses.filter((expense) => expense.id == id)[0]

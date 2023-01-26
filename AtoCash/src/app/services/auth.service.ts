@@ -25,11 +25,12 @@ export class AuthService {
 		
 		//console.log('1=='+domain);
 		if(domain=="foodunitco.com" || domain=="signsa.com" || domain=="foodunitco.onmicrosoft.com"
-|| domain=="2eat.com.sa" || domain=="2eat.sa" || domain=="alzadalyawmi.com"
-|| domain=="estilo.sa" || domain=="foodunit.uk" || domain=="dhyoof.com"
-|| domain=="janburger.com" || domain=="luluatnajd.com" || domain=="shawarma-plus.com"
-|| domain=="shawarmaplus.sa" || domain=="signsa.com" || domain=="tameesa.com"
-|| domain=="tameesa.com.sa" || domain=="thouq.sa" || domain=="tameesa.com" || domain=="gmail.com")
+		|| domain=="2eat.com.sa" || domain=="2eat.sa" || domain=="alzadalyawmi.com"
+		|| domain=="estilo.sa" || domain=="foodunit.uk" || domain=="dhyoof.com"
+		|| domain=="janburger.com" || domain=="luluatnajd.com" || domain=="shawarma-plus.com"
+		|| domain=="shawarmaplus.sa" || domain=="signsa.com" || domain=="tameesa.com"
+		|| domain=="tameesa.com.sa" || domain=="thouq.sa" || domain=="tameesa.com" || domain=="gmail.com"
+		)
 {
   domain="fwserver"
   //domain="foodunitcoserver"
@@ -72,15 +73,9 @@ export class AuthService {
 	};
 
 	forgetPassword = (data) =>
-		this.http.post(
-			`${this.commonService.getApi()}/api/Account/ForgotPassword`,
-			data,
-		);
-
+		this.http.post(`${this.commonService.getApi()}/api/Account/ForgotPassword`,	data);
+		
 	resetPassword = (data) => {
-		return this.http.post(
-			`${this.commonService.getApi()}/api/Account/ResetPassword`,
-			data,
-		);
+		return this.http.post(`${this.commonService.getApi()}/api/Account/ResetPassword`,data);
 	};
 }
