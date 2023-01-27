@@ -26,7 +26,7 @@
     "@angular/router": "^11.2.14",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "@uipath/robot": "^1.2.9",
+    "@uipath/robot": "^1.2.5",
     "angular-highcharts": "^11.4.0",
     "core-js": "^2.5.4",
     "file-saver": "^2.0.5",

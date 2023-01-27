@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BankRoutingModule } from './bank-routing.module';
 
-import { BankComponent } from './Bank.component';
+import { BankComponent } from './bank.component';
 import { BankListComponent } from './bank-list/bank-list.component';
 import { BankFormComponent } from './bank-form/bank-form.component';
 

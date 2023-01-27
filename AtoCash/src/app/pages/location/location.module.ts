@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LocationRoutingModule } from './location-routing.module';
 
-import { LocationComponent } from './Location.component';
+import { LocationComponent } from './location.component';
 import { LocationListComponent } from './location-list/location-list.component';
 import { LocationFormComponent } from './location-form/location-form.component';
 
