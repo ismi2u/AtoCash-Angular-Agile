@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-task',
-	templateUrl: './forget-password.component.html',
-	styleUrls: ['./forget-password.component.scss'],
+	templateUrl: './forgot-password.component.html',
+	styleUrls: ['./forgot-password.component.scss'],
 })
 export class LoginComponent implements OnInit {
 	form!: FormGroup;
@@ -29,13 +29,20 @@ export class LoginComponent implements OnInit {
 			this.form.controls[i].updateValueAndValidity();
 		}
 
-		this.authService.forgetPassword(this.form.value).subscribe(
-			(data) => {
-				this.passwordChangeRequested = true;
-				this.commonService.unauthorizedLoading.next(false);
+		this.authService.forgotPassword(this.form.value).subscribe(
+			(response: any) => {
+				if (
+					!response.success ||
+					(response.data && !response.data.status.length)
+				) {
+					response.data && !response.data.status.length ? this.commonService.createNotification('error', 'Invalid Email') : null;
+					this.commonService.unauthorizedLoading.next(false);
+				}else{
+						this.passwordChangeRequested = true;
+						this.commonService.unauthorizedLoading.next(false);
+					}
 			},
 			(err) => {
-				this.commonService.unauthorizedLoading.next(false);
 			},
 		);
 	}

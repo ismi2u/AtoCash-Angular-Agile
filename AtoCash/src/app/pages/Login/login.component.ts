@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
-	forgetPassword() {
-		// this.authService.forgetPassword()
-		this.router.navigateByUrl('/forget-password');
+	forgotPassword() {
+		// this.authService.forgotPassword()
+		this.router.navigateByUrl('/forgot-password');
 	}
 }

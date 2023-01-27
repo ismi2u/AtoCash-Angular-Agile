@@ -19,26 +19,12 @@ export class AuthService {
 		private commonService: CommonService,
 	) {}
 
+	
+	
 	login = (data: any) => {
-		const { email } = data;
-		let domain = email.split('@')[1];
 		
-		//console.log('1=='+domain);
-		if(domain=="foodunitco.com" || domain=="signsa.com" || domain=="foodunitco.onmicrosoft.com"
-		|| domain=="2eat.com.sa" || domain=="2eat.sa" || domain=="alzadalyawmi.com"
-		|| domain=="estilo.sa" || domain=="foodunit.uk" || domain=="dhyoof.com"
-		|| domain=="janburger.com" || domain=="luluatnajd.com" || domain=="shawarma-plus.com"
-		|| domain=="shawarmaplus.sa" || domain=="signsa.com" || domain=="tameesa.com"
-		|| domain=="tameesa.com.sa" || domain=="thouq.sa" || domain=="tameesa.com" || domain=="gmail.com"
-		)
-{
-  domain="fwserver"
-  //domain="foodunitcoserver"
-}
-		//console.log('2=='+domain);
-
-		domain =  environment.baseUrl.includes('localhost') ? 'http://' : `https://${domain.split('.')[0]}.`;
-		
+		const { email } = data;		
+		let domain = this.getDomain({email});		
 		
 		return this.http
 			.post(
@@ -72,10 +58,48 @@ export class AuthService {
 		this.commonService.resetAccess();
 	};
 
-	forgetPassword = (data) =>
-		this.http.post(`${this.commonService.getApi()}/api/Account/ForgotPassword`,	data);
+	forgotPassword = (data) => {
+		const { email } = data;		
+		let domain = this.getDomain({email});	
+
+		//this.http.post(`${this.commonService.getApi()}/api/Account/ForgotPassword`,	data);
+		return this.http.post(`${`${domain}${environment.baseUrl}`}/api/Account/ForgotPassword`,data,)
+	
+	}
 		
 	resetPassword = (data) => {
-		return this.http.post(`${this.commonService.getApi()}/api/Account/ResetPassword`,data);
+		const { email } = data;		
+		let domain = this.getDomain({email});	
+
+		//return this.http.post(`${this.commonService.getApi()}/api/Account/ResetPassword`,data);
+		return this.http.post(`${`${domain}${environment.baseUrl}`}/api/Account/ResetPassword`,data,)
 	};
+
+	getDomain({email})
+	{
+		let domain = email.split('@')[1];
+		let redirectDomain:any='';
+		
+		//console.log('1=='+domain);
+		if(domain=="foodunitco.com" || domain=="signsa.com" || domain=="foodunitco.onmicrosoft.com"
+		|| domain=="2eat.com.sa" || domain=="2eat.sa" || domain=="alzadalyawmi.com"
+		|| domain=="estilo.sa" || domain=="foodunit.uk" || domain=="dhyoof.com"
+		|| domain=="janburger.com" || domain=="luluatnajd.com" || domain=="shawarma-plus.com"
+		|| domain=="shawarmaplus.sa" || domain=="signsa.com" || domain=="tameesa.com"
+		|| domain=="tameesa.com.sa" || domain=="thouq.sa" || domain=="tameesa.com" || domain=="gmail.com"
+		)
+		{
+			redirectDomain="fw";		
+		}else{
+			redirectDomain=domain.split('.')[0];
+		}
+		
+		//console.log('redirectDomain=='+redirectDomain);
+		redirectDomain = redirectDomain+"server";
+		//console.log('redirectDomain=='+redirectDomain);
+		
+		domain =  environment.baseUrl.includes('localhost') ? 'http://' : `https://${redirectDomain}.`;
+
+		return domain;
+	}
 }

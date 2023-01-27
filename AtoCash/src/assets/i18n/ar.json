@@ -173,7 +173,7 @@
 		"login": {
 			"email": "البريد الالكتروني",
 			"password": "كلمة السر",
-			"forgetPassword": "نسيت كلمة السر",
+			"forgotPassword": "نسيت كلمة السر",
 			"rememberMe": "تذكر بياناتي",
 			"buttonText": "تسجيل دخول"
 		},

@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   { path: '', canActivate: [AuthGuard], loadChildren: () => import('./pages/Layout/layout.module').then(m => m.LayoutModule) }, 
   { path: 'login',canActivate: [AuthDeactivateGuard],  loadChildren: () => import('./pages/Login/login.module').then(m => m.LoginModule) },
-  { path: 'forget-password',canActivate: [AuthDeactivateGuard],  loadChildren: () => import('./pages/Forget-password/forget-password.module').then(m => m.ForgetPasswordModule) },
+  { path: 'forgot-password',canActivate: [AuthDeactivateGuard],  loadChildren: () => import('./pages/Forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
   { path: 'change-password',canActivate: [AuthDeactivateGuard],  loadChildren: () => import('./pages/change-password/change-password.module').then(m => m.ChangePasswordModule) },  
   { path: '**', redirectTo: '/login' }
 ];

@@ -39,12 +39,21 @@ export class ChangePasswordComponent implements OnInit {
 				password: this.form.get('password').value,
 			})
 			.subscribe(
-				(data) => {
-					this.commonService.unauthorizedLoading.next(false);
-					this.success = true;
-					this.router.navigateByUrl('/login')
+				(response: any) => {
+					if (
+						!response.success ||
+						(response.data && !response.data.status.length)
+					) {
+						response.data && !response.data.status.length ? this.commonService.createNotification('error', 'Invalid Email') : null;
+						this.commonService.unauthorizedLoading.next(false);
+					}else{
+						this.commonService.unauthorizedLoading.next(false);
+						this.success = true;
+						this.router.navigateByUrl('/login')
+					}
 				},
 				(err) => {
+					this.commonService.createNotification('error', 'Something went wrong!');
 					this.commonService.unauthorizedLoading.next(false);
 				},
 			);

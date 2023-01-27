@@ -2,11 +2,11 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AntdModule } from '../../components/antd.module';
 import { SharedModule } from 'src/app/components/shared.module';
-import { LoginComponent } from './forget-password.component';
+import { LoginComponent } from './forgot-password.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ForgetPasswordRoutingModule } from './forget-password-routing.module';
+import { ForgotPasswordRoutingModule } from './forgot-password-routing.module';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -14,10 +14,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 	declarations: [LoginComponent],
 	imports: [
 		CommonModule,
-		ForgetPasswordRoutingModule,
+		ForgotPasswordRoutingModule,
 		ReactiveFormsModule,
 		SharedModule,
 		AntdModule,
 	],
 })
-export class ForgetPasswordModule {}
+export class ForgotPasswordModule {}

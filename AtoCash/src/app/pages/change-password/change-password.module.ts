@@ -7,7 +7,7 @@ import { ChangePasswordComponent } from './change-password.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ForgetPasswordRoutingModule } from './change-password-routing.module';
+import { ForgotPasswordRoutingModule } from './change-password-routing.module';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -15,7 +15,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 	declarations: [ChangePasswordComponent],
 	imports: [
 		CommonModule,
-		ForgetPasswordRoutingModule,
+		ForgotPasswordRoutingModule,
 		ReactiveFormsModule,
 		SharedModule,
 		AntdModule,

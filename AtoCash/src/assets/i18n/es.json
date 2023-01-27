@@ -123,7 +123,7 @@
 		"login": {
 			"email": "Correo electrónico",
 			"password": "contraseña",
-			"forgetPassword": "olvidado la contraseña",
+			"forgotPassword": "olvidado la contraseña",
 			"rememberMe": "me recuerda"
 		},
 		"userRole": {

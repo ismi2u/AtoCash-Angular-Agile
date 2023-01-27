@@ -169,7 +169,7 @@
 		"login": {
 			"email": "Email",
 			"password": "Password",
-			"forgetPassword": "Forgot Password",
+			"forgotPassword": "Forgot Password",
 			"rememberMe": "Remember Me"
 		},
 		"userRole": {

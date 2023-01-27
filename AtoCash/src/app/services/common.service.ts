@@ -32,6 +32,7 @@ export class CommonService {
 	) {}
 
 	getApi = () => cookies.get('api');
+	
 	createNotification = (type: string, message: string): void => {
 		this.notification.create(type, 'Notification', message, {
 			nzDuration: 3000,

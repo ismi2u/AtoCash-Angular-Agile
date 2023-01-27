@@ -89,7 +89,7 @@
 		"Bağlan ": {
 		"email": "Email",
 		"password": "Şifre",
-		"forgetPassword": "Şifre Unuttum",
+		"forgotPassword": "Şifre Unuttum",
 		"rememberMe": "Beni Hatırla"
 		},
 		"Kullanıcı Rolü": {
