@@ -202,6 +202,15 @@ const routes: Routes = [
           ,canActivate:[RoleGuard]
       },
       {
+        path: "account-payable-mapping",
+        loadChildren: () =>
+          import("../account-payable-mapping/account-payable-mapping.module").then((m) => m.AccountPayableMappingModule),
+          data:{
+            allowedRoles:['Admin','AtominosAdmin']
+          }
+          ,canActivate:[RoleGuard]
+      },
+	    {
         path: "project",
         loadChildren: () =>
           import("../project/project.module").then((m) => m.ProjectModule),

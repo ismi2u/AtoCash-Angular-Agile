@@ -97,7 +97,12 @@
 		"business-type":"نوع جهة العمل",
 		"business-unit":"وحدة العمل",
 		"employee-extended-info":"بيانات اضافيه للموظفين",
-		"vendor":"الموردين"
+		"vendor":"الموردين",
+
+		"accpayablemap":"Accounts Payable Mapping",
+		"assignAccPayableToBU":"Assign Accounts Payable to Business Units",
+		"APemployees": "Accounts Payable"
+		
 	},
 	"form": {
 		"disburse": {
@@ -341,7 +346,11 @@
 			"description":"الوصف",
 			"city":"المدينه",
 			"status": "الحاله"
+		},
+		"accPayableMapping":{
+			"businessUnit":"وحدة العمل"
 		}
+
 	},
 	"tableHeader": {
 		"currency": {

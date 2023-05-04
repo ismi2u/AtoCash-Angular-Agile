@@ -75,6 +75,14 @@ export class AuthService {
 		return this.http.post(`${`${domain}${environment.baseUrl}`}/api/Account/ResetPassword`,data,)
 	};
 
+	confirmEmail = (data) => {
+		const { email } = data;		
+		let domain = this.getDomain({email});	
+ 
+		return this.http.post(`${`${domain}${environment.baseUrl}`}/api/Account/ConfirmEmail`,data,)
+	
+	}
+
 	getDomain({email})
 	{
 		let domain = email.split('@')[1];

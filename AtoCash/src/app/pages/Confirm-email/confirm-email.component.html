@@ -1,0 +1,46 @@
+<nz-layout>
+	<nz-header>
+		<div class="logo">
+			<a>
+				<img src="assets/logos/logo-2.png" alt="logo" />
+			</a>
+			<app-translations></app-translations>
+		</div>
+	</nz-header>
+	
+	<nz-content>
+		<div class="banner">
+			<img src="assets/logos/banner-four.svg" alt="banner" />
+		</div>
+		<div
+			class="content-wrapper"
+			class="login-form">
+				<nz-result
+				class="login-form"
+				nzStatus="success"
+				nzTitle="Your Email Address is Confirmed!"
+				 
+				*ngIf="EmailConfirmedRequested">
+				<button
+					nz-button
+					class="login-form-button login-form-margin"
+					[nzType]="'primary'"
+				>
+					{{ 'button.gotologin' | translate }}
+				</button>
+				</nz-result>
+
+
+				<nz-result
+				class="login-form"
+				nzStatus="error"
+				nzTitle="Your Email Address is Not Confirmed!"
+				nzSubTitle="Please Check with Admin"
+				*ngIf="EmailNotConfirmedRequested">
+				</nz-result>
+				
+		</div>
+	</nz-content>
+
+	<nz-footer>© AtoCash</nz-footer>
+</nz-layout>

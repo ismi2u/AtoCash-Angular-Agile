@@ -94,7 +94,11 @@
 		"business-type":"Business Type",
 		"business-unit":"Business Unit",
 		"employee-extended-info":"Employee Extended Info",
-		"vendor":"Vendors"
+		"vendor":"Vendors",
+
+		"accpayablemap":"Accounts Payable Mapping",
+		"assignAccPayableToBU":"Assign Accounts Payable to Business Units",
+		"APemployees": "Accounts Payable"
 	},
 	"form": {
 		"disburse": {
@@ -327,7 +331,11 @@
 			"vendorDesc":"Description",
 			"city":"City",
 			"status": "Status"
+		},
+		"accPayableMapping":{
+			"businessUnit":"Business Units"
 		}
+
 	},
 	"tableHeader": {
 		"currency": {

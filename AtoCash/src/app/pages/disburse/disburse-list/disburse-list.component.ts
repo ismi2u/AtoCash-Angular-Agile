@@ -35,6 +35,7 @@ export class DisburseListComponent implements OnInit {
 		isAccountSettled: null,
 		settledAccountsFrom: null,
 		settledAccountsTo: null,
+		LoggedEmpId:this.empId,
 	};
 	constructor(
 		private commonService: CommonService,
@@ -71,6 +72,7 @@ export class DisburseListComponent implements OnInit {
 		this.filter = event;
 		this.disburseService.getDisburses(event).subscribe((data: any) => {
 			this.disburses = data.data;
+			LoggedEmpId:this.empId,
 			this._cdr.detectChanges();
 			this.commonService.loading.next(false);
 		});
@@ -80,6 +82,7 @@ export class DisburseListComponent implements OnInit {
 		this.commonService.loading.next(true);
 		this.disburseService.getDisburses(this.filter).subscribe((data: any) => {
 			this.disburses = data.data;
+			LoggedEmpId:this.empId,
 			this._cdr.detectChanges();
 			this.commonService.loading.next(false);
 		});

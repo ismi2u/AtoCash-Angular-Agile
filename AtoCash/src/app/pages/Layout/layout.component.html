@@ -153,6 +153,16 @@
 					</li>
 				</ul>
 			</li>
+			
+			<li
+				*ngIf="canOrganize() || canOrganizeAndManage()"
+				nz-menu-item
+				nzMatchRouter
+				routerLink="/account-payable-mapping"
+			>
+				<i nz-icon nzType="file-text" nzTheme="outline"></i>
+				<span>{{ 'heading.accpayablemap' | translate }}</span>
+			</li>
 
 			<li
 				*ngIf="canOrganize() || canOrganizeAndManage()"

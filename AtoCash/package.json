@@ -8,11 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    
-    
     "production": "cross-env NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider"
-  
-
   },
   "private": true,
   "dependencies": {
