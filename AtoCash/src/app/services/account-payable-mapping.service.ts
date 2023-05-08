@@ -13,10 +13,10 @@ export class AccountPayableMappingServices {
 
   constructor(private http:HttpClient,private commonService:CommonService) { }
 
-  getBusinessUnitList = () => this.http.get(`${this.commonService.getApi()}/api/BusinessUnits/BusinessUnitsForDropdown`);
+  getCostCenterList = () => this.http.get(`${this.commonService.getApi()}/api/CostCenters/CostCentersForDropDown`);
 
-  getEmployeesByApprovalGroupId = (id:any) => this.http.get(`${this.commonService.getApi()}/api/AccountPayableMapping/GetEmployeesByBusinessUnitId/${id}`)
+  getEmployeesByCostCenterId = (id:any) => this.http.get(`${this.commonService.getApi()}/api/AccountPayableMapping/GetEmployeesByCostCenterId/${id}`)
  
-  assignEmployeesToApprovalGroup = (data:any) => this.http.post(`${this.commonService.getApi()}/api/AccountPayableMapping/AddEmployeesToBusinessUnit`,data)
+  assignEmployeesToCostCenter = (data:any) => this.http.post(`${this.commonService.getApi()}/api/AccountPayableMapping/AddEmployeesToCostCenter`,data)
    
 }

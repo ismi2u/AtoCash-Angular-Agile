@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserRolesService } from 'src/app/services/user-roles.service';
 import { UserService } from 'src/app/services/users.service';
-import { BusinessUnitService } from 'src/app/services/business-unit.service';
+import { CostService } from 'src/app/services/cost.service';
 
 @Component({
 	selector: 'app-task',
@@ -17,31 +17,34 @@ export class AccountPayableMappingComponent implements OnInit {
 	form!: FormGroup;
 	projects = [];
 	employees: any = [];
-	selectedAG = null;
-	businessUnits = [];
+	selectedCostCenter = null;
+	costCenters = [];
 
 	constructor(
 		private accPayableMappingService: AccountPayableMappingServices,
 		private employeeService: EmployeeService,
-		private businessUnitService: BusinessUnitService,
+		private costService: CostService,
     	private commonService: CommonService
 	) {}
 
 	submitForm(): void {}
 
 	ngOnInit(): void {
-    this.commonService.loading.next(true)
+    	this.commonService.loading.next(true);
 		
-		this.businessUnitService
-			.getBusinessUnitsList()
-			.subscribe((response: any) => {
-				this.businessUnits = response.data;
-				this.selectedAG = this.businessUnits[0].id;
-				this.loadEmployees(this.businessUnits[0].id);
-				this.commonService.loading.next(false)
-			});
-	
-			
+		this.costService
+		.getCostCenterList()
+		.subscribe((response: any) => {
+			this.costCenters = response.data;
+			this.selectedCostCenter = this.costCenters[0].id;
+			this.loadEmployees(this.costCenters[0].id);
+			this.commonService.loading.next(false)
+		}, function (err) {
+            this.commonService.loading.next(false);
+        });
+
+		
+
 	}
 
 	onAGChange(event) {
@@ -51,7 +54,7 @@ export class AccountPayableMappingComponent implements OnInit {
 	loadEmployees(id) {
     this.commonService.loading.next(true)
 		this.accPayableMappingService
-			.getEmployeesByApprovalGroupId(id)
+			.getEmployeesByCostCenterId(id)
 			.subscribe((employees: any) => {
 				this.employees = employees.data.map((employee) => {
 					return {
@@ -70,13 +73,13 @@ export class AccountPayableMappingComponent implements OnInit {
 	onTransfer(event) {
     this.commonService.loading.next(true)
 		const requestData = {
-			businessUnitId: this.selectedAG,
+			costCenterId: this.selectedCostCenter,
 			employeeIds: this.employees
 				.filter((employee) => employee.direction === 'right')
 				.map((employee) => employee.employeeId),
 		};
-		this.accPayableMappingService.assignEmployeesToApprovalGroup(requestData).subscribe(response=>{
-		this.loadEmployees(this.selectedAG)
+		this.accPayableMappingService.assignEmployeesToCostCenter(requestData).subscribe(response=>{
+		this.loadEmployees(this.selectedCostCenter)
 		})
 	}
 }

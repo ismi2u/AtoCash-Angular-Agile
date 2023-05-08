@@ -97,7 +97,7 @@
 		"vendor":"Vendors",
 
 		"accpayablemap":"Accounts Payable Mapping",
-		"assignAccPayableToBU":"Assign Accounts Payable to Business Units",
+		"assignAccPayableToCostCenter":"Assign Accounts Payable to Cost Center",
 		"APemployees": "Accounts Payable"
 	},
 	"form": {
@@ -333,7 +333,7 @@
 			"status": "Status"
 		},
 		"accPayableMapping":{
-			"businessUnit":"Business Units"
+			"costCenter":"Cost Center"
 		}
 
 	},
@@ -349,6 +349,7 @@
 		"disburse": {
 			"id": "Id",
 			"employee": "Employee",
+			"costCenter": "Cost Center",
 			"businessType": "Business Type",
 			"project": "Project",
 			"claimAmount": "Claim Amount",

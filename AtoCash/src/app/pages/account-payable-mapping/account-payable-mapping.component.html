@@ -2,11 +2,11 @@
 	<nz-card
 		class="form-layout__card"
 		[nzBordered]="false"
-		[nzTitle]="'heading.assignAccPayableToBU' | translate"
+		[nzTitle]="'heading.assignAccPayableToCostCenter' | translate"
 	>
 		<nz-form-item>
-			<nz-form-label [nzSpan]="6" nzFor="businessUnit">{{
-				'form.accPayableMapping.businessUnit' | translate
+			<nz-form-label [nzSpan]="6" nzFor="costCenter">{{
+				'form.accPayableMapping.costCenter' | translate
 			}}</nz-form-label>
 
 			<nz-form-control
@@ -15,15 +15,15 @@
 			>
 				<nz-select
 					nzShowSearch
-					[nzPlaceHolder]="'form.accPayableMapping.businessUnit' | translate"
+					[nzPlaceHolder]="'form.accPayableMapping.costCenter' | translate"
 					type="text"
 					nz-input
-					[(ngModel)]="selectedAG"
+					[(ngModel)]="selectedCostCenter"
 					(ngModelChange)="onAGChange($event)"
 				>
 					<nz-option
-						*ngFor="let option of businessUnits"
-						[nzLabel]="option.businessUnitName"
+						*ngFor="let option of costCenters"
+						[nzLabel]="option.costCenterCode"
 						[nzValue]="option.id"
 					></nz-option>
 				</nz-select>

@@ -100,7 +100,7 @@
 		"vendor":"الموردين",
 
 		"accpayablemap":"Accounts Payable Mapping",
-		"assignAccPayableToBU":"Assign Accounts Payable to Business Units",
+		"assignAccPayableToCostCenter":"Assign Accounts Payable to Cost Center",
 		"APemployees": "Accounts Payable"
 		
 	},
@@ -348,7 +348,7 @@
 			"status": "الحاله"
 		},
 		"accPayableMapping":{
-			"businessUnit":"وحدة العمل"
+			"costCenter": "مركز التكلفه"
 		}
 
 	},
@@ -364,6 +364,7 @@
 		"disburse": {
 			"id": "الرقم",
 			"employee": "الموظف",
+			"costCenter": "مركز التكلفه",
 			"businessType":"نوع جهة العمل",
 			"businessUnit":"وحدة العمل",
 			"businessUnitLocation":"المكان",

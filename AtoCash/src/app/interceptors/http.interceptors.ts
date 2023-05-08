@@ -98,9 +98,11 @@ export class HttpsRequestInterceptor implements HttpInterceptor, OnInit {
 			case 415:
 				return 'Unsupported Media Type';
 			case 500 || 0:
-				return 'Internal Server Error';
+				//return 'Internal Server Error';
+				return 'Something went wrong';
 			default:
-				return 'Internal Server Error';
+				//return 'Internal Server Error';
+				return 'Something went wrong';
 		}
 	};
 }
