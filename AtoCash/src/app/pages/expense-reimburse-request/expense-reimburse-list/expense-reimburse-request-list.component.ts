@@ -98,7 +98,6 @@ export class ExpenseReimburseRequestListComponent implements OnInit {
 	};
 
 	onView(data) {
-		console.log(data);
 		this.router.navigateByUrl(
 			`/expense-reimburse/action/view/${data.id}`,
 		);

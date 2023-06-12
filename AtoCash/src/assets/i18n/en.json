@@ -395,7 +395,10 @@
 			"cashAdvanceAmount": "Advance Amount"			
 		},
 		"inbox": {
-			"id": "Request Id",
+			"id": "Id",
+			"cashAdvanceRequestId":"Id",
+			"travelApprovalRequestId":"Id",
+			"expenseReimburseRequestId":"Id",
 			"employee": "Employee",
 			"generalLedger": "General Ledger",
 			"businessType": "Business Type",
@@ -635,6 +638,7 @@
 			"expenseRequestTitle": "Expense Request Details",
 			"project": "Project",
 			"travelRequestDetails": "Travel Request Details",
+			"travelRequestId":"Id",
 			"invoiceNo": "Invoice No",
 			"invoiceDate": "Invoice Date",
 			"location": "Expense Location",

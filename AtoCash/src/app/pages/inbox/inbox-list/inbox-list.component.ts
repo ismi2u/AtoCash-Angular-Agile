@@ -62,7 +62,7 @@ export class InboxListComponent implements OnInit {
 			
 			if(type === 'cashAdvance') {
 				this.requestHeaders = [
-					'tableHeader.inbox.id',
+					'tableHeader.inbox.cashAdvanceRequestId',
 					'tableHeader.inbox.employee',
 					'tableHeader.inbox.businessType',
 					'tableHeader.inbox.businessUnit',
@@ -73,7 +73,7 @@ export class InboxListComponent implements OnInit {
 				];
 			}else if(type === 'expenseReimburse') {
 				this.requestHeaders = [
-					'tableHeader.inbox.id',
+					'tableHeader.inbox.expenseReimburseRequestId',
 					'tableHeader.inbox.employee',
 					'tableHeader.inbox.businessType',
 					'tableHeader.inbox.businessUnit',
@@ -85,7 +85,7 @@ export class InboxListComponent implements OnInit {
 			}
 			else {
 				this.requestHeaders = [
-					'tableHeader.inbox.id',
+					'tableHeader.inbox.travelApprovalRequestId',
 					'tableHeader.inbox.employee',
 					'tableHeader.inbox.businessType',
 					'tableHeader.inbox.businessUnit',

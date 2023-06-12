@@ -28,11 +28,17 @@ export class AssignProjectComponent implements OnInit {
 
 	ngOnInit(): void {
     this.commonService.loading.next(true)
-		this.projectService.getProjectList().subscribe((projects: any) => {
+		
+	this.projectService.getProjectList().subscribe((projects: any) => {
 			this.projects = projects.data;
-			this.selectedProject = this.projects[0].id;
-			this.loadEmployees(this.projects[0].id);
-		});
+			if(!this.projects){
+				this.selectedProject = this.projects[0].id;
+				this.loadEmployees(this.projects[0].id);
+			}
+			this.commonService.loading.next(false)
+		}, function (err) {
+            this.commonService.loading.next(false);
+        });
 	}
 
 	onProjectChange(event) {

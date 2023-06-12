@@ -474,8 +474,16 @@
 			</td>
 
 			<!-- Travel Request -->
-			<td *ngIf="data.id && formName == 'travelRequest'">
+			<!--<td *ngIf="data.id && formName == 'travelRequest'">
 				{{ data.id }}
+			</td>//-->
+			<td
+				*ngIf="
+					(data?.travelApprovalRequestId ) &&
+					formName == 'inbox'
+				"
+			>
+				{{ data.travelApprovalRequestId }}
 			</td>
 			<!-- <td *ngIf="data.travelStartDate && formName == 'travelRequest'">
 				{{ data.travelStartDate | date: 'dd/MM/yyyy' }}
@@ -502,9 +510,20 @@
 				{{ data.approvalStatusType }}
 			</td>
 
+			
+			
+			
 			<!-- Inbox -->
-			<td *ngIf="data.id && formName == 'inbox'">
+			<!--<td *ngIf="data.id && formName == 'inbox'">
 				{{ data.id}}
+			</td>//-->
+			<td
+				*ngIf="
+					(data?.cashAdvanceRequestId) &&
+					formName == 'inbox'
+				"
+			>
+				{{ data.cashAdvanceRequestId}}
 			</td>
 			<td *ngIf="data.employeeName && formName == 'inbox'">
 				{{ limitString(data.employeeName) }}
@@ -535,6 +554,9 @@
 			</td>
 
 			<!-- Expense Inbox -->
+			<!--<td *ngIf="data.id && formName == 'expense-reimburse-inbox'">
+				{{ data.id}}
+			</td>//-->
 			<td
 				*ngIf="
 					data.expenseReimburseRequestId &&

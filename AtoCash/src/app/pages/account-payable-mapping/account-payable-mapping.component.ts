@@ -36,8 +36,10 @@ export class AccountPayableMappingComponent implements OnInit {
 		.getCostCenterList()
 		.subscribe((response: any) => {
 			this.costCenters = response.data;
-			this.selectedCostCenter = this.costCenters[0].id;
-			this.loadEmployees(this.costCenters[0].id);
+			if(!this.costCenters){
+				this.selectedCostCenter = this.costCenters[0].id;
+				this.loadEmployees(this.costCenters[0].id);
+			}
 			this.commonService.loading.next(false)
 		}, function (err) {
             this.commonService.loading.next(false);

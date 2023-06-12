@@ -272,7 +272,7 @@
 			>
 				<nz-descriptions-item
 					*ngIf="requestDetails?.id"
-					[nzTitle]="'components.requestDetails.id' | translate"
+					[nzTitle]="'components.requestDetails.travelRequestId' | translate"
 				>
 					{{ requestDetails.id }}
 				</nz-descriptions-item>
@@ -499,7 +499,7 @@
 			<nz-descriptions *ngIf="requestType === 'disburse'">
 				<nz-descriptions-item
 				*ngIf="requestDetails?.id"
-				[nzTitle]="'components.requestDetails.id' | translate"
+				[nzTitle]="'components.requestDetails.cashAdvanceRequestId' | translate"
 			>
 				{{ requestDetails.id }}
 			</nz-descriptions-item>

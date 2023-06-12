@@ -5,7 +5,7 @@
 		[nzTitle]="'heading.costCenter' | translate"
 		[nzExtra]="action"
 	>
-		<form nz-form [formGroup]="costCenterForm" (ngSubmit)="submitForm()">
+		<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
 			<nz-form-item>
 				<nz-form-label [nzSpan]="7" nzRequired nzFor="costCenterCode">{{
 					'form.costCenter.costCenterCode' | translate
@@ -56,7 +56,7 @@
 						nzAllowClear
 						id="statusTypeId"
 						formControlName="statusTypeId"
-						[nzPlaceHolder]="'form.status.status' | translate"
+						[nzPlaceHolder]="'form.costCenter.status' | translate"
 					>
 						<nz-option
 							*ngFor="let option of status"
@@ -68,7 +68,7 @@
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-control class="action-control">
-					<button nz-button nzType="primary" [disabled]="!costCenterForm.valid">
+					<button nz-button nzType="primary" [disabled]="!form.valid">
 						{{ getButtonLabel() }}
 					</button>
 				</nz-form-control>
