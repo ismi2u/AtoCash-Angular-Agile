@@ -94,7 +94,7 @@ export class AuthService {
 		|| domain=="estilo.sa" || domain=="foodunit.uk" || domain=="dhyoof.com"
 		|| domain=="janburger.com" || domain=="luluatnajd.com" || domain=="shawarma-plus.com"
 		|| domain=="shawarmaplus.sa" || domain=="signsa.com" || domain=="tameesa.com"
-		|| domain=="tameesa.com.sa" || domain=="thouq.sa" || domain=="tameesa.com" || domain=="gmail.com" 
+		|| domain=="tameesa.com.sa" || domain=="thouq.sa" || domain=="tameesa.com" || domain=="gmail.com" || domain=="foodworldco.com" 
 		)
 		{
 			redirectDomain="fw";		
