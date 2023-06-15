@@ -663,7 +663,8 @@
 			"expNoOfDays":"No. of Days",
 			"taxNo":"Tax No",
 			"additionalVendor":"Other Vendor Name",
-			"expenseAmount":"Expense Amount"
+			"expenseAmount":"Expense Amount",
+			"cashAdvanceRequestId":"Id"
 		},
 		"filters": {
 			"reports": {

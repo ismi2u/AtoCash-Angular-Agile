@@ -11,6 +11,11 @@ export class DisburseService {
 	constructor(private http: HttpClient,  private commonService:CommonService) {}
 
 	getDisburses = (filter) => {
+		if(!filter.hasOwnProperty('LoggedEmpId') ){
+			filter.LoggedEmpId = this.commonService.getEmpId();
+		}else if(filter.LoggedEmpId==""){
+			filter.LoggedEmpId = this.commonService.getEmpId();
+		}
 		return this.http.post(`${this.commonService.getApi()}/api/Reports/AccountsPayableData`,filter);
 	};
 
