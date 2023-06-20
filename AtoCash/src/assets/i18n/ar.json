@@ -99,9 +99,9 @@
 		"employee-extended-info":"بيانات اضافيه للموظفين",
 		"vendor":"الموردين",
 
-		"accpayablemap":"Accounts Payable Mapping",
-		"assignAccPayableToCostCenter":"Assign Accounts Payable to Cost Center",
-		"APemployees": "Accounts Payable"
+		"accpayablemap":"مخطط حسابات الدائنين",
+		"assignAccPayableToCostCenter":"تخصيص الحسابات المستحقة الدفع الإدارة التكاليف",
+		"APemployees": "التحويلات الماليه"
 		
 	},
 	"form": {
