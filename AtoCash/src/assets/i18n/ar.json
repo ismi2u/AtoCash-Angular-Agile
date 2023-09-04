@@ -107,7 +107,8 @@
 	"form": {
 		"disburse": {
 			"comment": "تعليق",
-			"additionalData": "بيانات اضافيه"
+			"additionalData": "بيانات اضافيه",
+			"postingDate":"تاريخ النشر"
 		},
 		"currency": {
 			"currencyCode": "رمز العمله",

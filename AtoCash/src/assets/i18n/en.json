@@ -103,7 +103,8 @@
 	"form": {
 		"disburse": {
 			"comment": "Comment",
-			"additionalData": "Additional Data"
+			"additionalData": "Additional Data",
+			"postingDate":"Posting Date"
 		},
 		"currency": {
 			"currencyCode": "Code",

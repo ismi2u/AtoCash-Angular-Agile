@@ -663,6 +663,15 @@ export const constant = {
 				role: null,
 				required:true
 			},
+			{
+				label: 'form.disburse.postingDate',
+				name: 'postingDate',
+				defaultValue: '',
+				type: 'date',
+				onlyIf: '',
+				role: null,
+				required:true
+			},
 		]
 	}
 };
